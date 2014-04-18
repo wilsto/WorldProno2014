@@ -1,0 +1,31 @@
+<div ng-include="'partials/navbar'"></div>
+ 
+<!-- BEGIN: Outer ngRepeat. -->
+<div class="table-responsive" ng-repeat="group in groups">
+  <table class="table" >
+ 
+        <caption>
+            <h1 class="l">{{ group.label }}</h1>
+        </caption>
+
+            <!-- BEGIN: Inner ngRepeat. -->
+            <tr ng-repeat="item in group.items | orderBy:'Date'">
+                <td>{{ item.Number }}</td>
+                <td>{{ item.Date }}</td>
+                <td class="c flag"><a href="{{ item.Pays1href }}"><span class="{{ item.Pays1flag }}" title="{{ item.Pays1 }}"> </span></a></td>
+                <td class="l homeTeam">{{ item.Pays1 }}</td>
+                <td class="c"></td>
+                <td class="c">-</td>
+                <td class="c"></td>
+                <td class="r awayTeam">{{ item.Pays2 }}</td>
+                <td class="c flag"><a href="{{ item.Pays2href }}"><span class="{{ item.Pays2flag }}" title="{{ item.Pays2 }}"> </span></a></td>
+            </tr>
+            <!-- END: Inner ngRepeat. -->
+
+ 
+    </table>
+  </div>
+    <!-- END: Outer ngRepeat. -->
+
+<div ng-include="'modals/login'"></div>
+
