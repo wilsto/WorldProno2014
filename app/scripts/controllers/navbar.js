@@ -11,6 +11,9 @@ angular.module('worldProno2014App')
     },{
       'title': 'Pronostics',
       'link': '/pronostic'
+    },{
+      'title': 'Statistiques',
+      'link': '/statitic'
     }
     ];
     

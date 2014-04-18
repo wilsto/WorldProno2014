@@ -20,6 +20,10 @@ angular.module('worldProno2014App', [
         templateUrl: 'partials/pronostic',
         controller: 'pronosticCtrl'
       })
+      .when('/statistic', {
+        templateUrl: 'partials/statistic',
+        controller: 'statisticCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
