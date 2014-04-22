@@ -1,30 +1,156 @@
 <div ng-include="'partials/navbar'"></div>
- 
+
 <!-- BEGIN: Outer ngRepeat. -->
 <div ng-repeat="(group, groupData) in groupsMatches">
-  <table class="table table-responsive" >
- 
-        <caption>
-            <h1 class="l">Groupe {{group}}</h1>
-        </caption>
+    <div class="row">
 
-            <!-- BEGIN: Inner ngRepeat. -->
-            <tr ng-repeat="match in groupData.matches" ng-click="match[0].score + 1">
-                <td class="c flag"><a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{match[0].country}}.png" width="50" height="43"></span></a></td>
-                <td class="l homeTeam">{{match[0].country}}</td>
-                <td class="c">
-                    {{ match[2].date }}<span class="leger"> {{ match[2].time }} </span> <br/>
-                    <button type="button" class="btn btn-primary">Scorez</button>
-                </td>
-                <td class="r awayTeam">{{match[1].country}}</td>
-                <td class="c flag"><a href="{{ item.Pays2href }}"> <img ng-src="/images/country_flags/{{match[1].country}}.png" width="50" height="43"> </span></a></td>
-            </tr>
-            <!-- END: Inner ngRepeat. -->
+        <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
+            <div class="col-xs-12 col-xs-12 col-md-6 col-lg-6">
+                <table class="table table-responsive" >
 
- 
-    </table>
-  </div>
-    <!-- END: Outer ngRepeat. -->
+                    <caption>
+                        <h2 class="l group">Groupe {{group}}</h2>
+                    </caption>
+
+                    <!-- BEGIN: Inner ngRepeat. -->
+                    <tr ng-repeat="match in groupData.matches">
+                        <td class="l"><div class="date " title="  {{ match[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ match[2].time }}</div></div></td>
+                        <td class="l "><a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{match[0].country}}.png" width="30" > {{match[0].country}} </span></a></td>
+                        <td class="l homeTeam"></td>
+                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[0].score"> </td>
+                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[1].score"></td>
+                        <td class="r awayTeam"></td>
+                        <td class="r "><a href="{{ item.Pays2href }}"> {{match[1].country}} <img ng-src="/images/country_flags/{{match[1].country}}.png" width="30" > </span></a></td>
+                    </tr>
+                    <!-- END: Inner ngRepeat. -->
+                </table>
+            </div>
+            <div class="col-xs-12 col-xs-12 col-md-6 col-lg-6">
+                <table class="table table-responsive table-condensed" >
+
+                    <caption>
+                        <h4 class="l group">Classement</h4>
+                    </caption>
+
+                    <!-- BEGIN: Inner ngRepeat. -->
+                    <th class="group">
+                        <td class="l group"></td>
+                        <td class="l group">Pts</td>
+                        <td class="r group">J</td>
+                        <td class="r group">G</td>
+                        <td class="r group">N</td>
+                        <td class="r group">P</td>
+                        <td class="r group">Bp</td>
+                        <td class="r group ">Bc</td>
+                        <td class="r group">Dif</td>
+                    </th>
+                    <tr ng-repeat="(key, data) in groupData.standing  track by $index">
+                        <td class="l">{{$index +1}}</td>
+                        <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{key}} </span></a></td>
+                        <td class="l Pts"> {{data.total | number}} </td>
+                        <td class="r "> {{data.matchNb | number}} </td>
+                        <td class="r "> {{data.win | number}} </td>
+                        <td class="r "> {{data.nul | number}} </td>
+                        <td class="r "> {{data.lose | number}} </td>
+                        <td class="r "> {{data.pour | number}} </td>
+                        <td class="r "> {{data.contre | number}} </td>
+                        <td class="r "> {{(data.pour - data.contre) | number}} </td>
+                    </tr>
+                    <!-- END: Inner ngRepeat. -->
+                </table>
+            </div>
+        </div>
+        <!-- END: Outer ngRepeat. -->
+
+    </div>
+</div>
+
+
+
+<table class="table table-responsive table-condensed" >
+
+    <caption>
+    <h2 class="l group">8èmes de finale</h2>
+    </caption>
+
+    <!-- BEGIN: Inner ngRepeat. -->
+    <tr ng-repeat="(key, data) in secondStageMatches.roundOf16">
+        <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
+        <td class="l ">  </td>
+        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country}}.png" width="30" > {{data[0].country}} </td>
+        <td class="l homeTeam"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"></td>
+        <td class="r awayTeam"></td>
+        <td class="r "> {{data[1].country}} <img ng-src="/images/country_flags/{{data[1].country}}.png" width="30" ></td>
+
+    </tr>
+    <!-- END: Inner ngRepeat. -->
+</table>
+
+
+<table class="table table-responsive table-condensed" >
+
+    <caption>
+        <h2 class="l group">Quart de finale</h2>
+    </caption>
+
+    <!-- BEGIN: Inner ngRepeat. -->
+    <tr ng-repeat="(key, data) in secondStageMatches.quarterFinals">
+        <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
+        <td class="l ">  </td>
+        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country}}.png" width="30" > {{data[0].country}} </td>
+        <td class="l homeTeam"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"></td>
+        <td class="r awayTeam"></td>
+        <td class="r "> {{data[1].country}} <img ng-src="/images/country_flags/{{data[1].country}}.png" width="30" ></td>
+
+    </tr>
+    <!-- END: Inner ngRepeat. -->
+</table>
+
+<table class="table table-responsive table-condensed" >
+
+    <caption>
+        <h2 class="l group">Demi-finale</h2>
+    </caption>
+
+    <!-- BEGIN: Inner ngRepeat. -->
+    <tr ng-repeat="(key, data) in secondStageMatches.semiFinals">
+        <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
+        <td class="l ">  </td>
+        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country}}.png" width="30" > {{data[0].country}} </td>
+        <td class="l homeTeam"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"></td>
+        <td class="r awayTeam"></td>
+        <td class="r "> {{data[1].country}} <img ng-src="/images/country_flags/{{data[1].country}}.png" width="30" ></td>
+
+    </tr>
+    <!-- END: Inner ngRepeat. -->
+</table>
+
+<table class="table table-responsive table-condensed" >
+
+    <caption>
+        <h2 class="l group">Finale</h2>
+    </caption>
+
+    <!-- BEGIN: Inner ngRepeat. -->
+    <tr ng-repeat="(key, data) in secondStageMatches.final">
+        <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
+        <td class="l ">  </td>
+        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country}}.png" width="30" > {{data[0].country}} </td>
+        <td class="l homeTeam"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"></td>
+        <td class="r awayTeam"></td>
+        <td class="r "> {{data[1].country}} <img ng-src="/images/country_flags/{{data[1].country}}.png" width="30" ></td>
+
+    </tr>
+    <!-- END: Inner ngRepeat. -->
+</table>
 
 <div ng-include="'modals/login'"></div>
 
