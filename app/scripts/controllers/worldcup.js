@@ -4,14 +4,21 @@
 angular.module('worldProno2014App')
 .controller('worldcupCtrl', function ($scope, $http) {
 
+  $scope.isCollapsed = true;
+  $scope.isNamed = true;
+
+ $scope.rate = 0;
+  $scope.max = 5;
+  $scope.isReadonly = false;
+
     $scope.groupsMatches = {
         A: { matches:[
                  [{country: 'Brésil', score:'3'}, {country: 'Croatie', score:'1'},{date:'12/06',time:'22:00'}],
                  [{country: 'Méxique', score:'1'}, {country: 'Cameroun', score:'1'},{date:'13/06',time:'18:00'}],
-                 [{country: 'Brésil', score:''}, {country: 'Méxique', score:''},{date:'17/06',time:'21:00'}],
-                 [{country: 'Cameroun', score:''}, {country: 'Croatie', score:''},{date:'19/06',time:'00:00'}],
-                 [{country: 'Cameroun', score:''}, {country: 'Brésil', score:''},{date:'23/06',time:'22:00'}],
-                 [{country: 'Croatie', score:''}, {country: 'Méxique', score:''},{date:'23/06',time:'22:00'}]
+                 [{country: 'Brésil', score:'3'}, {country: 'Méxique', score:'0'},{date:'17/06',time:'21:00'}],
+                 [{country: 'Cameroun', score:'0'}, {country: 'Croatie', score:'0'},{date:'19/06',time:'00:00'}],
+                 [{country: 'Cameroun', score:'0'}, {country: 'Brésil', score:'0'},{date:'23/06',time:'22:00'}],
+                 [{country: 'Croatie', score:'0'}, {country: 'Méxique', score:'2'},{date:'23/06',time:'22:00'}]
              ],
              standing: {
                 'Brésil': {total:0, matchNb:0, pour:0, contre:0, win:0,nul:0,lose:0},
@@ -21,12 +28,12 @@ angular.module('worldProno2014App')
             }
         },
         B: { matches:[
-            [{country: 'Espagne', score:''}, {country: 'Pays-Bas', score:''},{date:'13/06',time:'21:00'}],
-            [{country: 'Chilie', score:''}, {country: 'Australie', score:''},{date:'14/06',time:'00:00'}],
-            [{country: 'Espagne', score:''}, {country: 'Chilie', score:''},{date:'18/06',time:'18:00'}],
-            [{country: 'Australie', score:''}, {country: 'Pays-Bas', score:''},{date:'18/06',time:'21:00'}],
-            [{country: 'Australie', score:''}, {country: 'Espagne', score:''},{date:'23/06',time:'18:00'}],
-            [{country: 'Pays-Bas', score:''}, {country: 'Chilie', score:''},{date:'23/06',time:'18:00'}]
+            [{country: 'Espagne', score:'3'}, {country: 'Pays-Bas', score:'0'},{date:'13/06',time:'21:00'}],
+            [{country: 'Chilie', score:'2'}, {country: 'Australie', score:'1'},{date:'14/06',time:'00:00'}],
+            [{country: 'Espagne', score:'1'}, {country: 'Chilie', score:'2'},{date:'18/06',time:'18:00'}],
+            [{country: 'Australie', score:'3'}, {country: 'Pays-Bas', score:'2'},{date:'18/06',time:'21:00'}],
+            [{country: 'Australie', score:'2'}, {country: 'Espagne', score:'1'},{date:'23/06',time:'18:00'}],
+            [{country: 'Pays-Bas', score:'2'}, {country: 'Chilie', score:'1'},{date:'23/06',time:'18:00'}]
         ],
             standing: {
                 'Espagne': {total:0, matchNb:0, pour:0, contre:0, win:0,nul:0,lose:0},
@@ -241,14 +248,14 @@ angular.module('worldProno2014App')
     }
 
     $scope.standing = { //Countries that pass the first round
-        A: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
-        B: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
-        C: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
-        D: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
-        E: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
-        F: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
-        G: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
-        H: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}]
+        A: [{country: 'A1', score:'', victorByPenalties:true}, {country: 'A2', score:'', victorByPenalties:false}],
+        B: [{country: 'B1', score:'', victorByPenalties:true}, {country: 'B2', score:'', victorByPenalties:false}],
+        C: [{country: 'C1', score:'', victorByPenalties:true}, {country: 'C2', score:'', victorByPenalties:false}],
+        D: [{country: 'D1', score:'', victorByPenalties:true}, {country: 'D2', score:'', victorByPenalties:false}],
+        E: [{country: 'E1', score:'', victorByPenalties:true}, {country: 'E2', score:'', victorByPenalties:false}],
+        F: [{country: 'F1', score:'', victorByPenalties:true}, {country: 'F2', score:'', victorByPenalties:false}],
+        G: [{country: 'G1', score:'', victorByPenalties:true}, {country: 'G2', score:'', victorByPenalties:false}],
+        H: [{country: 'H1', score:'', victorByPenalties:true}, {country: 'H2', score:'', victorByPenalties:false}]
     };
 
     $scope.$watch('secondStageMatches.roundOf16', function(newVal){ //Calculate who passes to quarter finals
@@ -256,7 +263,7 @@ angular.module('worldProno2014App')
         var concaTitle = '';
         _.each($scope.secondStageMatches.roundOf16, function(match, title){
             if(match[0].score.length === 0 || match[1].score.length === 0 ){
-
+                matchHolder.push({country: '', score:'', victorByPenalties:true});
             }else {
                 if(match[0].score > match[1].score){
                     matchHolder.push(_.clone(match[0]));
@@ -265,7 +272,7 @@ angular.module('worldProno2014App')
                 }else{
                     _.each(match, function(country){ country.victorByPenalties ? matchHolder.push(_.clone(country)) : null });
                 }
-            }
+            }  
             concaTitle += title;
             if(matchHolder.length === 2){
                 $scope.secondStageMatches.quarterFinals[concaTitle][0]['country'] = matchHolder[0]['country'];
@@ -273,6 +280,7 @@ angular.module('worldProno2014App')
                 matchHolder = [];
                 concaTitle = '';
             }
+
         });
     }, true);
 
@@ -280,6 +288,9 @@ angular.module('worldProno2014App')
         var matchHolder = [];
         var concaTitle = '';
         _.each($scope.secondStageMatches.quarterFinals, function(match, title){
+                        if(match[0].score.length === 0 || match[1].score.length === 0 ){
+                matchHolder.push({country: '', score:'', victorByPenalties:true});
+            }else {
             if(match[0].score > match[1].score){
                 matchHolder.push(_.clone(match[0]));
             }else if(match[0].score < match[1].score){
@@ -287,6 +298,7 @@ angular.module('worldProno2014App')
             }else{
                 _.each(match, function(country){ country.victorByPenalties ? matchHolder.push(_.clone(country)) : null });
             }
+        }
             concaTitle += title;
             if(matchHolder.length === 2){
                 $scope.secondStageMatches.semiFinals[concaTitle][0]['country'] = matchHolder[0]['country'];
@@ -301,6 +313,9 @@ angular.module('worldProno2014App')
         var matchHolder = [];
         var concaTitle = '';
         _.each($scope.secondStageMatches.semiFinals, function(match, title){
+                        if(match[0].score.length === 0 || match[1].score.length === 0 ){
+                matchHolder.push({country: '', score:'', victorByPenalties:true});
+            }else {
             if(match[0].score > match[1].score){
                 matchHolder.push(_.clone(match[0]));
             }else if(match[0].score < match[1].score){
@@ -308,6 +323,7 @@ angular.module('worldProno2014App')
             }else{
                 _.each(match, function(country){ country.victorByPenalties ? matchHolder.push(_.clone(country)) : null });
             }
+        }
             concaTitle += title;
             if(matchHolder.length === 2){
 
@@ -330,7 +346,7 @@ angular.module('worldProno2014App')
 
     $scope.secondStageMatches = {
         'roundOf16':{
-            A: [{country: 'A1', score:'', victorByPenalties:true}, {country: 'B2', score:'', victorByPenalties:false}],
+            A: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
             B: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
             C: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
             D: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}],
@@ -353,10 +369,5 @@ angular.module('worldProno2014App')
             ABCDEFGH: [{country: '', score:'', victorByPenalties:true}, {country: '', score:'', victorByPenalties:false}]
         }
     };
-
-
- $scope.rate = 7;
-  $scope.max = 10;
-  $scope.isReadonly = false;
 
 });

@@ -1,6 +1,12 @@
 <div ng-include="'partials/navbar'"></div>
 
 <!-- BEGIN: Outer ngRepeat. -->
+
+<button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Collapse groupes</button>
+<button class="btn btn-default" ng-click="isNamed = !isNamed">Nom de pays</button>
+    <hr>
+    <div collapse="isCollapsed">
+
 <div ng-repeat="(group, groupData) in groupsMatches">
     <div class="row">
 
@@ -15,12 +21,12 @@
                     <!-- BEGIN: Inner ngRepeat. -->
                     <tr ng-repeat="match in groupData.matches">
                         <td class="l"><div class="date " title="  {{ match[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ match[2].time }}</div></div></td>
-                        <td class="l "><a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{match[0].country}}.png" width="30" > {{match[0].country}} </span></a></td>
+                        <td class="l "><a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{match[0].country}}.png" width="30" >  <span ng-show="isNamed">{{match[0].country}} </span></a></td>
                         <td class="l homeTeam"></td>
                         <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[0].score"> </td>
                         <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[1].score"></td>
                         <td class="r awayTeam"></td>
-                        <td class="r "><a href="{{ item.Pays2href }}"> {{match[1].country}} <img ng-src="/images/country_flags/{{match[1].country}}.png" width="30" > </span></a></td>
+                        <td class="r "><a href="{{ item.Pays2href }}"> <span ng-show="isNamed">{{match[1].country}}</span> <img ng-src="/images/country_flags/{{match[1].country}}.png" width="30" > </span></a></td>
                     </tr>
                     <!-- END: Inner ngRepeat. -->
                 </table>
@@ -46,7 +52,7 @@
                     </th>
                     <tr ng-repeat="(key, data) in groupData.standing  track by $index">
                         <td class="l">{{$index +1}}</td>
-                        <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{key}} </span></a></td>
+                        <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" >  <span ng-show="isNamed">{{key}} </span></a></td>
                         <td class="l Pts"> {{data.total | number}} </td>
                         <td class="r "> {{data.matchNb | number}} </td>
                         <td class="r "> {{data.win | number}} </td>
@@ -64,7 +70,7 @@
 
     </div>
 </div>
-
+</div>
 
 
 <table class="table table-responsive table-condensed" >
@@ -75,14 +81,15 @@
 
     <!-- BEGIN: Inner ngRepeat. -->
     <tr ng-repeat="(key, data) in secondStageMatches.roundOf16">
+        <td class="l ">{{key}}  </td>
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
-        <td class="l ">  </td>
-        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country}}.png" width="30" > {{data[0].country}} </td>
+
+        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country.length <3 && '_unknown' || data[0].country}}.png" width="30" > <span ng-class="{nameGrey:data[0].country.length <3}" ng-show="isNamed  || data[0].country.length <3">{{data[0].country}}</span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "></td>
         <td class="r awayTeam"></td>
-        <td class="r "> {{data[1].country}} <img ng-src="/images/country_flags/{{data[1].country}}.png" width="30" ></td>
+        <td class="r "> <span ng-class="{nameGrey:data[1].country.length <3}" ng-show="isNamed || data[1].country.length <3">{{data[1].country}} </span><img ng-src="/images/country_flags/{{data[1].country.length <3 && '_unknown' || data[1].country}}.png" width="30" ></td>
 
     </tr>
     <!-- END: Inner ngRepeat. -->
@@ -97,14 +104,14 @@
 
     <!-- BEGIN: Inner ngRepeat. -->
     <tr ng-repeat="(key, data) in secondStageMatches.quarterFinals">
+            <td class="l ">{{key}}  </td>
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
-        <td class="l ">  </td>
-        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country}}.png" width="30" > {{data[0].country}} </td>
+        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country.length <3 && '_unknown' || data[0].country}}.png" width="30" ><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "></td>
         <td class="r awayTeam"></td>
-        <td class="r "> {{data[1].country}} <img ng-src="/images/country_flags/{{data[1].country}}.png" width="30" ></td>
+        <td class="r "> <span ng-show="isNamed">{{data[1].country}} </span><img ng-src="/images/country_flags/{{data[1].country.length <3 && '_unknown' || data[1].country}}.png" width="30" ></td>
 
     </tr>
     <!-- END: Inner ngRepeat. -->
@@ -118,14 +125,14 @@
 
     <!-- BEGIN: Inner ngRepeat. -->
     <tr ng-repeat="(key, data) in secondStageMatches.semiFinals">
+        <td class="l ">{{key}}  </td>
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
-        <td class="l ">  </td>
-        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country}}.png" width="30" > {{data[0].country}} </td>
+        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country.length <3 && '_unknown' || data[0].country}}.png" width="30" ><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score" ng-disabled="data[0].country.length <3 || data[1].country.length <3 "> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "></td>
         <td class="r awayTeam"></td>
-        <td class="r "> {{data[1].country}} <img ng-src="/images/country_flags/{{data[1].country}}.png" width="30" ></td>
+        <td class="r "> <span ng-show="isNamed">{{data[1].country}} </span><img ng-src="/images/country_flags/{{data[1].country.length <3 && '_unknown' || data[1].country}}.png" width="30" ></td>
 
     </tr>
     <!-- END: Inner ngRepeat. -->
@@ -141,12 +148,12 @@
     <tr ng-repeat="(key, data) in secondStageMatches.final">
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
         <td class="l ">  </td>
-        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country}}.png" width="30" > {{data[0].country}} </td>
+        <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country.length <3 && '_unknown' || data[0].country}}.png" width="30" ><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "></td>
         <td class="r awayTeam"></td>
-        <td class="r "> {{data[1].country}} <img ng-src="/images/country_flags/{{data[1].country}}.png" width="30" ></td>
+        <td class="r "><span ng-show="isNamed"> {{data[1].country}} </span><img ng-src="/images/country_flags/{{data[1].country.length <3 && '_unknown' || data[1].country}}.png" width="30" ></td>
 
     </tr>
     <!-- END: Inner ngRepeat. -->
