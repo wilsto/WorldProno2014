@@ -1,8 +1,9 @@
 'use strict';
 /*jshint -W069 */ /* JSHint: Surpress {variable} “is better written in dot notation.” */
+Ladda.bind( '.ladda-button', { timeout: 2000 } );
 
 angular.module('worldProno2014App')
-.controller('worldcupCtrl', function ($scope, $http, userService, pronoFactory) {
+.controller('worldcupCtrl', function ($scope, $http, userService, PronoFactory) {
 
     $scope.isCollapsed = false;
     $scope.isNamed = true;
@@ -10,7 +11,6 @@ angular.module('worldProno2014App')
     $scope.rate = 0;
     $scope.max = 5;
     $scope.isReadonly = false;
-
 
     $scope.standing = { //Countries that pass the first round
         A: [{country: 'A1', score:'', victorByPenalties:true}, {country: 'A2', score:'', victorByPenalties:false}],
@@ -24,15 +24,13 @@ angular.module('worldProno2014App')
     };
 
     $scope.userData = userService.getUserData();    // recupère le nom de l'utilisateur
-    $scope.mypronos =[];
-    $scope.mypronos = pronoFactory.get({id:$scope.userData.userName}); // recupère les pronos du joueur
 
-    $scope.$watch('mypronos ', function(){
+    $scope.mypronos = PronoFactory.get({id:$scope.userData.userName}, function() { // recupère les pronos du joueur
         if (typeof $scope.mypronos[0] !== 'undefined') {
             $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
             $scope.secondStageMatches = $scope.mypronos[0].secondStageMatches;
         }
-    }, true);
+    });
 
     $scope.$watch('groupsMatches.A.matches ', function(){
         calculateStandings();
