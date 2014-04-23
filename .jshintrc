@@ -6,6 +6,7 @@
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
+  "expr":true,
   "immed": true,
   "latedef": true,
   "newcap": true,
@@ -18,6 +19,7 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "angular": false
+    "angular": false,
+    "_": false
   }
 }

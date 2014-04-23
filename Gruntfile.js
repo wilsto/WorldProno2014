@@ -158,6 +158,14 @@ module.exports = function (grunt) {
       }
     },
 
+    
+    // ouvre des commandes shell (exemple ouvrir l'éditeur)
+    shell: {
+        Sublime: {
+            command: '"C:\\Program Files\\Sublime Text 3\\sublime_text.exe"'
+        }
+    },
+
     // Debugging with node inspector
     'node-inspector': {
       custom: {
