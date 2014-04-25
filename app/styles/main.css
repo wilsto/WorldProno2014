@@ -139,6 +139,7 @@ td.Pts{
 th.group{
   background: #F0F0F0;
   color: #666666;
+  min-width: 50px;
 }
 
 td.group{
@@ -152,4 +153,9 @@ span.nameGrey{
 
 .Mondial{
   background: #00FF80;  
+}
+
+.popover{
+  width:400px!important;
+  max-width:400px!important;
 }

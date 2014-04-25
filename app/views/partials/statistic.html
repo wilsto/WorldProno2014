@@ -1,6 +1,5 @@
 <div ng-include="'partials/navbar'"></div>
 
-
             <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
                 <table class="table table-responsive table-condensed" >
 
@@ -10,7 +9,6 @@
 
                     <!-- BEGIN: Inner ngRepeat. -->
                     <th class="group">
-                        <td class="l group"></td>
                         <td class="l group">Nom</td>
                         <td class="c group">Pts</td>
                         <td class="c group"><a href="{{ item.Pays1href }}">1er tour</a></td>
@@ -23,21 +21,22 @@
                         <td class="c group">Finales</td>
                         <td class="c group">Win</td>
                     </th>
-                    <tr ng-repeat="player in allPlayers  track by $index">
+                    <tr ng-repeat="player in allPlayers track by $index | orderBy:'totalpoints':true">
                         <td class="l">{{$index +1}}</td>
                         <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.userName}}</a></td>
-                        <td class="l Pts"> {{player.total | number}} </td>
-                        <td class="c "> {{player.matchNb | number}} </td>
-                        <td class="c "> {{player.win | number}} </td>
-                        <td class="c "> {{player.nul | number}} </td>
-                        <td class="c "> {{player.lose | number}} </td>
-                        <td class="c "> {{player.pour | number}} </td>
-                        <td class="c "> {{player.contre | number}} </td>
-                        <td class="c "> {{(player.pour - player.contre) | number}} </td>
-                        <td class="c "> {{(player.pour - player.contre) | number}} </td>
-                        <td class="c "> {{(player.pour - player.contre) | number}} </td>
-                        <td class="c "> {{(player.pour - player.contre) | number}} </td>
+                        <td class="c Pts "> {{player.totalpoints  | number}} </td>
+                        <td class="c "><button pop-over items="player.points.tour1.details" title="Détails Tour 1" class="btn btn-default">{{player.points.tour1.total | number}}</button>
+                        <td class="c "><button pop-over items="player.points.tour2.details" title="Détails Tour 2" class="btn btn-default">{{player.points.tour2.total | number}}</button></td>
+                        <td class="c "><button pop-over items="player.points.tour3.details" title="Détails Tour 3" class="btn btn-default">{{player.points.tour3.total | number}}</button></td>
+                        <td class="c "><button popover="{{player.points.qualif.details}}" popover-title="Détails Qualifications" popover-placement="right" class="btn btn-default">{{player.points.qualif.total | number}}</button></td>
+                        <td class="c "><button popover="{{player.points.roundOf16.details}}" popover-title="Détails 1/8ème de finale" popover-placement="right" class="btn btn-default">{{player.points.roundOf16.total | number}}</button></td>
+                        <td class="c "><button popover="{{player.points.quarterFinals.details}}" popover-title="Détails 1/4 de finale" popover-placement="right" class="btn btn-default">{{player.points.quarterFinals.total | number}}</button></td>
+                        <td class="c "><button popover="{{player.points.semiFinals.details}}" popover-title="Détails Demi-Finales" popover-placement="right" class="btn btn-default">{{player.points.semiFinals.total | number}}</button></td>
+                        <td class="c "><button popover="{{player.points.Finals.details}}" popover-title="Détails Finales" popover-placement="right" class="btn btn-default">{{player.points.Finals.total | number}}</button></td>
+                        <td class="c "><button popover="{{player.points.winner.details}}" popover-title="Détails Vainqueur" popover-placement="right" class="btn btn-default">{{player.points.winner.total | number}}</button></td>
+
                     </tr>
                     <!-- END: Inner ngRepeat. -->
                 </table>
             </div>
+
