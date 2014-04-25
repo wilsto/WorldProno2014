@@ -17,6 +17,10 @@ angular.module('worldProno2014App', [
         templateUrl: 'partials/worldcup',
         controller: 'worldcupCtrl'
       })
+      .when('/worldcup/:id', {
+        templateUrl: 'partials/worldcup',
+        controller: 'worldcupCtrl'
+      })
       .when('/pronostic', {
         templateUrl: 'partials/pronostic',
         controller: 'pronosticCtrl'

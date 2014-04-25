@@ -1,9 +1,11 @@
 'use strict';
 /*jshint -W069 */ /* JSHint: Surpress {variable} “is better written in dot notation.” */
-Ladda.bind( '.ladda-button', { timeout: 2000 } );
+
 
 angular.module('worldProno2014App')
-.controller('worldcupCtrl', function ($scope, $http, userService, PronoFactory) {
+.controller('worldcupCtrl', function ($scope, $http, $routeParams, userService, PronoFactory) {
+
+Ladda.bind( '.ladda-button', { timeout: 2000 } );
 
     $scope.isCollapsed = false;
     $scope.isNamed = true;
@@ -12,25 +14,56 @@ angular.module('worldProno2014App')
     $scope.max = 5;
     $scope.isReadonly = false;
 
-    $scope.standing = { //Countries that pass the first round
-        A: [{country: 'A1', score:'', victorByPenalties:true}, {country: 'A2', score:'', victorByPenalties:false}],
-        B: [{country: 'B1', score:'', victorByPenalties:true}, {country: 'B2', score:'', victorByPenalties:false}],
-        C: [{country: 'C1', score:'', victorByPenalties:true}, {country: 'C2', score:'', victorByPenalties:false}],
-        D: [{country: 'D1', score:'', victorByPenalties:true}, {country: 'D2', score:'', victorByPenalties:false}],
-        E: [{country: 'E1', score:'', victorByPenalties:true}, {country: 'E2', score:'', victorByPenalties:false}],
-        F: [{country: 'F1', score:'', victorByPenalties:true}, {country: 'F2', score:'', victorByPenalties:false}],
-        G: [{country: 'G1', score:'', victorByPenalties:true}, {country: 'G2', score:'', victorByPenalties:false}],
-        H: [{country: 'H1', score:'', victorByPenalties:true}, {country: 'H2', score:'', victorByPenalties:false}]
-    };
-
-    $scope.userData = userService.getUserData();    // recupère le nom de l'utilisateur
-
-    $scope.mypronos = PronoFactory.get({id:$scope.userData.userName}, function() { // recupère les pronos du joueur
-        if (typeof $scope.mypronos[0] !== 'undefined') {
-            $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
-            $scope.secondStageMatches = $scope.mypronos[0].secondStageMatches;
-        }
+    // déterminer s'il s'agit des données     
+     $scope.$watch('$routeParams.id', function(){
+        $scope.real = $routeParams.id;
+        $scope.mypronos = PronoFactory.get({id:$scope.real},
+        function(data) {
+            if (data.length > 0) { // recupère les pronos du joueur
+                $scope.groupsMatches = data[0].groupsMatches;
+                $scope.secondStageMatches = data[0].secondStageMatches;
+            } else { // initiliase les matchs
+                console.log('data', data);
+               $scope.resetPronos();
+            }
+        });
     });
+    $scope.resetPronos = function() {
+        $http.get('/api/fifaMatchs').success(function(fifaMatchs) {
+            $scope.fifaMatchs = fifaMatchs;
+            $scope.groupsMatches = $scope.fifaMatchs.groupsMatches;
+            $scope.secondStageMatches = $scope.fifaMatchs.secondStageMatches;
+            $scope.standing = { //Countries that pass the first round
+                A: [{country: 'A1', score:'', victorByPenalties:true}, {country: 'A2', score:'', victorByPenalties:false}],
+                B: [{country: 'B1', score:'', victorByPenalties:true}, {country: 'B2', score:'', victorByPenalties:false}],
+                C: [{country: 'C1', score:'', victorByPenalties:true}, {country: 'C2', score:'', victorByPenalties:false}],
+                D: [{country: 'D1', score:'', victorByPenalties:true}, {country: 'D2', score:'', victorByPenalties:false}],
+                E: [{country: 'E1', score:'', victorByPenalties:true}, {country: 'E2', score:'', victorByPenalties:false}],
+                F: [{country: 'F1', score:'', victorByPenalties:true}, {country: 'F2', score:'', victorByPenalties:false}],
+                G: [{country: 'G1', score:'', victorByPenalties:true}, {country: 'G2', score:'', victorByPenalties:false}],
+                H: [{country: 'H1', score:'', victorByPenalties:true}, {country: 'H2', score:'', victorByPenalties:false}]
+            };
+        });
+    };
+    $scope.resetPronos();
+
+
+    $scope.service = userService;
+    $scope.$watch('service.getUserData()', function(userData){
+        if (!$routeParams.id) {
+            $scope.userData = userData;    // recupère le nom de l'utilisateur
+            $scope.mypronos = PronoFactory.get({id:$scope.userData.userName},
+            function(data) {
+                if (data.length > 0) { // recupère les pronos du joueur
+                    $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
+                    $scope.secondStageMatches = $scope.mypronos[0].secondStageMatches;
+                } else { // initiliase les matchs
+                    console.log('data', data);
+                   $scope.resetPronos();
+                }
+            });
+        }
+    }, true);
 
     $scope.$watch('groupsMatches.A.matches ', function(){
         calculateStandings();
@@ -79,7 +112,7 @@ angular.module('worldProno2014App')
                 groupData.standing[match[1].country].contre = 0;
             });
         });
-}
+    }
 
     /**
      * [calcul du nombre de points par groupe]

@@ -1,0 +1,43 @@
+<div ng-include="'partials/navbar'"></div>
+
+
+            <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
+                <table class="table table-responsive table-condensed" >
+
+                    <caption>
+                        <h4 class="l group">Classement</h4>
+                    </caption>
+
+                    <!-- BEGIN: Inner ngRepeat. -->
+                    <th class="group">
+                        <td class="l group"></td>
+                        <td class="l group">Nom</td>
+                        <td class="c group">Pts</td>
+                        <td class="c group"><a href="{{ item.Pays1href }}">1er tour</a></td>
+                        <td class="c group">2ème tour</td>
+                        <td class="c group">3ème tour</td>
+                        <td class="c group">Qualifs</td>
+                        <td class="c group ">1/8</td>
+                        <td class="c group">1/4</td>
+                        <td class="c group">1/2</td>
+                        <td class="c group">Finales</td>
+                        <td class="c group">Win</td>
+                    </th>
+                    <tr ng-repeat="player in allPlayers  track by $index">
+                        <td class="l">{{$index +1}}</td>
+                        <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.userName}}</a></td>
+                        <td class="l Pts"> {{player.total | number}} </td>
+                        <td class="c "> {{player.matchNb | number}} </td>
+                        <td class="c "> {{player.win | number}} </td>
+                        <td class="c "> {{player.nul | number}} </td>
+                        <td class="c "> {{player.lose | number}} </td>
+                        <td class="c "> {{player.pour | number}} </td>
+                        <td class="c "> {{player.contre | number}} </td>
+                        <td class="c "> {{(player.pour - player.contre) | number}} </td>
+                        <td class="c "> {{(player.pour - player.contre) | number}} </td>
+                        <td class="c "> {{(player.pour - player.contre) | number}} </td>
+                        <td class="c "> {{(player.pour - player.contre) | number}} </td>
+                    </tr>
+                    <!-- END: Inner ngRepeat. -->
+                </table>
+            </div>

@@ -23,10 +23,13 @@ angular.module('worldProno2014App')
             firstName: 'Will',
             userName: 'Will'
         };
- 
-        //Getter pour la variable userData
+
         this.getUserData = function() {
             return userData;
+        };
+
+        this.updateUserData = function(data) {
+            userData = data;
         };
 
     }

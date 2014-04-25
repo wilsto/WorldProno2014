@@ -6,6 +6,7 @@
 <button class="btn btn-default" ng-click="isNamed = !isNamed">Nom de pays</button>
 <button class="btn btn-primary ladda-button" data-style="expand-right" ng-click="savePronos()"><span class="ladda-label">Sauvegarder</span><span class="ladda-spinner"></span></button>
     <hr>
+
     <div collapse="isCollapsed">
 
 <div ng-repeat="(group, groupData) in groupsMatches">
@@ -21,11 +22,11 @@
 
                     <!-- BEGIN: Inner ngRepeat. -->
                     <tr ng-repeat="match in groupData.matches">
-                        <td class="l"><div class="date " title="  {{ match[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ match[2].time }}</div></div></td>
+                        <td class="l"><div ng-show="isNamed" class="date " title="  {{ match[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ match[2].time }}</div></div></td>
                         <td class="l "><a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{match[0].country}}.png" width="30" >  <span ng-show="isNamed">{{match[0].country}} </span></a></td>
                         <td class="l homeTeam"></td>
-                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[0].score"> </td>
-                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[1].score"></td>
+                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[0].score" ng-disabled="real === 'Mondial'"> </td>
+                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[1].score"  ng-disabled="real === 'Mondial'"></td>
                         <td class="r awayTeam"></td>
                         <td class="r "><a href="{{ item.Pays2href }}"> <span ng-show="isNamed">{{match[1].country}}</span> <img ng-src="/images/country_flags/{{match[1].country}}.png" width="30" > </span></a></td>
                     </tr>
@@ -87,8 +88,8 @@
 
         <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country.length <3 && '_unknown' || data[0].country}}.png" width="30" > <span ng-class="{nameGrey:data[0].country.length <3}" ng-show="isNamed  || data[0].country.length <3">{{data[0].country}}</span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"></td>
         <td class="r awayTeam"></td>
         <td class="r "> <span ng-class="{nameGrey:data[1].country.length <3}" ng-show="isNamed || data[1].country.length <3">{{data[1].country}} </span><img ng-src="/images/country_flags/{{data[1].country.length <3 && '_unknown' || data[1].country}}.png" width="30" ></td>
 
@@ -109,8 +110,8 @@
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
         <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country.length <3 && '_unknown' || data[0].country}}.png" width="30" ><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"></td>
         <td class="r awayTeam"></td>
         <td class="r "> <span ng-show="isNamed">{{data[1].country}} </span><img ng-src="/images/country_flags/{{data[1].country.length <3 && '_unknown' || data[1].country}}.png" width="30" ></td>
 
@@ -130,8 +131,8 @@
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
         <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country.length <3 && '_unknown' || data[0].country}}.png" width="30" ><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score" ng-disabled="data[0].country.length <3 || data[1].country.length <3 "> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score" ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"></td>
         <td class="r awayTeam"></td>
         <td class="r "> <span ng-show="isNamed">{{data[1].country}} </span><img ng-src="/images/country_flags/{{data[1].country.length <3 && '_unknown' || data[1].country}}.png" width="30" ></td>
 
@@ -151,8 +152,8 @@
         <td class="l ">  </td>
         <td class="l ">  <img ng-src="/images/country_flags/{{data[0].country.length <3 && '_unknown' || data[0].country}}.png" width="30" ><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 "></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"></td>
         <td class="r awayTeam"></td>
         <td class="r "><span ng-show="isNamed"> {{data[1].country}} </span><img ng-src="/images/country_flags/{{data[1].country.length <3 && '_unknown' || data[1].country}}.png" width="30" ></td>
 
