@@ -1,5 +1,13 @@
 <div ng-include="'partials/navbar'"></div>
 
+<section class="section"  ng-hide="allPlayers">
+<span class="loader loader-double"></span>
+Chargement en cours
+</section>
+
+
+<section class="section-2" ng-show="allPlayers">
+
             <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
                 <table class="table table-responsive table-condensed" >
 
@@ -39,4 +47,4 @@
                     <!-- END: Inner ngRepeat. -->
                 </table>
             </div>
-
+</section>

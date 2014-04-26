@@ -8,7 +8,7 @@ angular.module('worldProno2014App')
 Ladda.bind( '.ladda-button', { timeout: 2000 } );
 
     $scope.isCollapsed = false;
-    $scope.isNamed = true;
+    $scope.isNamed = userService.isMobile.any() === null;
 
     $scope.rate = 0;
     $scope.max = 5;

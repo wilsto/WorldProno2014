@@ -205,6 +205,7 @@ th.group {
 td.group {
   background: #F0F0F0;
   color: #666666;
+  vertical-align: middle;
 }
 
 span.nameGrey {
@@ -218,4 +219,356 @@ span.nameGrey {
 .popover {
   width: 400px!important;
   max-width: 400px!important;
+}
+
+/* Variables */
+
+/* Base */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.section {
+  height: 500px;
+  line-height: 500px;
+  text-align: center;
+  font-size: 40px;
+  color: #C5BEC0;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+
+/* Loaders */
+
+.loader-double {
+  border-radius: 50px;
+  border: 6px solid transparent;
+  border-top-color: #C5BEC0;
+  border-bottom-color: #C5BEC0;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+.loader-double:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  bottom: 5px;
+  right: 5px;
+  border-radius: 50px;
+  border: 6px solid transparent;
+  border-top-color: #C5BEC0;
+  border-bottom-color: #C5BEC0;
+  opacity: 0.6;
+  -webkit-animation: spinreverse 2s linear infinite;
+  animation: spinreverse 2s linear infinite;
+}
+
+/* Animations */
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spinreverse {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(-360deg);
+  }
+}
+
+@keyframes spinreverse {
+  from {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+  }
+}
+
+.flag {
+  width: 29px;
+  height: 25px;
+  background: url(../images/csg-535b66ddd9029.png) no-repeat top left;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.sprite-Algerie {
+  background-position: 0 0;
+}
+
+.sprite-Allemagne {
+  background-position: -30px 0;
+}
+
+.sprite-Angleterre {
+  background-position: -60px 0;
+}
+
+.sprite-Belgique {
+  background-position: -90px 0;
+}
+
+.sprite-BrU00e9sil {
+  background-position: -120px 0;
+}
+
+.sprite-CorU00e9e {
+  background-position: -150px 0;
+}
+
+.sprite-Cotedivoire {
+  background-position: -180px 0;
+}
+
+.sprite-Equateur {
+  background-position: -210px 0;
+}
+
+.sprite-Espagne {
+  background-position: -240px 0;
+}
+
+.sprite-Etats-Unis {
+  background-position: -270px 0;
+}
+
+.sprite-Pays-Bas {
+  background-position: -300px 0;
+}
+
+.sprite-Suisse {
+  background-position: -330px 0;
+}
+
+.sprite-_unknown {
+  background-position: -360px 0;
+  width: 32px;
+  height: 32px;
+}
+
+.sprite-Argentine {
+  background-position: -393px 0;
+}
+
+.sprite-Australie {
+  background-position: -423px 0;
+}
+
+.sprite-Bosnie {
+  background-position: -453px 0;
+}
+
+.sprite-Cameroun {
+  background-position: -483px 0;
+}
+
+.sprite-Chilie {
+  background-position: -513px 0;
+}
+
+.sprite-Colombie {
+  background-position: -543px 0;
+}
+
+.sprite-Costarica {
+  background-position: -573px 0;
+}
+
+.sprite-Croatie {
+  background-position: -603px 0;
+}
+
+.sprite-France {
+  background-position: -633px 0;
+}
+
+.sprite-Ghana {
+  background-position: -663px 0;
+}
+
+.sprite-GrU00e8ce {
+  background-position: -693px 0;
+}
+
+.sprite-Honduras {
+  background-position: -723px 0;
+}
+
+.sprite-Iran {
+  background-position: -753px 0;
+}
+
+.sprite-Italie {
+  background-position: -783px 0;
+}
+
+.sprite-Japon {
+  background-position: -813px 0;
+}
+
+.sprite-MU00e9xique {
+  background-position: -843px 0;
+}
+
+.sprite-Nigeria {
+  background-position: -873px 0;
+}
+
+.sprite-Portugal {
+  background-position: -903px 0;
+}
+
+.sprite-Russie {
+  background-position: -933px 0;
+}
+
+.sprite-Uruguay {
+  background-position: -963px 0;
+}
+
+#login:before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  border: 1px dashed #ccc;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  right: 5px;
+  box-shadow: 0 0 0 1px #fff;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/*--------------------*/
+
+#inputs input {
+  background: #f1f1f1 url(http://www.red-team-design.com/wp-content/uploads/2011/09/login-sprite.png) no-repeat;
+  padding: 15px 15px 15px 30px;
+  margin: 0 0 10px 0;
+  width: 353px;
+  /* 353 + 2 + 45 = 400 */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+}
+
+#username {
+  background-position: 5px -2px !important;
+}
+
+#password {
+  background-position: 5px -52px !important;
+}
+
+#inputs input:focus {
+  background-color: #fff;
+  border-color: #e8c291;
+  outline: none;
+  box-shadow: 0 0 0 1px #e8c291 inset;
+}
+
+/*--------------------*/
+
+#actions {
+  margin: 25px 0 0 0;
+}
+
+#submit {
+  background-color: #ffb94b;
+  background-image: linear-gradient(top, #fddb6f, #ffb94b);
+  border-radius: 3px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d69e31 #e3a037 #d5982d #e3a037;
+  float: left;
+  height: 35px;
+  padding: 0;
+  width: 120px;
+  cursor: pointer;
+  font: bold 15px Arial, Helvetica;
+  color: #8f5a0a;
+}
+
+#submit:hover,
+#submit:focus {
+  background-color: #fddb6f;
+  background-image: linear-gradient(top, #ffb94b, #fddb6f);
+}
+
+#submit:active {
+  outline: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+}
+
+#submit::-moz-focus-inner {
+  border: none;
+}
+
+#actions a {
+  color: #3151A2;
+  float: right;
+  line-height: 35px;
+  margin-left: 10px;
+}
+
+/*--------------------*/
+
+#back {
+  display: block;
+  text-align: center;
+  position: relative;
+  top: 60px;
+  color: #999;
 }

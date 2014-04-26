@@ -20,6 +20,9 @@
   "smarttabs": true,
   "globals": {
     "angular": false,
-    "_": false
+    "_": false,
+    "$": false,
+    "Ladda": false,
+    "bootbox": false
   }
 }
