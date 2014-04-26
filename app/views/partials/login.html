@@ -1,11 +1,17 @@
 <div ng-include="'partials/navbar.html'"></div>
 
 <div class="row">
-  <div class="col-sm-12">
-    <h1>Page de connexion</h1>
-  </div>
-  {{message}}
-  <div class="col-sm-12">
+          <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="jumbotron">
+  <h1>Connectez-vous!</h1>
+  <p class="lead">
+    Pour voir vos résultats, vous devez vous identifier.</p>
+    <p>
+      <a class="btn btn-lg btn-success" href="#loginModal" role="button" data-toggle="modal">Je me connecte</a></p>
+    </div>
+     </div>
+
+
     <form class="form" name="form" ng-submit="login(form)" novalidate>
 
       <div class="form-group">

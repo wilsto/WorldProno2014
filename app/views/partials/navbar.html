@@ -24,21 +24,9 @@
                 <li><a ng-click="updateUser('Mondial')">Change To MondialResult</a></li>
               </ul>
             </li>
-             <li class="dropdown" id="menuLogin">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Se connecter</a>
-            <div class="dropdown-menu" style="padding:17px;">
-              <form id="login">
-                <fieldset id="inputs">
-                    <input id="username" type="text" placeholder="Username" autofocus required>   
-                    <input id="password" type="password" placeholder="Mot de passe" required>
-                </fieldset>
-                <fieldset id="actions">
-                    <input type="submit" id="submit" value="Se connecter">
-                    <a href="">Mot de passe oublié?</a><a href="">Créer un compte</a>
-                </fieldset>
-            </form>
-            </div>
-          </li>
+       <li ng-class="{active: isActive(item.link)}">
+            <a href="/login">Se connecter</a>
+        </li>
           </ul>
           </div>
         </div>
