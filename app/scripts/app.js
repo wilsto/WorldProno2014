@@ -41,9 +41,6 @@ angular.module('worldProno2014App', [
         templateUrl: 'partials/settings',
         controller: 'SettingsCtrl',
         authenticate: true
-      })
-      .otherwise({
-        redirectTo: '/'
       });
       
      
