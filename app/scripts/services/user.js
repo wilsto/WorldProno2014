@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worldProno2014App')
-  .factory('User', function ($resource) {
+  .factory('User', function ($resource, $http) {
     return $resource('/api/users/:id', {
       id: '@id'
     }, { //parameters default
@@ -17,12 +17,18 @@ angular.module('worldProno2014App')
       }
 	  });
   })
-  .service('userService', function() {
-        //Variable privée
-        var userData = {
-            firstName: 'Will',
-            userName: 'Will'
-        };
+  .service('userService', function($http) {
+
+        $http.get('/isLoggedIn')
+            .success(function(data) {
+                var userData = {
+                    isLogged: true,
+                    userName: data.user.name
+                }
+            })
+            .error(function () {
+
+            });
 
         this.getUserData = function() {
             return userData;
@@ -32,28 +38,25 @@ angular.module('worldProno2014App')
             userData = data;
         };
 
-
         this.isMobile = {
-    Android: function() {
-        return navigator.userAgent.match(/Android/i);
-    },
-    BlackBerry: function() {
-        return navigator.userAgent.match(/BlackBerry/i);
-    },
-    iOS: function() {
-        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-    },
-    Opera: function() {
-        return navigator.userAgent.match(/Opera Mini/i);
-    },
-    Windows: function() {
-        return navigator.userAgent.match(/IEMobile/i);
-    },
-    any: function() {
-        return navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
-    }
-};
-
-
+            Android: function() {
+                return navigator.userAgent.match(/Android/i);
+            },
+            BlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i);
+            },
+            iOS: function() {
+                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            },
+            Opera: function() {
+                return navigator.userAgent.match(/Opera Mini/i);
+            },
+            Windows: function() {
+                return navigator.userAgent.match(/IEMobile/i);
+            },
+            any: function() {
+                return navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
+            }
+        };
     }
 );

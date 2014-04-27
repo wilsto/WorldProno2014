@@ -37,6 +37,10 @@ angular.module('worldProno2014App', [
         templateUrl: 'partials/signup',
         controller: 'SignupCtrl'
       })
+      .when('/profile', {
+        templateUrl: 'partials/profile',
+        controller: 'profileCtrl'
+      })
       .when('/settings', {
         templateUrl: 'partials/settings',
         controller: 'SettingsCtrl',
