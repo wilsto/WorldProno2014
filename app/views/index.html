@@ -18,6 +18,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -27,7 +28,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
+    <div class="container" ui-view></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <!--      <script>
@@ -59,6 +60,7 @@
     <script src="bower_components/spin.js/spin.js"></script>
     <script src="bower_components/ladda-bootstrap/dist/ladda.js"></script>
     <script src="bower_components/bootbox/bootbox.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -76,7 +78,11 @@
         <script src="scripts/services/session.js"></script>
         <script src="scripts/services/user.js"></script>
         <script src="scripts/services/pronos.js"></script>
-
+        
+        <script src="/scripts/routingConfig.js"></script>
+        <script src="/scripts/services.js"></script>
+        <script src="/scripts/controllers.js"></script>
+        <script src="/scripts/directives.js"></script>
         <!-- endbuild -->
 
         <script src="http://192.168.1.47:35729/livereload.js?snipver=1"></script>

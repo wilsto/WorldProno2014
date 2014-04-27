@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worldProno2014App')
-  .controller('NavbarCtrl', function ($scope, $location, userService) {
+  .controller('NavbarCtrl2', function ($scope, $location, userService) {
     
 
     $scope.service = userService;

@@ -1,46 +1,52 @@
 <div ng-include="'partials/navbar.html'"></div>
 
 <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12">
-      <div class="jumbotron">
-  <h1>Connectez-vous!</h1>
-  <p class="lead">
-    Pour voir vos résultats, vous devez vous identifier.</p>
-    <p>
-      <a class="btn btn-lg btn-success" href="#loginModal" role="button" data-toggle="modal">Je me connecte</a></p>
-    </div>
-     </div>
+  <h2>Se connecter</h2>
+  <br/>
 
-
-    <form class="form" name="form" ng-submit="login(form)" novalidate>
-
+  <div class="col-sm-offset-2 col-sm-10">
+    <form ng-submit="login()" name="loginForm" role="form" class="form-horizontal">
       <div class="form-group">
-        <label>Nom de joueur</label>
-
-        <input type="text" name="username" class="form-control" ng-model="user.username">
+        <label for="username" class="control-label col-sm-2">Nom de joueur</label>
+        <div class="col-sm-10">
+          <input type="text" data-ng-model="username" placeholder="Nom de joueur" name="username" required="required" autofocus="autofocus" class="form-control"/>
+        </div>
       </div>
-
       <div class="form-group">
-        <label>Mot de passe</label>
-        
-        <input type="password" name="password" class="form-control" ng-model="user.password">
+        <label for="password" class="control-label col-sm-2">Mot de passe</label>
+        <div class="col-sm-10">
+          <input type="password" data-ng-model="password" placeholder="Mot de passe" name="password" required="required" class="form-control"/>
+        </div>
       </div>
-
-      <div class="form-group has-error">
-        <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && submitted">
-           SVP entrer votre nom et mot de passe
-        </p>              
-        <p class="help-block">{{ errors.other }}</p>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label for="rememberme" class="checkbox">
+              <input type="checkbox" data-ng-model="rememberme" name="rememberme"/>Se rappeler de moi
+            </label>
+          </div>
+        </div>
       </div>
-
-      <button type="submit" class="btn btn-lg btn-primary"> Se connecter </button>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" data-ng-disabled="loginForm.$invalid" class="btn btn-default">Log in</button>
+        </div>
+      </div>
     </form>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <hr>
-    Pas de compte? <a href="/signup" class="text-center new-account">Créer un compte.</a>
-  </div>
-</div>
+    <p>... ou connectez-vous directement via votre compte :</p>
+    <div class="btn-group"><a href="" data-ng-click="loginOauth('facebook')" class="btn btn-default"><i class="fa fa-facebook-square"></i> Facebook</a><a href="" data-ng-click="loginOauth('twitter')" class="btn btn-default"><i class="fa fa-twitter"></i> Twitter</a><a href="" data-ng-click="loginOauth('google')" class="btn btn-default"><i class="fa fa-google-plus-square"></i> Google</a><a href="" data-ng-click="loginOauth('linkedin')" class="btn btn-default"><i class="fa fa-linkedin"></i> LinkedIn</a></div>
+
+    <br/><br/>
+    <hr/>
+
+    <div class="jumbotron">
+      <h1>Pas de compte?</h1>
+      <p class="lead">
+        Pour voir vos résultats, vous devez vous identifier.</p>
+        <p>
+          <a class="btn btn-lg btn-success" href="/signup" role="button" data-toggle="modal">Créer un compte</a></p>
+        </div>
+
+      </div>
+    </div>

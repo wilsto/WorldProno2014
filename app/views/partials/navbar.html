@@ -12,10 +12,12 @@
           <a class="navbar-brand" href="#">WorldProno2014</a>
           <div class="navbar-header pull-left">
           <ul class="nav navbar-nav ">
-			<li class="dropdown">
-              <a href="/" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" height="20" src="" width="20"> {{userData.userName}}  <b class="caret"></b></a>
+			<li ng-show="isLoggedIn()"  class="dropdown">
+              <a href="/" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" height="20" src="" width="20"> {{user.username}}  {{ user.role.title }}<b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="/settings">Profil</a></li>
+                <li ><a href="/settings">Profil</a></li>
+                <li  ><a ng-click="logout()">Se déconnecter</a></li>
+                <li ng-show="isActive('/worldcup')" class="divider"></li>
                 <li><a ng-show="isActive('/worldcup')" ng-click="reset()">Reset Pronos</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">God Mode</li>
@@ -38,8 +40,8 @@
 		    <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Coupe du monde  <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li class="dropdown-header">Moi</li>
-                <li><a href="/worldcup">Mes pronostics</a></li>
+                <li class="dropdown-header">Le mondial</li>
+                <li><a ng-show="isLoggedIn()" href="/worldcup">Mes pronostics</a></li>
                 <li><a href="/worldcup/Mondial">La coupe du monde (réelle)</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Concours</li>

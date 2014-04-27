@@ -19,16 +19,11 @@ angular.module('worldProno2014App')
   })
   .service('userService', function($http) {
 
-        $http.get('/isLoggedIn')
-            .success(function(data) {
                 var userData = {
-                    isLogged: true,
-                    userName: data.user.name
-                }
-            })
-            .error(function () {
+                    isLogged: false,
+                    userName: 'Player2'
+                };
 
-            });
 
         this.getUserData = function() {
             return userData;
