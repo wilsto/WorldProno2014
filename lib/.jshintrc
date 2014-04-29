@@ -5,9 +5,11 @@
   "eqeqeq": true,
   "immed": true,
   "latedef": true,
+  "laxcomma": true,
   "newcap": true,
   "noarg": true,
   "regexp": true,
   "undef": false,
-  "smarttabs": true
+  "smarttabs": true,
+    "-W040":true
 }

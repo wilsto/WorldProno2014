@@ -1,0 +1,29 @@
+<div ng-include="'partials/navbar'"></div>
+<div id="about" >
+
+</button>
+<h2 class="text-center">A propos de WorldProno2014</h2>
+</div>
+<div class="modal-body">
+  <div class="col-md-12 text-center">
+    Cette application a été réalisée <br/>par <a href="https://twitter.com/WillSTOPHE" target="_blank">Will</a>
+    <br>
+    
+    
+    <br>
+    <p> 
+     {
+      db:<a href="https://github.com/louischatriot/nedb"  target="_blank"> 'nedb'</a>,
+      js:<a href="//nodejs.org"  target="_blank"> 'node'</a>,
+      view: [<a href="//getbootstrap.com/"  target="_blank">'bootstrap', <a href="//angularjs.org/" target="_blank">'angularjs'</a> ]
+     }
+    </p> 
+
+  </div>
+  <div class="row marketing">
+    <div ng-repeat="thing in awesomeThings">
+     <a href="{{thing.href}}" target="_blank"><h4>{{thing.name}}</h4></a>
+     <p>{{thing.info}}</p>
+   </div>
+ </div>
+</div>

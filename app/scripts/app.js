@@ -29,31 +29,25 @@ angular.module('worldProno2014App', [
         .state('public.404', {
             url: '/404/',
             templateUrl: 'partials/404'
-        });
-
-    // Anonymous routes
-    $stateProvider
-        .state('anon', {
-            abstract: true,
-            template: '<ui-view/>',
-            data: {
-                access: access.anon
-            }
         })
-        .state('anon.worldcup', {
+        .state('public.about', {
+            url: '/about/',
+            templateUrl: 'partials/about'
+        })
+        .state('public.worldcup', {
             url: '/worldcup/Mondial',
             templateUrl: 'partials/worldcup',
             controller: 'worldcupCtrl'
         })
-        .state('anon.login', {
+        .state('public.login', {
             url: '/login/',
             templateUrl: 'partials/login',
             controller: 'LoginCtrl'
         })
-        .state('anon.register', {
+        .state('public.register', {
             url: '/signup/',
             templateUrl: 'partials/signup',
-            controller: 'SignupCtrl'
+            controller: 'RegisterCtrl'
         });
 
     // Regular user routes
@@ -64,6 +58,16 @@ angular.module('worldProno2014App', [
             data: {
                 access: access.user
             }
+        })
+        .state('user.myprono', {
+            url: '/worldcup/',
+            templateUrl: 'partials/worldcup',
+            controller: 'worldcupCtrl'
+        })
+        .state('user.statistic', {
+            url: '/statistic/',
+            templateUrl: 'partials/statistic',
+            controller: 'StatisticCtrl'
         });
 
     // Admin routes
@@ -130,13 +134,15 @@ angular.module('worldProno2014App', [
         if (!Auth.authorize(toState.data.access)) {
             $rootScope.error = 'Seems like you tried accessing a route you don\'t have access to...';
             event.preventDefault();
-
+            console.log('toState.data.access', toState.data.access);
+            console.log('fromState.url', fromState.url);
+            
             if(fromState.url === '^') {
                 if(Auth.isLoggedIn()) {
                     $state.go('user.home');
                 } else {
                     $rootScope.error = null;
-                    $state.go('anon.login');
+                    $state.go('public.login');
                 }
             }
         }

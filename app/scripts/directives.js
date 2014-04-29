@@ -11,22 +11,27 @@ angular.module('worldProno2014App')
 
             $scope.user = Auth.user;
             $scope.$watch('user', function(user) {
-                if(user.role)
+                if(user.role) {
                     userRole = user.role;
+                }
                 updateCSS();
             }, true);
 
             attrs.$observe('accessLevel', function(al) {
-                if(al) accessLevel = $scope.$eval(al);
+                if(al) {
+                    accessLevel = $scope.$eval(al);
+                }
                 updateCSS();
             });
 
             function updateCSS() {
                 if(userRole && accessLevel) {
-                    if(!Auth.authorize(accessLevel, userRole))
+                    if(!Auth.authorize(accessLevel, userRole)){
                         element.css('display', 'none');
-                    else
+                    }
+                    else {
                         element.css('display', prevDisp);
+                    }
                 }
             }
         }
@@ -34,12 +39,21 @@ angular.module('worldProno2014App')
 }]);
 
 angular.module('worldProno2014App').directive('activeNav', ['$location', function($location) {
+
+    function normalizeUrl(url) {
+        if(url[url.length - 1] !== '/') {
+            url = url + '/';
+        }
+        return url;
+    }
+    
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
             var anchor = element[0];
-            if(element[0].tagName.toUpperCase() != 'A')
+            if(element[0].tagName.toUpperCase() !== 'A'){
                 anchor = element.find('a')[0];
+            }
             var path = anchor.href;
 
             scope.location = $location;
@@ -58,10 +72,5 @@ angular.module('worldProno2014App').directive('activeNav', ['$location', functio
 
     };
 
-    function normalizeUrl(url) {
-        if(url[url.length - 1] !== '/')
-            url = url + '/';
-        return url;
-    }
 
 }]);

@@ -21,9 +21,9 @@ angular.module('worldProno2014App')
             return accessLevel.bitMask & role.bitMask;
         },
         isLoggedIn: function(user) {
-            if(user === undefined) {
+            //if(user === undefined) {
                 user = currentUser;
-            }
+            //}
             return user.role.title === userRoles.user.title || user.role.title === userRoles.admin.title;
         },
         register: function(user, success, error) {

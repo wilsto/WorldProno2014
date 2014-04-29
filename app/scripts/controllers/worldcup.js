@@ -3,32 +3,22 @@
 
 
 angular.module('worldProno2014App')
-.controller('worldcupCtrl', function ($scope, $http, $routeParams, userService, PronoFactory) {
+.controller('worldcupCtrl', function ($scope, $http, $location, PronoFactory, Auth) {
 
-Ladda.bind( '.ladda-button', { timeout: 2000 } );
+    Ladda.bind( '.ladda-button', { timeout: 2000 } );
+
+    $scope.user = Auth.user;
+    $scope.userRoles = Auth.userRoles;
+    $scope.accessLevels = Auth.accessLevels;
 
     $scope.isCollapsed = false;
-    $scope.isNamed = userService.isMobile.any() === null;
+    $scope.isNamed = true;
 
     $scope.rate = 0;
     $scope.max = 5;
     $scope.isReadonly = false;
 
-    // déterminer s'il s'agit des données     
-     $scope.$watch('$routeParams.id', function(){
-        $scope.real = $routeParams.id;
-        $scope.mypronos = PronoFactory.get({id:$scope.real},
-        function(data) {
-            if (data.length > 0) { // recupère les pronos du joueur
-                $scope.groupsMatches = data[0].groupsMatches;
-                $scope.secondStageMatches = data[0].secondStageMatches;
-            } else { // initiliase les matchs
-                console.log('data', data);
-               $scope.resetPronos();
-            }
-        });
-    });
-    $scope.resetPronos = function() {
+    $scope.initPronos = function() {
         $http.get('/api/fifaMatchs').success(function(fifaMatchs) {
             $scope.fifaMatchs = fifaMatchs;
             $scope.groupsMatches = $scope.fifaMatchs.groupsMatches;
@@ -43,27 +33,21 @@ Ladda.bind( '.ladda-button', { timeout: 2000 } );
                 G: [{country: 'G1', score:'', victorByPenalties:true}, {country: 'G2', score:'', victorByPenalties:false}],
                 H: [{country: 'H1', score:'', victorByPenalties:true}, {country: 'H2', score:'', victorByPenalties:false}]
             };
-        });
-    };
-    $scope.resetPronos();
-
-
-    $scope.service = userService;
-    $scope.$watch('service.getUserData()', function(userData){
-        if (!$routeParams.id) {
-            $scope.userData = userData;    // recupère le nom de l'utilisateur
-            $scope.mypronos = PronoFactory.get({id:$scope.userData.userName},
+            $scope.username = ($location.path() === '/worldcup/Mondial') ?  'Mondial' : $scope.user.username;    // recupère le nom de l'utilisateur
+            $scope.mypronos = PronoFactory.get({id:$scope.username},
             function(data) {
                 if (data.length > 0) { // recupère les pronos du joueur
                     $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
                     $scope.secondStageMatches = $scope.mypronos[0].secondStageMatches;
-                } else { // initiliase les matchs
-                    console.log('data', data);
-                   $scope.resetPronos();
                 }
             });
-        }
-    }, true);
+        });
+    };
+
+    $scope.initPronos();
+
+    
+
 
     $scope.$watch('groupsMatches.A.matches ', function(){
         calculateStandings();

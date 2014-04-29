@@ -12,15 +12,15 @@ angular.module('worldProno2014App')
         Auth.logout(function() {
             $location.path('/login');
         }, function() {
-            $rootScope.error = "Failed to logout";
+            $rootScope.error = 'Failed to logout';
         });
     };
 
     $scope.isLoggedIn = function() {
         Auth.isLoggedIn(function() {
-            console.log('user', user);
+
         }, function() {
-            $rootScope.error = "Failed to logout";
+            $rootScope.error = 'Failed to logout';
         });
     };
 }]);
@@ -36,11 +36,11 @@ angular.module('worldProno2014App')
                 password: $scope.password,
                 rememberme: $scope.rememberme
             },
-            function(res) {
+            function() {
                 $location.path('/');
             },
-            function(err) {
-                $rootScope.error = "Failed to login";
+            function() {
+                $rootScope.error = 'Failed to login';
             });
     };
 
@@ -79,8 +79,8 @@ angular.module('worldProno2014App')
     Users.getAll(function(res) {
         $scope.users = res;
         $scope.loading = false;
-    }, function(err) {
-        $rootScope.error = "Failed to fetch users.";
+    }, function() {
+        $rootScope.error = 'Failed to fetch users.';
         $scope.loading = false;
     });
 

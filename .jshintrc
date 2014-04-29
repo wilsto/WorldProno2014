@@ -9,21 +9,23 @@
   "expr":true,
   "immed": true,
   "latedef": true,
-  "laxcomma": false,
+  "laxcomma": true,
   "newcap": true,
   "noarg": true,
   "quotmark": "single",
   "regexp": true,
   "undef": false,
-  "unused": true,
+  "unused": false,
   "strict": true,
   "trailing": true,
   "smarttabs": true,
+  "-W040":true,
   "globals": {
     "angular": false,
     "_": false,
     "$": false,
     "Ladda": false,
-    "bootbox": false
+    "bootbox": false,
+    "routingConfig":false
   }
 }

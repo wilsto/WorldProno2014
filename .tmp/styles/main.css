@@ -625,3 +625,23 @@ fieldset {
 .fade-show-setup.fade-show-start {
   opacity: 1;
 }
+
+.masthead-wrapper {
+  height: 531px;
+}
+
+.masthead-sun {
+  background: url(/sites/all/themes/seia/img/sun.png) no-repeat 100% -120px;
+  opacity: .85;
+}
+
+.masthead-sun {
+  height: 100%;
+}
+
+.masthead-sun,
+.masthead-block,
+.masthead-overlay {
+  position: absolute;
+  width: 50%;
+}

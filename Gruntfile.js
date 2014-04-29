@@ -483,8 +483,8 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'concurrent:test',
-        'autoprefixer',
-        'karma'
+        'autoprefixer' //,
+        //'karma'
       ]);
     }
 
@@ -493,8 +493,8 @@ module.exports = function (grunt) {
       'mochaTest',
       'clean:server',
       'concurrent:test',
-      'autoprefixer',
-      'karma'
+      'autoprefixer' //,
+      //'karma'
     ]);
   });  
 
