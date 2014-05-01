@@ -275,6 +275,7 @@ module.exports = function (grunt) {
         options: {
           //collapseWhitespace: true,
           //collapseBooleanAttributes: true,
+          //removeComments: true,
           //removeCommentsFromCDATA: true,
           //removeOptionalTags: true
         },
@@ -319,7 +320,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             'bower_components/**/*',
-            'images/{,*/}*.{webp}',
+            'images/{,*/}*.*',
             'fonts/**/*'
           ]
         }, {

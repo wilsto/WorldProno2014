@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worldProno2014App')
-  .controller('SignupCtrl', function ($scope, Auth, $location) {
+  .controller('SignupCtrl', ['$scope','$location',  'Auth', function ($scope, Auth, $location) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -30,4 +30,4 @@ angular.module('worldProno2014App')
         });
       }
     };
-  });
+  }]);

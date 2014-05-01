@@ -3,7 +3,7 @@
 
 
 angular.module('worldProno2014App')
-.controller('worldcupCtrl', function ($scope, $http, $location, PronoFactory, Auth) {
+.controller('worldcupCtrl', ['$scope', '$http', '$location', 'PronoFactory', 'Auth', function ($scope, $http, $location, PronoFactory, Auth) {
 
     Ladda.bind( '.ladda-button', { timeout: 2000 } );
 
@@ -271,4 +271,4 @@ $scope.victorByPenalties = function(round, title, winnerIndex){
         });
     };
 
-});
+}]);

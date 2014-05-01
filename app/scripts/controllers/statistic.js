@@ -38,7 +38,7 @@ angular.module('worldProno2014App')
 		};
 	})
 
-.controller('StatisticCtrl', function ($scope, $http, PronoFactory) {
+.controller('StatisticCtrl', ['$scope', '$http', 'PronoFactory', function ($scope, $http, PronoFactory) {
 
 	var points = { result : 3, score:1, qualif:2, winner:5};
 
@@ -145,4 +145,4 @@ angular.module('worldProno2014App')
 	}
 
 
-});
+}]);

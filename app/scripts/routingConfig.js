@@ -1,3 +1,6 @@
+'use strict';
+/*jshint bitwise: false*/
+
 (function(exports){
 
     var config = {
@@ -20,26 +23,23 @@
         'user' and 'admin' have access to the access level 'user'.
          */
         accessLevels : {
-            'public' : "*",
+            'public' : '*',
             'anon': ['public'],
             'user' : ['user', 'admin'],
             'admin': ['admin']
         }
 
-    }
-
-    exports.userRoles = buildRoles(config.roles);
-    exports.accessLevels = buildAccessLevels(config.accessLevels, exports.userRoles);
+    };
 
     /*
         Method to build a distinct bit mask for each role
-        It starts off with "1" and shifts the bit to the left for each element in the
+        It starts off with '1' and shifts the bit to the left for each element in the
         roles array parameter
      */
 
     function buildRoles(roles){
 
-        var bitMask = "01";
+        var bitMask = '01';
         var userRoles = {};
 
         for(var role in roles){
@@ -48,7 +48,7 @@
                 bitMask: intCode,
                 title: roles[role]
             };
-            bitMask = (intCode << 1 ).toString(2)
+            bitMask = (intCode << 1 ).toString(2);
         }
 
         return userRoles;
@@ -61,31 +61,38 @@
     function buildAccessLevels(accessLevelDeclarations, userRoles){
 
         var accessLevels = {};
+        var resultBitMask;
+        var role;
         for(var level in accessLevelDeclarations){
 
-            if(typeof accessLevelDeclarations[level] == 'string'){
-                if(accessLevelDeclarations[level] == '*'){
+            if(typeof accessLevelDeclarations[level] === 'string'){
+                if(accessLevelDeclarations[level] === '*'){
 
-                    var resultBitMask = '';
+                    resultBitMask = '';
 
-                    for( var role in userRoles){
-                        resultBitMask += "1"
+                    for( role in userRoles){
+                        resultBitMask += '1';
                     }
                     //accessLevels[level] = parseInt(resultBitMask, 2);
                     accessLevels[level] = {
                         bitMask: parseInt(resultBitMask, 2)
                     };
                 }
-                else console.log("Access Control Error: Could not parse '" + accessLevelDeclarations[level] + "' as access definition for level '" + level + "'")
+                else {
+                    console.log('Access Control Error: Could not parse \'' + accessLevelDeclarations[level] + '\' as access definition for level \'' + level + '\'');
+                }
 
             }
             else {
 
-                var resultBitMask = 0;
-                for(var role in accessLevelDeclarations[level]){
-                    if(userRoles.hasOwnProperty(accessLevelDeclarations[level][role]))
-                        resultBitMask = resultBitMask | userRoles[accessLevelDeclarations[level][role]].bitMask
-                    else console.log("Access Control Error: Could not find role '" + accessLevelDeclarations[level][role] + "' in registered roles while building access for '" + level + "'")
+                resultBitMask = 0;
+                for(role in accessLevelDeclarations[level]){
+                    if(userRoles.hasOwnProperty(accessLevelDeclarations[level][role])) {
+                        resultBitMask = resultBitMask | userRoles[accessLevelDeclarations[level][role]].bitMask;
+                    }
+                    else {
+                        console.log('Access Control Error: Could not find role \'' + accessLevelDeclarations[level][role] + '\' in registered roles while building access for \'' + level + '\'');
+                    }
                 }
                 accessLevels[level] = {
                     bitMask: resultBitMask
@@ -96,4 +103,7 @@
         return accessLevels;
     }
 
-})(typeof exports === 'undefined' ? this['routingConfig'] = {} : exports);
+    exports.userRoles = buildRoles(config.roles);
+    exports.accessLevels = buildAccessLevels(config.accessLevels, exports.userRoles);
+
+})(typeof exports === 'undefined' ? this.routingConfig = {} : exports);

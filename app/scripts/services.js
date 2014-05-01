@@ -1,7 +1,8 @@
 'use strict';
+/*jshint bitwise: false*/
 
 angular.module('worldProno2014App')
-.factory('Auth', function($http, $cookieStore){
+.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStore){
 
     var accessLevels = routingConfig.accessLevels
         , userRoles = routingConfig.userRoles
@@ -51,7 +52,7 @@ angular.module('worldProno2014App')
         userRoles: userRoles,
         user: currentUser
     };
-});
+}]);
 
 angular.module('worldProno2014App')
 .factory('Users', function($http) {
