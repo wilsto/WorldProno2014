@@ -33,6 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 passport.use(User.localStrategy);
+User.loadUsers();
 //passport.use(User.twitterStrategy());  // Comment out this line if you don't want to enable login via Twitter
 //passport.use(User.facebookStrategy()); // Comment out this line if you don't want to enable login via Facebook
 //passport.use(User.googleStrategy());   // Comment out this line if you don't want to enable login via Google

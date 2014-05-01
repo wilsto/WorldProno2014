@@ -23,6 +23,19 @@ angular.module('worldProno2014App')
             $rootScope.error = 'Failed to logout';
         });
     };
+
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    };
+
+    $scope.reset = function() {
+      bootbox.confirm('Etes-vous sur de vouloir ré-initialiser votre pronostic ?', function(result) {
+          if(result) {
+            $scope.resetPronos();
+          }
+      });
+    };
+
 }]);
 
 angular.module('worldProno2014App')
@@ -49,26 +62,6 @@ angular.module('worldProno2014App')
     };
 }]);
 
-angular.module('worldProno2014App')
-.controller('RegisterCtrl',
-['$rootScope', '$scope', '$location', 'Auth', function($rootScope, $scope, $location, Auth) {
-    $scope.role = Auth.userRoles.user;
-    $scope.userRoles = Auth.userRoles;
-
-    $scope.register = function() {
-        Auth.register({
-                username: $scope.username,
-                password: $scope.password,
-                role: $scope.role
-            },
-            function() {
-                $location.path('/');
-            },
-            function(err) {
-                $rootScope.error = err;
-            });
-    };
-}]);
 
 angular.module('worldProno2014App')
 .controller('AdminCtrl',

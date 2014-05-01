@@ -1,4 +1,3 @@
-<div ng-include="'partials/navbar'"></div>
 
 <section class="section"  ng-hide="allPlayers">
 <span class="loader loader-double"></span>
@@ -18,6 +17,7 @@ Chargement en cours
                     <!-- BEGIN: Inner ngRepeat. -->
                     <th class="group">
                         <td class="l group">Nom</td>
+                        <td class="l group"></td>
                         <td class="c group">Pts</td>
                         <td class="c group"><a href="{{ item.Pays1href }}">1er tour</a></td>
                         <td class="c group">2ème tour</td>
@@ -31,7 +31,8 @@ Chargement en cours
                     </th>
                     <tr ng-repeat="player in allPlayers track by $index | orderBy:'totalpoints':true">
                         <td class="l">{{$index +1}}</td>
-                        <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.userName}} &nbsp;<span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title}" class="label">{{ player.userData.role.title }} </span> &nbsp;</a></td>
+                        <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a></td>
+                        <td class="l "> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title}" class="label">{{ player.userData.role.title }} </span></td>
                         <td class="c Pts "> {{player.totalpoints  | number}} </td>
                         <td class="c "><button pop-over items="player.points.tour1.details" title="Détails Tour 1" class="btn btn-default">{{player.points.tour1.total | number}}</button>
                         <td class="c "><button pop-over items="player.points.tour2.details" title="Détails Tour 2" class="btn btn-default">{{player.points.tour2.total | number}}</button></td>

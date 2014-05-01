@@ -33,8 +33,8 @@ angular.module('worldProno2014App')
                 G: [{country: 'G1', score:'', victorByPenalties:true}, {country: 'G2', score:'', victorByPenalties:false}],
                 H: [{country: 'H1', score:'', victorByPenalties:true}, {country: 'H2', score:'', victorByPenalties:false}]
             };
-            $scope.username = ($location.path() === '/worldcup/Mondial') ?  'Mondial' : $scope.user.username;    // recupère le nom de l'utilisateur
-            $scope.mypronos = PronoFactory.get({id:$scope.username},
+            $scope.real = ($location.path() === '/worldcup/Mondial') ?  'Mondial' : $scope.user.username;    // recupère le nom de l'utilisateur
+            $scope.mypronos = PronoFactory.get({id:$scope.real},
             function(data) {
                 if (data.length > 0) { // recupère les pronos du joueur
                     $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
@@ -46,8 +46,9 @@ angular.module('worldProno2014App')
 
     $scope.initPronos();
 
-    
-
+    $scope.Named = function () {
+        $scope.isNamed = !$scope.isNamed;
+    };
 
     $scope.$watch('groupsMatches.A.matches ', function(){
         calculateStandings();
@@ -264,10 +265,10 @@ $scope.victorByPenalties = function(round, title, winnerIndex){
      */
      $scope.savePronos = function(){
         $scope.pronosToSave = {};
-        $scope.pronosToSave['userData'] = $scope.userData;
+        $scope.pronosToSave['userData'] = $scope.user;
         $scope.pronosToSave['groupsMatches'] = $scope.groupsMatches;
         $scope.pronosToSave['secondStageMatches'] = $scope.secondStageMatches;
-        $http.put('/REST/pronos/' + $scope.userData.userName, $scope.pronosToSave).success(function() {
+        $http.put('/REST/pronos/' + $scope.user.username, $scope.pronosToSave).success(function() {
         });
     };
 

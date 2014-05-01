@@ -64,6 +64,11 @@ angular.module('worldProno2014App', [
             templateUrl: 'partials/worldcup',
             controller: 'worldcupCtrl'
         })
+        .state('user.profile', {
+            url: '/settings/',
+            templateUrl: 'partials/settings',
+            controller: 'SettingsCtrl'
+        })
         .state('user.statistic', {
             url: '/statistic/',
             templateUrl: 'partials/statistic',
@@ -78,6 +83,11 @@ angular.module('worldProno2014App', [
             data: {
                 access: access.admin
             }
+        })
+        .state('admin.panel', {
+            url: '/admin/',
+            templateUrl: 'partials/admin',
+            controller: 'AdminCtrl'
         });
 
 
@@ -139,7 +149,7 @@ angular.module('worldProno2014App', [
             
             if(fromState.url === '^') {
                 if(Auth.isLoggedIn()) {
-                    $state.go('user.home');
+                    $state.go('public.home');
                 } else {
                     $rootScope.error = null;
                     $state.go('public.login');

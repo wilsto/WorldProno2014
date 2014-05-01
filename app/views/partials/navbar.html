@@ -12,18 +12,19 @@
           <a class="navbar-brand" href="#">WorldProno2014</a>
           <div class="navbar-header pull-left">
           <ul class="nav navbar-nav ">
-			<li ng-show="user.username" class="dropdown">
+      			<li ng-show="user.username" class="dropdown">
               <a href="/" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" height="20" src="" width="20">&nbsp; {{user.username}} &nbsp;<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title }} </span> &nbsp;<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li ><a href="/settings">Profil</a></li>
                 <li  ><a ng-click="logout()">Se déconnecter</a></li>
-                <li ng-show="isActive('/worldcup')" class="divider"></li>
-                <li><a ng-show="isActive('/worldcup')" ng-click="reset()">Reset Pronos</a></li>
+                <li ng-show="user.role.title == userRoles.admin.title" class="divider"></li>
+                <li ng-show="user.role.title == userRoles.admin.title"  class="dropdown-header">God Mode</li>
+                <li><a ng-show="user.role.title == userRoles.admin.title" href="admin">Admin Panel</a></li>
               </ul>
             </li>
-       <li ng-hide="user.username"  ng-class="{active: isActive(item.link)}">
-            <a href="/login">Se connecter</a>
-        </li>
+            <li ng-hide="user.username"  ng-class="{active: isActive(item.link)}">
+                <a href="/login">Se connecter</a>
+            </li>
           </ul>
           </div>
         </div>
@@ -36,7 +37,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Coupe du monde  <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">Le mondial</li>
-                <li><a href="/worldcup">Mes pronostics</a></li>
+                <li><a href="/worldcup/">Mes pronostics</a></li>
                 <li><a href="/worldcup/Mondial">La coupe du monde (réelle)</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">Concours</li>

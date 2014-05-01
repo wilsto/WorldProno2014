@@ -1,0 +1,4 @@
+{"id":1,"username":"Will","email":"Will","password":"Will","role":{"bitMask":4,"title":"admin"},"_id":"SwVwlzXyu12xGsDF"}
+{"id":2,"username":"Player2","email":"Player2","password":"Player2","role":{"bitMask":2,"title":"user"},"_id":"TwVwlzXyu46xGsHO"}
+{"id":3,"username":"Mondial","email":"Mondial","password":"Mondial","role":{"bitMask":2,"title":"user"},"_id":"UwVwlzXyu89xGsDM"}
+{"id":4,"username":"Player3","email":"Player3","password":"Player3","role":{"bitMask":2,"title":"user"},"_id":"abUnAPI4votD6Ewc"}

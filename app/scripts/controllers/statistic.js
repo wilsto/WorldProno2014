@@ -38,9 +38,13 @@ angular.module('worldProno2014App')
 		};
 	})
 
-.controller('StatisticCtrl', ['$scope', '$http', 'PronoFactory', function ($scope, $http, PronoFactory) {
+.controller('StatisticCtrl', ['$scope', '$http', 'PronoFactory', 'Auth', function ($scope, $http, PronoFactory, Auth) {
 
 	var points = { result : 3, score:1, qualif:2, winner:5};
+    $scope.user = Auth.user;
+    $scope.userRoles = Auth.userRoles;
+    $scope.accessLevels = Auth.accessLevels;
+
 
 	$scope.realProno = PronoFactory.get({id:'Mondial'},
 		function(data) {

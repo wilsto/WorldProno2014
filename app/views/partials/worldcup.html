@@ -1,4 +1,3 @@
-<div ng-include="'partials/navbar'"></div>
 
 <!-- BEGIN: Outer ngRepeat. -->
 
@@ -7,12 +6,7 @@
 Chargement en cours
 </section>
 
-<section ng-show="secondStageMatches && groupsMatches">
-
-<button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Collapse groupes</button>
-<button class="btn btn-default" ng-click="isNamed = !isNamed">Nom de pays</button>
-<button class="btn btn-primary ladda-button" data-style="expand-right" ng-click="savePronos()"><span class="ladda-label">Sauvegarder</span><span class="ladda-spinner"></span></button>
-    <hr>
+<section class="sectionscroll" ng-show="secondStageMatches && groupsMatches">
 
     <div collapse="isCollapsed">
 
@@ -169,3 +163,15 @@ Chargement en cours
 </table>
 </section>
 
+<div class="header" ng-controller="NavbarCtrl">
+
+<div class="navbar navbar-default navbar-fixed-bottom" ng-class="{Mondial :userData.userName=='Mondial'}" role="navigation" style =" overflow: hidden;">
+      <div class="container">
+        <div class="navbar-header pull-right" style ="margin-top:7px;">
+            <button class="btn btn-warning" ng-click="reset()">Reset Pronos</button>
+            <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Collapse groupes</button>
+            <button class="btn btn-default" ng-click="Named()">Nom de pays</button>
+            <button class="btn btn-primary ladda-button" data-style="expand-right" ng-click="savePronos()"><span class="ladda-label">Sauvegarder</span><span class="ladda-spinner"></span></button>
+      </div>
+    </div>
+</div>
