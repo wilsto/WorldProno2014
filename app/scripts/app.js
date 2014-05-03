@@ -65,9 +65,9 @@ angular.module('worldProno2014App', [
             controller: 'worldcupCtrl'
         })
         .state('user.profile', {
-            url: '/settings/',
-            templateUrl: 'partials/settings',
-            controller: 'SettingsCtrl'
+            url: '/profile/',
+            templateUrl: 'partials/profile',
+            controller: 'ProfileCtrl'
         })
         .state('user.statistic', {
             url: '/statistic/',

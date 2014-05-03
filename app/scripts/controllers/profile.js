@@ -1,7 +1,10 @@
 'use strict';
 
 angular.module('worldProno2014App')
-  .controller('profileCtrl', ['$scope', 'User', 'Auth', function ($scope, User, Auth) {
+  .controller('ProfileCtrl', ['$scope', 'Auth', function ($scope, Auth) {
     $scope.errors = {};
+    $scope.user = Auth.user;
+    $scope.userRoles = Auth.userRoles;
+    $scope.accessLevels = Auth.accessLevels;
 
   }]);
