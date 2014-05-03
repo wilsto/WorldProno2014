@@ -1,26 +1,78 @@
 
+<div class="col-xs-12 col-xs-12 col-md-8 col-lg-8">
+	<div id="userStats" class="clearfix">
+		<div class="pic">
+			<a href="#"><img class="img-circle" width="150" height="150" src="http://spyrestudios.com/demos/foursquare-profile/img/user_avatar.jpg"></a>
+          	<span class="ChangePhoto"><p>Changer votre photo de profil</p></span>
+        </div>
+		<div class="data">
+			<h1>{{user.username}}</h1>
 
-	<div class="page-header text-center">
-		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
-		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+			<div class="socialMediaLinks">
+				<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title }} </span>
+			</div>
+			<ul class="numbers clearfix">
+				<li>Completion<strong class="small">100%</strong></li>
+				<li>Points<strong>44</strong></li>
+				<li class="nobrdr">Classement<strong>17</strong></li>
+			</ul>
+		</div>
 	</div>
+	<h1>A propos de moi</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<h1>Inviter des amis</h1>
+<div class="friendslist clearfix">
+	<p>Vous pouvez jusqu'à inviter 5 amis à passer VIP:</p>
+				<div class="friend">
+					<a href="#"><img class="img-circle" data-cfsrc="img/friend_avatar_default.jpg" width="30" height="30" alt="Jerry K." src="http://spyrestudios.com/demos/foursquare-profile/img/friend_avatar_default.jpg"></a><span class="friendly"><a href="#"> Ami #1</a></span>
+				</div>
+				<div class="friend">
+					<a href="#"><img  class="img-circle" data-cfsrc="img/friend_avatar_default.jpg" width="30" height="30" alt="Katie F." src="http://spyrestudios.com/demos/foursquare-profile/img/friend_avatar_default.jpg"></a><span class="friendly"><a href="#"> Ami #2</a></span>
+				</div>
+				<div class="friend">
+					<a href="#"><img class="img-circle" data-cfsrc="img/friend_avatar_default.jpg" width="30" height="30" alt="Ash K." src="http://spyrestudios.com/demos/foursquare-profile/img/friend_avatar_default.jpg"></a><span class="friendly"><a href="#"> Ami #3</a></span>
+				</div>
+				<div class="friend">
+					<a href="#"><img  class="img-circle" data-cfsrc="img/friend_avatar_default.jpg" width="30" height="30" alt="Sponge B." src="http://spyrestudios.com/demos/foursquare-profile/img/friend_avatar_default.jpg"></a><span class="friendly"><a href="#"> Ami #4</a></span>
+				</div>
+								<div class="friend">
+					<a href="#"><img class="img-circle" data-cfsrc="img/friend_avatar_default.jpg" width="30" height="30" alt="Sponge B." src="http://spyrestudios.com/demos/foursquare-profile/img/friend_avatar_default.jpg"></a><span class="friendly"><a href="#"> Ami #5</a></span>
+				</div>
+			</div>
 
-	<div class="row">
+</div>
+<div class="col-xs-12 col-xs-12 col-md-4 col-lg-4">
 
-		<!-- LOCAL INFORMATION -->
-		<div class="col-sm-6">
-			<div class="well">
-				<h3><span class="fa fa-user"></span> Local</h3>
-
-					<p>
-						<strong>id</strong>: {{user._id}}<br>
-						<strong>email</strong>: {{user.local.email}}<br>
-						<strong>password</strong>: {{user.local.password }}
-					</p>
-
+	<div class="gcontent">
+		<div class="head"><h1>Statut</h1></div>
+		<div class="boxy">
+			<p>Keep working to unlock badges!</p>
+			<div class="badgeCount">
+			<a href="#"><img width="50" height="50"  src="images/vip-icon.png"></a>
+				<a href="#"><img data-cfsrc="img/foursquare-badge.png" src="http://spyrestudios.com/demos/foursquare-profile/img/foursquare-badge.png"></a>
+				<a href="#"><img data-cfsrc="img/foursquare-badge.png" src="http://spyrestudios.com/demos/foursquare-profile/img/foursquare-badge.png"></a>
 			</div>
 		</div>
-
 	</div>
+	<div class="gcontent">
+		<div class="head"><h1>Actions</h1></div>
+		<div class="boxy">
+			<div class="friendslist clearfix">
+				<div class="friend">
+					<a href="#"><span class="friendly">Changer mot de passe</a></span>
+				</div>
+				<div class="friend">
+					<a href="#"><span class="friendly">Passer VIP</a></span>
+				</div>
+				<div class="friend">
+					<a href="#"><span class="friendly">Ecrire au développeur</a></span>
+				</div>
+				<div class="friend">
+					<a href="#"><span class="friendly">Déclarer un bug</a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+
 
 
