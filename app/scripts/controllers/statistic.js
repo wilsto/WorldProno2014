@@ -44,6 +44,7 @@ angular.module('worldProno2014App')
     $scope.user = Auth.user;
     $scope.userRoles = Auth.userRoles;
     $scope.accessLevels = Auth.accessLevels;
+    $scope.lstRole = '';
 
 	$scope.realProno = PronoFactory.get({id:'Mondial'},
 		function(data) {
@@ -74,11 +75,11 @@ angular.module('worldProno2014App')
 	    var result = {};
 
 	    angular.forEach(allPlayers, function(value, key) {
-	    	var rowPlayer=value.userData.role;
-	    	if(rowPlayer!=undefined)
-	    		var rolePlayer=value.userData.role.title;
-	        if (rolePlayer==myfilter||myfilter=="") {
-
+	    	var rolePlayer;
+	    	if(value.userData.role!==undefined) {
+	    		rolePlayer=(value.userData.role.title === 'admin') ? 'VIP': value.userData.role.title ; // gère le cas où ADMIN fait parti des VIP
+	    	}
+	        if (rolePlayer===myfilter||myfilter==='') {
 	        	result[key] = value;
 	        }
 	    });

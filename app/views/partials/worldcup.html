@@ -23,7 +23,7 @@ Chargement en cours
 
                     <!-- BEGIN: Inner ngRepeat. -->
                     <tr ng-repeat="match in groupData.matches">
-                        <td class="l"><div ng-show="isNamed" class="date " title="  {{ match[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ match[2].time }}</div></div></td>
+                        <td class="l"><div ng-show="isNamed" class="date " title="  {{ match[2].date }}">{{ match[2].date }} {{ match[2].time }}</div></td>
                         <td class="l "><a href="{{ item.Pays1href }}"> <span class="flag sprite-{{match[0].country.replace('é','U00e9')}}"></span>  <span ng-show="isNamed">{{match[0].country}} </span></a></td>
                         <td class="l homeTeam"></td>
                         <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[0].score" ng-disabled="real === 'Mondial'"> </td>
