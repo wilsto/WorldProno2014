@@ -1,8 +1,18 @@
 /* Space out content a bit */
 
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #6E6E6E;
+  height: 100%;
+  background: #fff url(../images/body.gif) top left;
+}
+
+a {
+  color: #008000;
+  text-decoration: none;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -221,22 +231,25 @@ span.nameGrey {
   max-width: 400px!important;
 }
 
-/* Variables */
+div.main {
+  background: url(../images/mW.png) no-repeat top center;
+  padding: -30px 0 10px;
+  height: 100%;
+  min-height: 360px;
+}
 
-/* Base */
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+div.mainheader {
+  height: 176px;
+  background: url(../images/header.png) no-repeat center top;
+  position: relative;
 }
 
 .section {
   height: 500px;
-  line-height: 500px;
   text-align: center;
   font-size: 40px;
-  color: #C5BEC0;
+  color: #fff;
+  line-height: 500px;
 }
 
 .loader {
@@ -252,8 +265,8 @@ body {
 .loader-double {
   border-radius: 50px;
   border: 6px solid transparent;
-  border-top-color: #C5BEC0;
-  border-bottom-color: #C5BEC0;
+  border-top-color: #fff;
+  border-bottom-color: #fff;
   -webkit-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
 }
@@ -267,8 +280,8 @@ body {
   right: 5px;
   border-radius: 50px;
   border: 6px solid transparent;
-  border-top-color: #C5BEC0;
-  border-bottom-color: #C5BEC0;
+  border-top-color: #fff;
+  border-bottom-color: #fff;
   opacity: 0.6;
   -webkit-animation: spinreverse 2s linear infinite;
   animation: spinreverse 2s linear infinite;
@@ -472,15 +485,6 @@ body {
   left: 5px;
   right: 5px;
   box-shadow: 0 0 0 1px #fff;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  font: 12px 'Lucida Sans Unicode', 'Trebuchet MS', Arial, Helvetica;
 }
 
 fieldset {
@@ -739,4 +743,10 @@ div.pic span.ChangePhoto {
 
 div.pic:hover span.ChangePhoto {
   visibility: visible;
+}
+
+.glow {
+  box-shadow: 0px 0px 20px 5px rgba(51, 77, 66, .95);
+  background: #fff;
+  border-radius: 8px;
 }
