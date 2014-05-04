@@ -45,7 +45,6 @@ angular.module('worldProno2014App')
     $scope.userRoles = Auth.userRoles;
     $scope.accessLevels = Auth.accessLevels;
 
-
 	$scope.realProno = PronoFactory.get({id:'Mondial'},
 		function(data) {
 			if (data.length > 0) { // recupère les pronos du joueur
@@ -59,11 +58,32 @@ angular.module('worldProno2014App')
 							return num.totalpoints * -1;
 						});
 
+						// $scope.allPlayersArr = _.map($scope.allPlayers, function(value,index) {
+						// 	return [value];
+						// });
+
+						
+
 						// attacher les popover
 						$('[data-toggle="popover"]').popover();
 					});
 			}
 	});
+
+	$scope.filterRole = function(allPlayers,myfilter) {
+	    var result = {};
+
+	    angular.forEach(allPlayers, function(value, key) {
+	    	var rowPlayer=value.userData.role;
+	    	if(rowPlayer!=undefined)
+	    		var rolePlayer=value.userData.role.title;
+	        if (rolePlayer==myfilter||myfilter=="") {
+
+	        	result[key] = value;
+	        }
+	    });
+	    return result;
+	}	
 
 	/**
 	 * [Initialise les calculs]

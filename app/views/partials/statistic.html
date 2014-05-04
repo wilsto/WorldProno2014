@@ -11,7 +11,14 @@ Chargement en cours
                 <table class="table table-responsive table-condensed" >
 
                     <caption>
-                        <h4 class="l group">Classement</h4>
+                        <h4 class="l group">Classement 
+                          <div class="btn-group btn-group-xs"> 
+                            <button ng-click="lstRole=''" class="btn btn-default">None</button>
+                            <button ng-click="lstRole='admin'" class="btn btn-success">Admin</button>
+                            <button ng-click="lstRole='VIP'" class="btn btn-warning">VIP</button>
+                            <button ng-click="lstRole='user'" class="btn btn-info">User</button>
+                             </div>
+                        </h4>                        
                     </caption>
 
                     <!-- BEGIN: Inner ngRepeat. -->
@@ -29,7 +36,7 @@ Chargement en cours
                         <td class="c group">Finales</td>
                         <td class="c group">Win</td>
                     </th>
-                    <tr ng-repeat="player in allPlayers track by $index | orderBy:'totalpoints':true">
+                    <tr ng-repeat="(k,player) in filterRole(allPlayers,lstRole) track by $index | orderBy:'totalpoints':true">
                         <td class="l">{{$index +1}}</td>
                         <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a></td>
                         <td class="l "> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title}" class="label">{{ player.userData.role.title }} </span></td>
