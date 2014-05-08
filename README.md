@@ -13,18 +13,24 @@ Pour voir l'appli en production:
 
 ###Technos
 
-WorldProno utilise les technos suivantes pour fonctionner correctement :
+WorldProno utilise les technos principalessuivantes pour fonctionner correctement :
 
+BackEnd
 * [node.js] - evented I/O for the backend
 * [Express] - fast node.js network app framework
+* [Passport] - Simple, unobtrusive authentication for Node.js.
+* [MongoDB] -  open-source document database, and the leading NoSQL database
+
+FontEnd
 * [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [AngularJS] - duh 
-* [jQuery] - duh 
+* [AngularJS] - Superheroic JavaScript MVW Framework
+
 
 ###Installation au niveau système
 A faire une fois par PC
  
 * Installer [node.js]
+* Installer [MongoDB]
 * Installer [Grunt] sur le système (-g) via une fenetre DOS 
 
 ```sh
@@ -36,6 +42,8 @@ npm install -g grunt-cli
 ```sh
 npm install -g bower
 ```
+
+
 
 ###Installation des dépendances au niveau de l'application
 * Ouvrir une fenetre DOS au niveau du répertoire ou les fichiers ont été téléchargé, on va installer en local (donc pas de -g dans les lignes de commandes) les modules nodejs et dependances.
@@ -71,5 +79,5 @@ et ca lance tout; ou pour les fainéants comme moi, juste le fichier start.cmd.
 [Grunt]:http://gruntjs.com/
 [Bower]:http://bower.io/
 [AngularJS]:http://gruntjs.com/
-
-
+[Passport]:http://passportjs.org/
+[MongoDB]:http://www.mongodb.org/
