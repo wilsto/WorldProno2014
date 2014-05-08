@@ -61,28 +61,18 @@ Cela va créer un repertoire bower_components au niveau du repertoire app. Si bow
 Lancement de l'application en mode developpement
 --------------
 après c'est magique, on tape
-*
+
 ```sh
-npm install
+grunt serve
 ```
-grunt serve" et ca lance tout; ou pour les fainéant, juste le fichier start.cmd.
+et ca lance tout; ou pour les fainéants comme moi, juste le fichier start.cmd.
 
-
-
-
-
-**Free Software, Hell Yeah!**
+**Free Software, have fun!**
 
 [john gruber]:http://daringfireball.net/
-[@thomasfuchs]:http://twitter.com/thomasfuchs
-[1]:http://daringfireball.net/projects/markdown/
-[marked]:https://github.com/chjj/marked
-[Ace Editor]:http://ace.ajax.org
 [node.js]:http://nodejs.org
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
-[keymaster.js]:https://github.com/madrobby/keymaster
 [jQuery]:http://jquery.com
-[@tjholowaychuk]:http://twitter.com/tjholowaychuk
 [express]:http://expressjs.com
 [Grunt]:http://gruntjs.com/
 [Bower]:http://bower.io/
