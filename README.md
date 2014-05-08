@@ -46,14 +46,14 @@ npm install -g bower
 
 
 ###Installation des dépendances au niveau de l'application
-* Ouvrir une fenetre DOS au niveau du répertoire ou les fichiers ont été téléchargé, on va installer en local (donc pas de -g dans les lignes de commandes) les modules nodejs et dependances.
+* Ouvrir une fenetre DOS au niveau du répertoire ou les fichiers ont été téléchargés, on va installer en local (donc pas de -g dans les lignes de commandes) les modules nodejs et dependances.
 
 ```sh
 npm install
 ```
- cela va créer un repertoire node_modules et télécharger tous les modules dont nous avons besoin. Cela marche grace au fichier *package.json* 
+Cela va créer un repertoire node_modules et télécharger tous les modules dont nous avons besoin. Cela marche grace au fichier *package.json* 
 
-* on va installer en local (donc pas de -g dans les lignes de commandes) les dé&pendances référencées grace à bower. Cela marche grace au fichier _bower.json_
+* Installer en local (donc pas de -g dans les lignes de commandes) les dépendances référencées grace à bower. Cela marche grace au fichier _bower.json_
 
 ```sh
 bower install
@@ -67,7 +67,8 @@ après c'est magique, on tape
 ```sh
 grunt serve
 ```
-et ca lance tout; ou pour les fainéants comme moi, juste le fichier start.cmd.
+et ca lance tout
+... ou pour les fainéants comme moi, lancer juste le fichier start.cmd.
 
 **Free Software, have fun!**
 
