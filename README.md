@@ -9,7 +9,10 @@ Pour voir l'appli en production:
 
 
 ###Version
-0.1
+Beta 0.1 : 05 Mai 2014
+
+---
+
 
 ###Technos
 
@@ -25,11 +28,12 @@ FontEnd
 * [Twitter Bootstrap] - great UI boilerplate for modern web apps
 * [AngularJS] - Superheroic JavaScript MVW Framework
 
+---
 
 ###Installation au niveau système
 A faire une fois par PC
  
-* Installer [node.js]
+* Installer [Node.js]
 * Installer [MongoDB]
 * Installer [Grunt] sur le système (-g) via une fenetre DOS 
 
@@ -43,7 +47,7 @@ npm install -g grunt-cli
 npm install -g bower
 ```
 
-
+---
 
 ###Installation des dépendances au niveau de l'application
 * Ouvrir une fenetre DOS au niveau du répertoire ou les fichiers ont été téléchargés, on va installer en local (donc pas de -g dans les lignes de commandes) les modules nodejs et dependances.
@@ -70,10 +74,36 @@ grunt serve
 et ca lance tout
 ... ou pour les fainéants comme moi, lancer juste le fichier start.cmd.
 
-**Free Software, have fun!**
+---
+
+###Annexes
+
+#####Yeoman:
+Il s'agit d'une application basée sur [AngularJS Full Stack] : Yeoman generator for creating MEAN stack applications, using MongoDB, Express, AngularJS, and Node. Featuring:
+* Express server integrated with grunt tasks
+* Livereload of client and server files - _toute modification sur un fichier recharge la page web instantanément_
+* Support for Jade and CoffeeScript
+* Easy deployment workflow.
+* Optional MongoDB integration 
+* Optional Passport integration for adding user accounts
+
+#####Vidéos de formations:
+Retrouver des vidéos de formation super bien faites et en francais sous [Graphikart](http://www.grafikart.fr)
+* [AngularsJS](http://www.grafikart.fr/formation/angularjs)
+* [Nodejs chat](http://www.grafikart.fr/tutoriels/nodejs/nodejs-socketio-tchat-366)
+* [Bower](http://www.grafikart.fr/tutoriels/javascript/bower-474)
+* [Grunt](http://www.grafikart.fr/tutoriels/grunt/grunt-introduction-470)
+* [Yeoman](http://www.grafikart.fr/tutoriels/internet/yeoman-475) _que vous pouvez (devez ?! ;-b) installer si vous souhaitez créer une autre appli en partant de zéro_
+
+#####Editeur de code html/js/css:
+* [Sublime Text 3] pour coder avec plein de plugins, très sympa. 
+
+---
+
+** Have fun!**
 
 [john gruber]:http://daringfireball.net/
-[node.js]:http://nodejs.org
+[Node.js]:http://nodejs.org
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
 [jQuery]:http://jquery.com
 [express]:http://expressjs.com
@@ -82,3 +112,5 @@ et ca lance tout
 [AngularJS]:http://gruntjs.com/
 [Passport]:http://passportjs.org/
 [MongoDB]:http://www.mongodb.org/
+[AngularJS Full Stack]:https://github.com/DaftMonk/generator-angular-fullstack
+[Sublime Text 3]:http://www.sublimetext.com/
