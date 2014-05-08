@@ -16,7 +16,7 @@ Version
 Tech
 -----------
 
-WorldProno use following tech to work properly :
+WorldProno utilise les technos suivantes pour fonctionner correctement :
 
 * [node.js] - evented I/O for the backend
 * [Express] - fast node.js network app framework
@@ -28,13 +28,13 @@ Installation
 --------------
 
 * installer nodejs 
-* installer [Grunt] via une fenetre DOS 
+* installer [Grunt] sur le système (-g) via une fenetre DOS 
 ```sh
 npm install -g grunt-cli
 ```
 _le -g install sur le système (et non en local) et est disponible dans tous tes répertoires (donc tous les developpements)_
 
-* installer [Bower] 
+* installer [Bower] sur le système (-g)
 ```sh
 npm install -g bower
 ```
@@ -42,10 +42,6 @@ npm install -g bower
 
 
 
-License
-----
-
-MIT
 
 
 **Free Software, Hell Yeah!**
@@ -62,7 +58,7 @@ MIT
 [@tjholowaychuk]:http://twitter.com/tjholowaychuk
 [express]:http://expressjs.com
 [Grunt]:http://gruntjs.com/
-
+[Bower]:http://bower.io/
 [AngularJS]:http://gruntjs.com/
 
 
