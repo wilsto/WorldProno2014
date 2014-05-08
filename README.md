@@ -16,7 +16,7 @@ Beta 0.1 : 05 Mai 2014
 
 ###Technos
 
-WorldProno utilise les technos principalessuivantes pour fonctionner correctement :
+WorldProno utilise les technos principales suivantes pour fonctionner correctement :
 
 BackEnd
 * [node.js] - evented I/O for the backend
