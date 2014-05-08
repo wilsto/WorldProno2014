@@ -8,15 +8,14 @@ Chargement en cours
 <section class="section-2" ng-show="allPlayers">
 
             <div class="col-xs-12 col-xs-12 col-md-12 col-lg-12">
-                <table class="table table-responsive table-condensed" >
+                <table class="table table-responsive table-condensed glow" >
 
                     <caption>
-                        <h4 class="l group">Classement 
-                          <div class="btn-group btn-group-xs"> 
-                            <button ng-click="lstRole=''" class="btn btn-default">None</button>
-                            <button ng-click="lstRole='admin'" class="btn btn-success">Admin</button>
-                            <button ng-click="lstRole='VIP'" class="btn btn-warning">VIP</button>
-                            <button ng-click="lstRole='user'" class="btn btn-info">User</button>
+                        <h4 class="l group">Classement {{lstRole}}
+                          <div class="btn-group btn-group-xs pull-right"> 
+                            <button ng-click="lstRole=''" class="btn btn-default">Tous</button>
+                            <button ng-click="lstRole='VIP'" class="btn btn-warning">Joueur VIP</button>
+                            <button ng-click="lstRole='user'" class="btn btn-info">Simple joueur</button>
                              </div>
                         </h4>                        
                     </caption>
@@ -56,4 +55,3 @@ Chargement en cours
                 </table>
             </div>
 </section>
-<div ng-include="'partials/footer'"></div>

@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">WorldProno2014</a>
+          <a class="navbar-brand" href="#">WorldProno2014<span style="font-size:10px;color:red"><i> Beta</i></span></a>
           <div class="navbar-header pull-left">
           <ul class="nav navbar-nav ">
       			<li ng-show="user.username" class="dropdown">
@@ -37,11 +37,14 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Coupe du monde  <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">Le mondial</li>
-                <li><a href="/worldcup/">Mes pronostics</a></li>
+                <li ng-show="user.username"><a href="/worldcup/">Mes pronostics</a></li>
                 <li><a href="/worldcup/Mondial">La coupe du monde (réelle)</a></li>
+                <li ng-show="user.username" class="divider"></li>
+                <li ng-show="user.username" class="dropdown-header">Concours</li>
+                <li ng-show="user.username" ><a href="/statistic">Statistiques</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Concours</li>
-                <li><a href="/statistic">Statistiques</a></li>
+                <li class="dropdown-header">App</li>
+                <li><a href="/about">A propos</a></li>
               </ul>
             </li>
           </ul>
