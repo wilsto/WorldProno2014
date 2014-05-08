@@ -13,7 +13,7 @@ Version
 
 0.1
 
-Techno
+Technos
 -----------
 
 WorldProno utilise les technos suivantes pour fonctionner correctement :
@@ -24,21 +24,47 @@ WorldProno utilise les technos suivantes pour fonctionner correctement :
 * [AngularJS] - duh 
 * [jQuery] - duh 
 
-Installation
+Installation Système
 --------------
 
 * installer nodejs 
 * installer [Grunt] sur le système (-g) via une fenetre DOS 
+
 ```sh
 npm install -g grunt-cli
 ```
-_le -g install sur le système (et non en local) et est disponible dans tous tes répertoires (donc tous les developpements)_
 
 * installer [Bower] sur le système (-g)
+
 ```sh
 npm install -g bower
 ```
 
+Installation Appli
+--------------
+* Ouvrir une fenetre DOS au niveau du répertoire ou les fichiers ont été téléchargé, on va installer en local (donc pas de -g dans les lignes de commandes) les modules nodejs et dependances. cela va créer un repertoire node_modules et télécharger tous les modules dont nous avons besoin. Cela marche grace au fichier _package.json_ 
+
+```sh
+npm install
+```
+
+
+* on va installer en local (donc pas de -g dans les lignes de commandes) les dé&pendances référencées grace à bower. Cela marche grace au fichier _bower.json_
+
+```sh
+bower install
+```
+Cela va créer un repertoire bower_components au niveau du repertoire app. Si bower pose des questions, il faut les réponses qui contiennent le mot "WorlProno2014"
+
+
+Lancement de l'application en mode dev
+--------------
+après c'est magique, on tape
+*
+```sh
+npm install
+```
+grunt serve" et ca lance tout; ou pour les fainéant, juste le fichier start.cmd.
 
 
 
