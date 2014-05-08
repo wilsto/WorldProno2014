@@ -1,10 +1,10 @@
 WorldProno2014
 ============
 
-Football WorldCup Pronostics 2014 App
+Application de pronostics entre amis de la coupe du mondre de Football 2014
 
 ## Production
-To See App in production:
+Pour voir l'appli en production:
 [Live version](http://worldprono2014.herokuapp.com/)
 
 
@@ -13,7 +13,7 @@ Version
 
 0.1
 
-Tech
+Techno
 -----------
 
 WorldProno utilise les technos suivantes pour fonctionner correctement :
