@@ -2,8 +2,16 @@
 
 angular.module('worldProno2014App')
 
-.directive('popOver', function ($compile) {
-		var itemsTemplate = '<table  class="table table-responsive table-condensed table-small"><tr><td class="group">Grp</td><td class="group">Equipes</td><td class="group">Pts</td><td class="group">Réel</td><td class="group">Prono</td></tr><tr ng-repeat="item in items" ng-class="{success:item.points,warning:item.points ===0}"><td>{{item.group}}</td><td>{{item.countries}}</td><td class="Pts">{{item.points}}</td><td>{{item.scorereel}}</td><td>{{item.score}}</td></tr></table>';
+
+.filter('offset', function() {
+  return function(input, start) {
+    start = parseInt(start, 10);
+    return input.slice(start);
+  };
+})
+
+.directive('popOver', function ($compile,limitToFilter) {
+		var itemsTemplate = '<table class="table table-responsive table-condensed table-small"><tr><td class="group">Grp</td><td class="group">Equipes</td><td class="group">Pts</td><td class="group">Réel</td><td class="group">Prono</td></tr><tr ng-repeat="item in items | limitTo:currentPage-taille | limitTo:itemsPerPage" ng-class="{success:item.points,warning:item.points ===0}"><td>{{item.group}}</td><td>{{item.countries}}</td><td class="Pts">{{item.points}}</td><td>{{item.scorereel}}</td><td>{{item.score}}</td></tr></table><ul class="pager"><li ng-class="prevPageDisabled()"><a href ng-click="prevPage()">Previous </a></li><li ng-class="nextPageDisabled()"><a href ng-click="nextPage()">Next</a></li></ul>';
 		var getTemplate = function (contentType) {
 			var template = '';
 			switch (contentType) {
@@ -17,7 +25,31 @@ angular.module('worldProno2014App')
 			restrict: 'A',
 			transclude: true,
 			template: '<span ng-transclude></span>',
-			link: function (scope, element) {
+			controller: function($scope, $element){
+			 	$scope.currentPage = 0;
+			  	$scope.itemsPerPage = 5;
+			  	$scope.taille = $scope.items.length;
+				$scope.prevPage = function() {
+					if ($scope.currentPage > 0) {
+						$scope.currentPage--;
+					}
+				};
+				$scope.nextPage = function() {
+					if ($scope.currentPage < $scope.pageCount()) {
+				      $scope.currentPage++;
+				    }
+				};
+				$scope.pageCount = function() {
+    				return Math.ceil($scope.items.length/$scope.itemsPerPage)-1;
+  				};
+				$scope.prevPageDisabled = function() {
+					return $scope.currentPage === 0 ? "disabled" : "";
+				};
+				$scope.nextPageDisabled = function() {
+  					return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+  				};
+		    },
+			link: function (scope, element,attrs) {
 				var popOverContent;
 				if (scope.items) {
 					var html = getTemplate('items');
@@ -25,7 +57,7 @@ angular.module('worldProno2014App')
 				}
 				var options = {
 					content: popOverContent,
-					placement: 'right',
+					placement: 'bottom',
 					html: true,
 					title: scope.title
 				};
@@ -45,7 +77,6 @@ angular.module('worldProno2014App')
     $scope.userRoles = Auth.userRoles;
     $scope.accessLevels = Auth.accessLevels;
     $scope.lstRole = '';
-
 	$scope.realProno = PronoFactory.get({id:'Mondial'},
 		function(data) {
 			if (data.length > 0) { // recupère les pronos du joueur
