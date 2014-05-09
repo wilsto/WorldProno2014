@@ -4,7 +4,10 @@ var express = require('express')
  	, http =        require('http')
  	, passport = require('passport')
     , path =        require('path')
-    , User =        require('./lib/models/User.js');
+    //, User =        require('./lib/models/User.js'),
+    , fs = require('fs')
+    , mongoose = require('mongoose');
+
 /**
  * Main application file
  */
@@ -14,43 +17,27 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Application Config
 var config = require('./lib/config/config');
+var db = mongoose.connect(config.mongo.uri, config.mongo.options);
 
-//  Configuration neDB
-require('./lib/neDb.js');
+// Bootstrap models
+var modelsPath = path.join(__dirname, 'lib/models');
+fs.readdirSync(modelsPath).forEach(function (file) {
+  if (/(.*)\.(js$|coffee$)/.test(file)) {
+    require(modelsPath + '/' + file);
+  }
+});
 
-require('./lib/config/passport')(passport); // pass passport for configuration
+// Passport Configuration
+var passport = require('./lib/config/passport');
 
+// Setup Express
 var app = express();
-app.use(express.cookieParser()); // read cookies (needed for auth)
-app.use(express.bodyParser()); // get information from html forms
-app.use(express.cookieSession(
-    {
-        secret: process.env.COOKIE_SECRET || "Superdupersecret"
-    }));
-
-// required for passport
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-
-passport.use(User.localStrategy);
-User.loadUsers();
-//passport.use(User.twitterStrategy());  // Comment out this line if you don't want to enable login via Twitter
-//passport.use(User.facebookStrategy()); // Comment out this line if you don't want to enable login via Facebook
-//passport.use(User.googleStrategy());   // Comment out this line if you don't want to enable login via Google
-//passport.use(User.linkedInStrategy()); // Comment out this line if you don't want to enable login via LinkedIn
-
-passport.serializeUser(User.serializeUser);
-passport.deserializeUser(User.deserializeUser);
-
-// Express settings
 require('./lib/config/express')(app);
-
-// Routing
 require('./lib/routes')(app);
 
 // Start server
-app.listen(config.port, function () {
-  console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
+app.listen(config.port, config.ip, function () {
+  console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
 });
 
 // Expose app
