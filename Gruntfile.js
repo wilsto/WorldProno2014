@@ -319,7 +319,7 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            'bower_components/**/*',
+            //'bower_components/**/*',
             'images/{,*/}*.*',
             'fonts/**/*'
           ]
@@ -445,7 +445,7 @@ module.exports = function (grunt) {
     if (target === 'debug') {
       return grunt.task.run([
         'clean:server',
-        'bower-install',
+        'bowerInstall',
         'concurrent:server',
         'autoprefixer',
         'concurrent:debug'
@@ -454,7 +454,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'bower-install',
+      //'bowerInstall',
       'concurrent:server',
       'autoprefixer',
       'express:dev',
@@ -497,7 +497,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'bowerInstall',
+    //'bowerInstall',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
