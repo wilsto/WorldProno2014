@@ -94,8 +94,6 @@ angular.module('worldProno2014App')
 						// 	return [value];
 						// });
 
-						
-
 						// attacher les popover
 						$('[data-toggle="popover"]').popover();
 					});

@@ -2,7 +2,7 @@
 /*jshint bitwise: false*/
 
 angular.module('worldProno2014App')
-.factory('Auth', ['$http', '$cookieStore', function($http, $cookieStore){
+.factory('Auth', ['$http', '$rootScope', '$cookieStore',  'User', function($http, $rootScope, $cookieStore, User ){
 
     var accessLevels = routingConfig.accessLevels
         , userRoles = routingConfig.userRoles
@@ -33,6 +33,28 @@ angular.module('worldProno2014App')
                 success();
             }).error(error);
         },
+      /**
+       * Create a new user
+       * 
+       * @param  {Object}   user     - user info
+       * @param  {Function} callback - optional
+       * @return {Promise}            
+       */
+      createUser: function(user, callback) {
+        var cb = callback || angular.noop;
+
+        return User.save(user,
+          function(user) {
+            $rootScope.currentUser = user;
+            changeUser(user);
+            success();
+            return cb(user);
+          },
+          function(err) {
+            return cb(err);
+          }).$promise;
+      },
+
         login: function(user, success, error) {
             $http.post('/login', user).success(function(user){
                 changeUser(user);
