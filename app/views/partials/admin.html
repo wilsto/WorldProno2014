@@ -5,16 +5,18 @@
 <table data-ng-hide="loading" class="table table-striped">
   <thead>
     <tr>
-      <th>#</th>
-      <th>Nom</th>
+      <th>Joueur</th>
+      <th>email</th>
       <th>Role</th>
+      <th>Inscription</th>
     </tr>
   </thead>
   <tbody>
     <tr data-ng-repeat="user in users | orderBy:'username'">
-      <td>{{ user.id }}</td>
-      <td><i data-ng-show="user.provider == 'twitter'" class="fa fa-twitter"></i><i data-ng-show="user.provider == 'facebook'" class="fa fa-facebook-square"></i><i data-ng-show="user.provider == 'google'" class="fa fa-google-plus-square"></i><i data-ng-show="user.provider == 'linkedin'" class="fa fa-linkedin"></i> {{ user.username }}</td>
+      <td>{{ user.username }}</td>
+      <td><i data-ng-show="user.provider == 'twitter'" class="fa fa-twitter"></i><i data-ng-show="user.provider == 'facebook'" class="fa fa-facebook-square"></i><i data-ng-show="user.provider == 'google'" class="fa fa-google-plus-square"></i><i data-ng-show="user.provider == 'linkedin'" class="fa fa-linkedin"></i> {{ user.email }}</td>
       <td><span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label">{{ user.role.title }}</span></td>
+      <td>{{user.updated | date}}</td>
     </tr>
   </tbody>
 </table>

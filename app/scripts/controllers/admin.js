@@ -5,11 +5,9 @@ angular.module('worldProno2014App')
     $scope.loading = true;
     $scope.userRoles = Auth.userRoles;
 
-    Users.getAll(function(res) {
-        $scope.users = res;
+  	$http.get('/users').success(function (data) {
+        $scope.users = data;
         $scope.loading = false;
-    }, function() {
-        $scope.loading = false;
-    });
+	});
 
 }]);
