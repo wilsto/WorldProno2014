@@ -27,12 +27,17 @@
   <div class="form-group">
     <div class="radio radio-inline">
       <label>
-        <input type="radio" name="role" data-ng-model="role" id="adminRole" data-ng-value="userRoles.user"/>Normal
+        <input type="radio" name="role" data-ng-model="role" id="userRole" data-ng-value="userRoles.user"/>Normal
       </label>
     </div>
     <div class="radio radio-inline">
       <label>
-        <input type="radio" name="role" data-ng-model="role" id="VIPRole" data-ng-value="userRoles.VIP"/>VIP (Very Important Player)
+        <input type="radio" name="role" data-ng-model="role" id="VIPRole" data-ng-value="userRoles.vip"/>VIP (Very Important Player)
+      </label>
+    </div>
+    <div class="radio radio-inline">
+      <label>
+        <input type="radio" name="role" data-ng-model="role" id="adminRole" data-ng-value="userRoles.admin"/>Admin
       </label>
     </div>
   </div>

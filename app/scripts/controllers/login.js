@@ -14,8 +14,8 @@ angular.module('worldProno2014App')
             function() {
                 $location.path('/');
             },
-            function() {
-                $rootScope.error = 'Failed to login';
+            function(error) {
+                $scope.message = error.message;
             });
     };
 

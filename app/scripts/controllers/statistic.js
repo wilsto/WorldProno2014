@@ -106,7 +106,7 @@ angular.module('worldProno2014App')
 	    angular.forEach(allPlayers, function(value, key) {
 	    	var rolePlayer;
 	    	if(value.userData.role!==undefined) {
-	    		rolePlayer=(value.userData.role.title === 'admin') ? 'VIP': value.userData.role.title ; // gère le cas où ADMIN fait parti des VIP
+	    		rolePlayer=(value.userData.role.title === 'admin') ? 'vip': value.userData.role.title ; // gère le cas où ADMIN fait parti des VIP
 	    	}
 	        if (rolePlayer===myfilter||myfilter==='') {
 	        	result[key] = value;

@@ -3,8 +3,8 @@
 angular.module('worldProno2014App', [
   'ngCookies',
   'ngResource',
-  'ngSanitize',
-  'ngRoute',
+  //'ngSanitize',
+  //'ngRoute',
   'ui.bootstrap',
   'ui.router'
 ])
