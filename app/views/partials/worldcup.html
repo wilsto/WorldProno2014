@@ -53,17 +53,17 @@ Chargement en cours
                         <td class="r group ">Bc</td>
                         <td class="r group">Dif</td>
                     </th>
-                    <tr ng-repeat="(key, data) in groupData.standing  track by $index">
+                    <tr ng-repeat="country in groupData.sortedStanding  track by $index ">
                         <td class="l">{{$index +1}}</td>
-                        <td class="l "><a href="{{ item.Pays1href }}">   <span class="flag sprite-{{key.replace('é','U00e9')}}"></span> <span ng-show="isNamed">{{key}} </span></a></td>
-                        <td class="l Pts"> {{data.total | number}} </td>
-                        <td class="r "> {{data.matchNb | number}} </td>
-                        <td class="r "> {{data.win | number}} </td>
-                        <td class="r "> {{data.nul | number}} </td>
-                        <td class="r "> {{data.lose | number}} </td>
-                        <td class="r "> {{data.pour | number}} </td>
-                        <td class="r "> {{data.contre | number}} </td>
-                        <td class="r "> {{(data.pour - data.contre) | number}} </td>
+                        <td class="l "><a href="{{ item.Pays1href }}">   <span class="flag sprite-{{country[0].replace('é','U00e9')}}"></span> <span ng-show="isNamed">{{country[0]}} </span></a></td>
+                        <td class="l Pts"> {{country[1].total | number}} </td>
+                        <td class="r "> {{country[1].matchNb | number}} </td>
+                        <td class="r "> {{country[1].win | number}} </td>
+                        <td class="r "> {{country[1].nul | number}} </td>
+                        <td class="r "> {{country[1].lose | number}} </td>
+                        <td class="r "> {{country[1].pour | number}} </td>
+                        <td class="r "> {{country[1].contre | number}} </td>
+                        <td class="r "> {{(country[1].pour - country[1].contre) | number}} </td>
                     </tr>
                     <!-- END: Inner ngRepeat. -->
                 </table>

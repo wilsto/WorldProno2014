@@ -56,10 +56,12 @@ angular.module('worldProno2014App')
       },
 
         login: function(user, success, error) {
-            $http.post('/login', user).success(function(user){
-                changeUser(user);
-                success(user);
-            }).error(error);
+            $http.post('/login', user)
+                .success(function(user){
+                    changeUser(user);
+                    success(user);
+                })
+                .error(error);
         },
         logout: function(success, error) {
             $http.post('/logout').success(function(){

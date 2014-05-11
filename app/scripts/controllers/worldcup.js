@@ -135,10 +135,31 @@ angular.module('worldProno2014App')
                         }
                     }
                 });
+                //Descending Order:
+                groupData.sortedStanding = sortObjToArr(groupData.standing);
+
             });
             countriesThatPass();
+
         }
     }
+
+    function sortObjToArr(arr){
+        // Setup Arrays
+        var sortedKeys = [];
+
+        // Separate keys and sort them
+        for (var country in arr){
+            sortedKeys.push([country, arr[country]]);
+        }
+
+        sortedKeys.sort(function(a, b) {
+            return b[1].total - a[1].total;
+        });
+
+        return sortedKeys;
+    }
+
 
     /**
      * [Calcule les pays qui passent les groupes]

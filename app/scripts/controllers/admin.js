@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('worldProno2014App')
-.controller('AdminCtrl',
-['$rootScope', '$scope', 'Users', 'Auth', function($rootScope, $scope, Users, Auth) {
+.controller('AdminCtrl', ['$scope', '$http', 'Auth', function($scope, $http, Auth) {
     $scope.loading = true;
     $scope.userRoles = Auth.userRoles;
 
@@ -10,7 +9,6 @@ angular.module('worldProno2014App')
         $scope.users = res;
         $scope.loading = false;
     }, function() {
-        $rootScope.error = 'Failed to fetch users.';
         $scope.loading = false;
     });
 
