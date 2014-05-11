@@ -19,7 +19,6 @@ Chargement en cours
                              </div>
                         </h4>                        
                     </caption>
-
                     <!-- BEGIN: Inner ngRepeat. -->
                     <th class="group">
                         <td class="l group">Nom</td>
@@ -35,7 +34,7 @@ Chargement en cours
                         <td class="c group">Finales</td>
                         <td class="c group">Win</td>
                     </th>
-                    <tr ng-repeat="(k,player) in filterRole(allPlayers,lstRole) track by $index | orderBy:'totalpoints':true">
+                    <tr ng-repeat="(k,player) in filterRole(allPlayers,lstRole) track by $index">
                         <td class="l">{{$index +1}}</td>
                         <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a></td>
                         <td class="l "> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title}" class="label">{{ player.userData.role.title }} </span></td>

@@ -62,13 +62,15 @@ angular.module('worldProno2014App')
             }).error(error);
         },
         logout: function(success, error) {
-            $http.post('/logout').success(function(){
-                changeUser({
-                    username: '',
-                    role: userRoles.public
-                });
-                success();
-            }).error(error);
+            $http.post('/logout')
+                .success(function(){
+                    changeUser({
+                        username: '',
+                        role: userRoles.public
+                    });
+                    success();
+                })
+                .error(error);
         },
         accessLevels: accessLevels,
         userRoles: userRoles,

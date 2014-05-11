@@ -53,7 +53,7 @@ Chargement en cours
                         <td class="r group ">Bc</td>
                         <td class="r group">Dif</td>
                     </th>
-                    <tr ng-repeat="(key, data) in groupData.standing  track by $index">
+                    <tr ng-repeat="(key, data) in groupData.standing  track by $index | orderBy:'total':true">
                         <td class="l">{{$index +1}}</td>
                         <td class="l "><a href="{{ item.Pays1href }}">   <span class="flag sprite-{{key.replace('é','U00e9')}}"></span> <span ng-show="isNamed">{{key}} </span></a></td>
                         <td class="l Pts"> {{data.total | number}} </td>

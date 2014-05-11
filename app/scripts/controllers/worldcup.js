@@ -134,7 +134,7 @@ angular.module('worldProno2014App')
                             groupData.standing[match[1].country].nul += 1;
                         }
                     }
-                });
+                });         
             });
             countriesThatPass();
         }
