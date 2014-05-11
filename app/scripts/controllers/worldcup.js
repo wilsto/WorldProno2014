@@ -134,14 +134,10 @@ angular.module('worldProno2014App')
                             groupData.standing[match[1].country].nul += 1;
                         }
                     }
-<<<<<<< HEAD
-                });         
-=======
                 });
                 //Descending Order:
                 groupData.sortedStanding = sortStandingFifa2014Rules(groupData.standing);
 
->>>>>>> 1a36c560eb1d855c385f7a767cfa1146ad305a94
             });
             countriesThatPass();
 
