@@ -33,14 +33,13 @@ angular.module('worldProno2014App')
                 G: [{country: 'G1', score:'', victorByPenalties:true}, {country: 'G2', score:'', victorByPenalties:false}],
                 H: [{country: 'H1', score:'', victorByPenalties:true}, {country: 'H2', score:'', victorByPenalties:false}]
             };
-            $scope.real = ($location.path() === '/worldcup/Mondial') ?  'Mondial' : $scope.user.username;    // recupère le nom de l'utilisateur
-            $scope.mypronos = PronoFactory.get({id:$scope.real},
-            function(data) {
-                if (data.length > 0) { // recupère les pronos du joueur
-                    $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
-                    $scope.secondStageMatches = $scope.mypronos[0].secondStageMatches;
-                }
-            });
+                $scope.real = ($location.path() === '/worldcup/Mondial') ?  'Mondial' : $scope.user.username;    // recupère le nom de l'utilisateur
+                $scope.mypronos = PronoFactory.get({id:$scope.real}, function(data) {
+                    if (data.length > 0) { // recupère les pronos du joueur
+                        $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
+                        $scope.secondStageMatches = $scope.mypronos[0].secondStageMatches;
+                    }
+                });
         });
     };
 
@@ -48,6 +47,16 @@ angular.module('worldProno2014App')
 
     $scope.Named = function () {
         $scope.isNamed = !$scope.isNamed;
+    };
+
+    $scope.reset = function() {
+      bootbox.confirm('Etes-vous sur de vouloir ré-initialiser votre pronostic ?', function(result) {
+          if(result) {
+            $scope.groupsMatches = $scope.fifaMatchs.groupsMatches;
+            $scope.secondStageMatches = $scope.fifaMatchs.secondStageMatches;
+            $scope.savePronos();
+          }
+      });
     };
 
     $scope.$watch('groupsMatches.A.matches ', function(){
@@ -189,7 +198,6 @@ angular.module('worldProno2014App')
      function countriesThatPass(){
         _.each($scope.groupsMatches, function(groupData, group){
             var countriesOrderedByPoints = sortStandingFifa2014Rules(groupData.standing);
-            console.log('countriesOrderedByPoints',countriesOrderedByPoints);
             if (countriesOrderedByPoints[0][1].matchNb === 3 && countriesOrderedByPoints[1][1].matchNb === 3 && countriesOrderedByPoints[2][1].matchNb === 3  && countriesOrderedByPoints[3][1].matchNb === 3 ) {
                 $scope.standing[group][0]['country'] = countriesOrderedByPoints[0][0];
                 $scope.standing[group][1]['country'] = countriesOrderedByPoints[1][0];

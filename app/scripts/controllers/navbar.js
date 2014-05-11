@@ -26,12 +26,4 @@ angular.module('worldProno2014App')
       return route === $location.path();
     };
 
-    $scope.reset = function() {
-      bootbox.confirm('Etes-vous sur de vouloir ré-initialiser votre pronostic ?', function(result) {
-          if(result) {
-            $scope.resetPronos();
-          }
-      });
-    };
-
 }]);

@@ -34,6 +34,10 @@ angular.module('worldProno2014App', [
             url: '/about/',
             templateUrl: 'partials/about'
         })
+        .state('public.rules', {
+            url: '/rules/',
+            templateUrl: 'partials/rules'
+        })
         .state('public.worldcup', {
             url: '/worldcup/Mondial',
             templateUrl: 'partials/worldcup',
