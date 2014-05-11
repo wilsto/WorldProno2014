@@ -28,7 +28,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-include="'partials/navbar'"></div>
+    <div ng-include="'partials/navbar'" style="height:71px;"></div>
     <div class="container" ui-view></div>
     <div id="alertBox" data-ng-show="error" style="top:60px;visibility:hidden" class="alert alert-danger">
       <button type="button" data-ng-click="error = null;" class="close">&times;</button><strong>Oh no!&nbsp;</strong><span data-ng-bind="error"></span>

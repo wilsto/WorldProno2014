@@ -26,8 +26,8 @@ Chargement en cours
                         <td class="l"><div ng-show="isNamed" class="date " title="{{ match[2].date }}">{{ match[2].date }} {{ match[2].time }}</div></td>
                         <td class="l "><span class="flag sprite-{{match[0].country.replace('é','U00e9')}}"></span>  <span ng-show="isNamed">{{match[0].country}} </span></td>
                         <td class="l homeTeam"></td>
-                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[0].score" ng-disabled="(real === 'Mondial' && user.username !== 'Mondial')"> </td>
-                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[1].score"  ng-disabled="(real === 'Mondial' && user.username !== 'Mondial')"></td>
+                        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="match[0].score" ng-disabled="(real === 'Mondial' && user.username !== 'Mondial')"> </td>
+                        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="match[1].score"  ng-disabled="(real === 'Mondial' && user.username !== 'Mondial')"></td>
                         <td class="r awayTeam"></td>
                         <td class="r "><span ng-show="isNamed">{{match[1].country}}</span>  <span class="flag sprite-{{match[1].country.replace('é','U00e9')}}"></span> </span></td>
                     </tr>
@@ -162,8 +162,6 @@ Chargement en cours
     <!-- END: Inner ngRepeat. -->
 </table>
 </section>
-
-<div class="header" ng-controller="NavbarCtrl">
 
 <div class="navbar navbar-default navbar-fixed-bottom" ng-show="real !== 'Mondial' || user.username === 'Mondial'" ng-class="{Mondial :user.username==='Mondial'}" role="navigation" style =" overflow: hidden;">
       <div class="container">
