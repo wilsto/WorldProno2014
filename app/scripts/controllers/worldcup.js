@@ -159,7 +159,15 @@ angular.module('worldProno2014App')
 
         return sortedKeys;
     }
-
+// PHASE DE GROUPE
+// Il s'agit du même format que celui utilisé depuis 1998. Les trente-deux équipes sont réparties en huit groupes de quatre. Chacune affronte les trois autres de son groupe. À l'issue des trois journées, les deux meilleures équipes de chaque groupe, soit seize au total, se qualifient pour les huitièmes de finale, où les premiers ont l'avantage théorique d'affronter des deuxièmes.
+// Chaque équipe reçoit trois points pour une victoire et un pour un match nul. La FIFA a déterminé que le départage se fait comme suit (il s'agit du même règlement pour tous les groupes de qualification et de phase finale) :
+// A- le plus grand nombre de points obtenus dans tous les matches du groupe ;
+// B- la différence de buts dans tous les matches du groupe ;
+// C- le plus grand nombre de buts marqués dans tous les matches du groupe ;
+// D- le plus grand nombre de points obtenus dans les matches de groupe entre les équipes à égalité ;
+// E- la différence de buts particulière dans les matches de groupe entre les équipes à égalité ;
+// F- le plus grand nombre de buts marqués dans les matches de groupe entre les équipes à égalité ;
 
     /**
      * [Calcule les pays qui passent les groupes]

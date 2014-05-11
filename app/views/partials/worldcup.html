@@ -23,13 +23,13 @@ Chargement en cours
 
                     <!-- BEGIN: Inner ngRepeat. -->
                     <tr ng-repeat="match in groupData.matches">
-                        <td class="l"><div ng-show="isNamed" class="date " title="  {{ match[2].date }}">{{ match[2].date }} {{ match[2].time }}</div></td>
-                        <td class="l "><a href="{{ item.Pays1href }}"> <span class="flag sprite-{{match[0].country.replace('é','U00e9')}}"></span>  <span ng-show="isNamed">{{match[0].country}} </span></a></td>
+                        <td class="l"><div ng-show="isNamed" class="date " title="{{ match[2].date }}">{{ match[2].date }} {{ match[2].time }}</div></td>
+                        <td class="l "><span class="flag sprite-{{match[0].country.replace('é','U00e9')}}"></span>  <span ng-show="isNamed">{{match[0].country}} </span></td>
                         <td class="l homeTeam"></td>
-                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[0].score" ng-disabled="real === 'Mondial'"> </td>
-                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[1].score"  ng-disabled="real === 'Mondial'"></td>
+                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[0].score" ng-disabled="(real === 'Mondial' && user.username !== 'Mondial')"> </td>
+                        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="match[1].score"  ng-disabled="(real === 'Mondial' && user.username !== 'Mondial')"></td>
                         <td class="r awayTeam"></td>
-                        <td class="r "><a href="{{ item.Pays2href }}"> <span ng-show="isNamed">{{match[1].country}}</span>  <span class="flag sprite-{{match[1].country.replace('é','U00e9')}}"></span> </span></a></td>
+                        <td class="r "><span ng-show="isNamed">{{match[1].country}}</span>  <span class="flag sprite-{{match[1].country.replace('é','U00e9')}}"></span> </span></td>
                     </tr>
                     <!-- END: Inner ngRepeat. -->
                 </table>
@@ -55,7 +55,7 @@ Chargement en cours
                     </th>
                     <tr ng-repeat="country in groupData.sortedStanding  track by $index ">
                         <td class="l">{{$index +1}}</td>
-                        <td class="l "><a href="{{ item.Pays1href }}">   <span class="flag sprite-{{country[0].replace('é','U00e9')}}"></span> <span ng-show="isNamed">{{country[0]}} </span></a></td>
+                        <td class="l "><span class="flag sprite-{{country[0].replace('é','U00e9')}}"></span> <span ng-show="isNamed">{{country[0]}} </span></td>
                         <td class="l Pts"> {{country[1].total | number}} </td>
                         <td class="r "> {{country[1].matchNb | number}} </td>
                         <td class="r "> {{country[1].win | number}} </td>
@@ -89,8 +89,8 @@ Chargement en cours
 
         <td class="l "> <span class="flag sprite-{{data[0].country.length <3 && '_unknown' || data[0].country.replace('é','U00e9')}}"></span>   <span ng-class="{nameGrey:data[0].country.length <3}" ng-show="isNamed  || data[0].country.length <3">{{data[0].country}}</span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"></td>
         <td class="r awayTeam"></td>
         <td class="r "> <span ng-class="{nameGrey:data[1].country.length <3}" ng-show="isNamed || data[1].country.length <3">{{data[1].country}} </span> <span class="flag sprite-{{data[1].country.length <3 && '_unknown' || data[1].country.replace('é','U00e9')}}"></span> </td>
 
@@ -111,8 +111,8 @@ Chargement en cours
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
         <td class="l ">   <span class="flag sprite-{{data[0].country.length <3 && '_unknown' || data[0].country.replace('é','U00e9')}}"></span><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"></td>
         <td class="r awayTeam"></td>
         <td class="r "> <span ng-show="isNamed">{{data[1].country}} </span> <span class="flag sprite-{{data[1].country.length <3 && '_unknown' || data[1].country.replace('é','U00e9')}}"></span></td>
 
@@ -132,8 +132,8 @@ Chargement en cours
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
         <td class="l ">  <span class="flag sprite-{{data[0].country.length <3 && '_unknown' || data[0].country.replace('é','U00e9')}}"></span><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score" ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score" ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"></td>
         <td class="r awayTeam"></td>
         <td class="r "> <span ng-show="isNamed">{{data[1].country}} </span> <span class="flag sprite-{{data[1].country.length <3 && '_unknown' || data[1].country.replace('é','U00e9')}}"></span></td>
 
@@ -153,8 +153,8 @@ Chargement en cours
         <td class="l ">  </td>
         <td class="l ">   <span class="flag sprite-{{data[0].country.length <3 && '_unknown' || data[0].country.replace('é','U00e9')}}"></span><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"> </td>
-        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || real === 'Mondial'"></td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"> </td>
+        <td class="c score"><input type="text" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"></td>
         <td class="r awayTeam"></td>
         <td class="r "><span ng-show="isNamed"> {{data[1].country}} </span> <span class="flag sprite-{{data[1].country.length <3 && '_unknown' || data[1].country.replace('é','U00e9')}}"></span></td>
 
@@ -165,12 +165,14 @@ Chargement en cours
 
 <div class="header" ng-controller="NavbarCtrl">
 
-<div class="navbar navbar-default navbar-fixed-bottom" ng-class="{Mondial :userData.userName=='Mondial'}" role="navigation" style =" overflow: hidden;">
+<div class="navbar navbar-default navbar-fixed-bottom" ng-show="real !== 'Mondial' || user.username === 'Mondial'" ng-class="{Mondial :user.username==='Mondial'}" role="navigation" style =" overflow: hidden;">
       <div class="container">
-        <div class="navbar-header pull-right" style ="margin-top:7px;">
+        <div class="navbar-header pull-left" style ="margin-top:7px;">
             <button class="btn btn-warning" ng-click="reset()">Reset Pronos</button>
             <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Collapse groupes</button>
             <button class="btn btn-default" ng-click="Named()">Nom de pays</button>
+        </div>
+        <div class="navbar-header pull-right" style ="margin-top:7px;">
             <button class="btn btn-primary ladda-button" data-style="expand-right" ng-click="savePronos()"><span class="ladda-label">Sauvegarder</span><span class="ladda-spinner"></span></button>
       </div>
     </div>
