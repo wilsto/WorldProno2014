@@ -12,6 +12,7 @@
         roles :[
             'public',
             'user',
+            'vip',
             'admin'],
 
         /*
@@ -25,7 +26,8 @@
         accessLevels : {
             'public' : '*',
             'anon': ['public'],
-            'user' : ['user', 'admin'],
+            'user' : ['user', 'vip', 'admin'],
+            'vip' : ['vip', 'admin'],
             'admin': ['admin']
         }
 

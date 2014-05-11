@@ -1,17 +1,13 @@
 'use strict';
 
 angular.module('worldProno2014App')
-.controller('AdminCtrl',
-['$rootScope', '$scope', 'Users', 'Auth', function($rootScope, $scope, Users, Auth) {
+.controller('AdminCtrl', ['$scope', '$http', 'Auth', function($scope, $http, Auth) {
     $scope.loading = true;
     $scope.userRoles = Auth.userRoles;
 
-    Users.getAll(function(res) {
-        $scope.users = res;
+  	$http.get('/users').success(function (data) {
+        $scope.users = data;
         $scope.loading = false;
-    }, function() {
-        $rootScope.error = 'Failed to fetch users.';
-        $scope.loading = false;
-    });
+	});
 
 }]);

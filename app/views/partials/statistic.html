@@ -14,17 +14,18 @@ Chargement en cours
                         <h4 class="l group">Classement {{lstRole}}
                           <div class="btn-group btn-group-xs pull-right"> 
                             <button ng-click="lstRole=''" class="btn btn-default">Tous</button>
-                            <button ng-click="lstRole='VIP'" class="btn btn-warning">Joueur VIP</button>
+                            <button ng-click="lstRole='vip'" class="btn btn-warning">Joueur VIP</button>
                             <button ng-click="lstRole='user'" class="btn btn-info">Simple joueur</button>
                              </div>
                         </h4>                        
                     </caption>
                     <!-- BEGIN: Inner ngRepeat. -->
-                    <th class="group">
+                    <tr class="group">
+                        <td class="l group">#</td>
                         <td class="l group">Nom</td>
                         <td class="l group"></td>
                         <td class="c group">Pts</td>
-                        <td class="c group"><a href="{{ item.Pays1href }}">1er tour</a></td>
+                        <td class="c group">1er tour</td>
                         <td class="c group">2ème tour</td>
                         <td class="c group">3ème tour</td>
                         <td class="c group">Qualifs</td>
@@ -33,11 +34,15 @@ Chargement en cours
                         <td class="c group">1/2</td>
                         <td class="c group">Finales</td>
                         <td class="c group">Win</td>
+<<<<<<< HEAD
                     </th>
+=======
+                    </tr>
+>>>>>>> 1a36c560eb1d855c385f7a767cfa1146ad305a94
                     <tr ng-repeat="(k,player) in filterRole(allPlayers,lstRole) track by $index">
                         <td class="l">{{$index +1}}</td>
-                        <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a></td>
-                        <td class="l "> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title}" class="label">{{ player.userData.role.title }} </span></td>
+                        <td class="l "><strong>{{player.userData.username}}</strong></td>
+                        <td class="l "> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span></td>
                         <td class="c Pts "> {{player.totalpoints  | number}} </td>
                         <td class="c "><button pop-over items="player.points.tour1.details" title="Détails Tour 1" class="btn btn-default">{{player.points.tour1.total | number}}</button>
                         <td class="c "><button pop-over items="player.points.tour2.details" title="Détails Tour 2" class="btn btn-default">{{player.points.tour2.total | number}}</button></td>
