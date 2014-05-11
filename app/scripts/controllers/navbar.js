@@ -2,6 +2,9 @@
 
 angular.module('worldProno2014App')
 .controller('NavbarCtrl', ['$rootScope', '$scope', '$location', 'Auth', function($rootScope, $scope, $location, Auth) {
+
+    new gnMenu( document.getElementById( 'gn-menu' ) );
+    
     $scope.user = Auth.user;
     $scope.userRoles = Auth.userRoles;
     $scope.accessLevels = Auth.accessLevels;
@@ -24,14 +27,6 @@ angular.module('worldProno2014App')
 
     $scope.isActive = function(route) {
       return route === $location.path();
-    };
-
-    $scope.reset = function() {
-      bootbox.confirm('Etes-vous sur de vouloir ré-initialiser votre pronostic ?', function(result) {
-          if(result) {
-            $scope.resetPronos();
-          }
-      });
     };
 
 }]);

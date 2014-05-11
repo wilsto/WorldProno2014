@@ -1,22 +1,27 @@
 <div class="header" ng-controller="NavbarCtrl">
 
-<div class="navbar navbar-default navbar-fixed-top" ng-class="{Mondial :user.username==='Mondial'}" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">WorldProno2014<span style="font-size:10px;color:red"><i> Beta</i></span></a>
-          <div class="navbar-header pull-left">
-          <ul class="nav navbar-nav ">
-      			<li ng-show="user.username" class="dropdown">
+      <ul id="gn-menu" class="gn-menu-main">
+        <li class="gn-trigger">
+          <a class="gn-icon gn-icon-menu"></a>
+          <nav class="gn-menu-wrapper">
+            <div class="gn-scroller">
+              <ul class="gn-menu">
+                <li><a href="/"><span class="glyphicon glyphicon-home gn-icon-glyph "></span>Accueil</a></li>
+                <li><a href="/worldcup/Mondial"><span class="glyphicon glyphicon-globe gn-icon-glyph "></span>La coupe du monde</a></li>
+                <li><a href="/rules"><span class="glyphicon glyphicon-list-alt gn-icon-glyph "></span>Le réglement</a></li>
+                <li ng-show="user.username"><a class="gn-icon gn-icon-help" href="/worldcup/">Mes pronostics</a></li>
+                <li ><a class="gn-icon gn-icon-archive" href="/statistic">Les résultats</a></li>
+              </ul>
+            </div><!-- /gn-scroller -->
+          </nav>
+        </li>
+        <li><a href="#">WorldProno2014<span style="font-size:10px;color:red"><i> Beta 0.3.2</i></span></a></li>
+        <li><ul class="nav navbar-nav ">
+            <li ng-show="user.username" class="dropdown">
               <a href="/" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" height="20" src="" width="20">&nbsp; {{user.username}} &nbsp;<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label">{{ user.role.title }} </span> &nbsp;<b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li ><a href="/profile">Profil</a></li>
-                <li  ><a ng-click="logout()">Se déconnecter</a></li>
+              <ul class="dropdown-menu dropdown-menu-gn-menu">
+                <li><a href="/profile">Profil</a></li>
+                <li><a ng-click="logout()">Se déconnecter</a></li>
                 <li ng-show="user.role.title == userRoles.admin.title" class="divider"></li>
                 <li ng-show="user.role.title == userRoles.admin.title"  class="dropdown-header">God Mode</li>
                 <li><a ng-show="user.role.title == userRoles.admin.title" href="admin">Admin Panel</a></li>
@@ -25,38 +30,8 @@
             <li ng-hide="user.username"  ng-class="{active: isActive(item.link)}">
                 <a href="/login">Se connecter</a>
             </li>
-          </ul>
-          </div>
-        </div>
-        <div class="navbar-collapse collapse navbar-right">
-          <ul class="nav navbar-nav">
-		   <li ng-class="{active: isActive(item.link)}">
-		        <a href="/">Accueil</a>
-		    </li>
-		    <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Coupe du monde  <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-header">Le mondial</li>
-                <li ng-show="user.username"><a href="/worldcup/">Mes pronostics</a></li>
-                <li><a href="/worldcup/Mondial">La coupe du monde (réelle)</a></li>
-                <li ng-show="user.username" class="divider"></li>
-                <li ng-show="user.username" class="dropdown-header">Concours</li>
-                <li ng-show="user.username" ><a href="/statistic">Statistiques</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">App</li>
-                <li><a href="/about">A propos</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-
-      </div>
-    </div>
+          </ul></li>
+      </ul>
 </div>
-<br/><br/>
-<script language="javascript">
-    $('.dropdown-toggle').dropdown();
-    $('.dropdown-menu').find('form').click(function (e) {
-        e.stopPropagation();
-      });
-</script>
+
+
