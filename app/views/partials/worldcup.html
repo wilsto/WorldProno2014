@@ -170,7 +170,7 @@ Chargement en cours
 <div class="navbar navbar-default navbar-fixed-bottom" ng-show="real !== 'Mondial' || user.username === 'Mondial'" ng-class="{Mondial :user.username==='Mondial'}" role="navigation" style =" overflow: hidden;">
       <div class="container">
         <div class="navbar-header pull-left" style ="margin-top:7px;">
-            <button class="btn btn-warning" ng-click="reset()">Reset Pronos</button>
+            <button class="btn btn-warning ladda-button" data-style="expand-right" ng-click="reset()"><span class="ladda-label"> Reset Pronos</span><span class="ladda-spinner"></span></button>
             <button class="btn btn-default" style="visibility:hidden"  ng-click="isCollapsed = !isCollapsed">Collapse groupes</button>
             <button class="btn btn-default" style="visibility:hidden"  ng-click="Named()">Nom de pays</button>
         </div>
