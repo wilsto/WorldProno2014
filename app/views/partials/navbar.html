@@ -16,21 +16,20 @@
             </div><!-- /gn-scroller -->
           </nav>
         </li>
-        <li><a href="#">WorldProno2014<span style="font-size:10px;color:red"><i> Beta 0.3.2</i></span></a></li>
-        <li><ul class="nav navbar-nav ">
-            <li ng-show="user.username" class="dropdown">
-              <a href="/" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" height="20" src="" width="20">&nbsp; {{user.username}} &nbsp;<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label">{{ user.role.title }} </span> &nbsp;<b class="caret"></b></a>
+        <li><a href="#">WorldProno2014</a></li>
+        <li><ul class="nav navbar-nav">
+            <li  >
+              <a class="dropdown" data-toggle="dropdown"><span class="glyphicon glyphicon-user "></span></a>
               <ul class="dropdown-menu dropdown-menu-gn-menu">
-                <li><a href="/profile">Profil</a></li>
-                <li><a ng-click="logout()">Se déconnecter</a></li>
+                <li ng-hide="user.username"  ng-class="{active: isActive(item.link)}"><a href="/login">Se connecter</a></li>
+                <li ng-show="user.username"><a href="/profile">&nbsp;Profil {{user.username}} &nbsp;<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label">{{ user.role.title }} </span> &nbsp;</a></li>
+                <li ng-show="user.username"><a ng-click="logout()">Se déconnecter</a></li>
                 <li ng-show="user.role.title == userRoles.admin.title" class="divider"></li>
                 <li ng-show="user.role.title == userRoles.admin.title"  class="dropdown-header">God Mode</li>
                 <li><a ng-show="user.role.title == userRoles.admin.title" href="admin">Admin Panel</a></li>
               </ul>
             </li>
-            <li ng-hide="user.username"  ng-class="{active: isActive(item.link)}">
-                <a href="/login">Se connecter</a>
-            </li>
+
           </ul></li>
       </ul>
 </div>
