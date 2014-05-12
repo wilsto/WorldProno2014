@@ -45,7 +45,6 @@ angular.module('worldProno2014App')
 
     $scope.initPronos();
 
-    // http://stackoverflow.com/a/11381730/989439
     $scope.mobilecheck = function () {
         var check = false;
         (function (a) {
@@ -192,7 +191,7 @@ angular.module('worldProno2014App')
             // C- le plus grand nombre de buts marqués dans tous les matches du groupe ;
             } else if(b[1].pour  !== a[1].pour) {
                 return b[1].pour - a[1].pour ;
-            } 
+            }
         });
         return sortedKeys;
     }
@@ -313,7 +312,6 @@ $scope.victorByPenalties = function(round, title, winnerIndex){
     _.each($scope.secondStageMatches[round][title], function(country, index){
         country.victorByPenalties = (winnerIndex === index) ? true : false;
     });
-    console.log($scope.secondStageMatches[round][title]);
 };
 
 

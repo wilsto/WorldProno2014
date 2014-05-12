@@ -30,7 +30,6 @@ angular.module('worldProno2014App')
         register: function(user, success, error) {
             $http.post('/register', user).success(function(res) {
                 changeUser(res);
-                success();
             }).error(error);
         },
       /**
@@ -47,7 +46,6 @@ angular.module('worldProno2014App')
           function(user) {
             $rootScope.currentUser = user;
             changeUser(user);
-            success();
             return cb(user);
           },
           function(err) {
