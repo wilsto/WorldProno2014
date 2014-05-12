@@ -19,7 +19,7 @@
         <li><a href="#">WorldProno2014</a></li>
         <li><ul class="nav navbar-nav">
             <li  >
-              <a class="dropdown" data-toggle="dropdown"><span class="glyphicon glyphicon-user "></span></a>
+              <a class="dropdown dropdown-gn" data-toggle="dropdown"><span class="glyphicon glyphicon-user "></span></a>
               <ul class="dropdown-menu dropdown-menu-gn-menu">
                 <li ng-hide="user.username"  ng-class="{active: isActive(item.link)}"><a href="/login">Se connecter</a></li>
                 <li ng-show="user.username"><a href="/profile">&nbsp;Profil {{user.username}} &nbsp;<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label">{{ user.role.title }} </span> &nbsp;</a></li>

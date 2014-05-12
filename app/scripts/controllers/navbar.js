@@ -5,6 +5,11 @@ angular.module('worldProno2014App')
 
     new gnMenu( document.getElementById( 'gn-menu' ) );
     
+        $('.gn-menu').find('a').click(function (e) {
+             $('.gn-menu-wrapper').removeClass('gn-open-all' );
+        });
+
+
     $scope.user = Auth.user;
     $scope.userRoles = Auth.userRoles;
     $scope.accessLevels = Auth.accessLevels;
