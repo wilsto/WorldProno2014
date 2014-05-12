@@ -42,40 +42,54 @@
 
     </div> 
   </div>
-  </div>  <div class="col-xs-12 col-sm-12 col-md-6">
-  <div class="panel panel-default glow"> 
-    <div class="panel-thumbnail"><img src="http://www.xavierquerathement.fr/wp-content/uploads/2013/05/podium.jpg" class="img-responsive"> 
-    </div> 
-    <div class="panel-body"> 
-            <div class="col-xs-8 col-sm-10 col-md-12 col-lg-12">
-                <table class="table table-responsive table-condensed glow" >
-                    <caption>
-                        <h4 class="l group">Podium {{lstRole}}
-                          <div class="btn-group btn-group-xs pull-right"> 
-                            <button ng-click="lstRole=''" class="btn btn-default">Tous</button>
-                            <button ng-click="lstRole='VIP'" class="btn btn-warning">Joueur VIP</button>
-                            <button ng-click="lstRole='user'" class="btn btn-info">Simple joueur</button>
-                          </div>
-                        </h4>                        
-                    </caption>
-                    <!-- BEGIN: Inner ngRepeat. -->
-                    <th class="group">
-                        <td class="l group">Nom</td>
-                        <td class="c group">Pts</td>
-                    </th>
-                    <tr ng-repeat="(k,player) in filterRole(allPlayers,lstRole) track by $index">
-                        <td class="l">{{$index +1}}</td>
-                        <td class="l "><a href="{{ item.Pays1href }}">  <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a></td>
-                        <td class="l "> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title}" class="label">{{ player.userData.role.title }} </span></td>
-                        <td class="c Pts "> {{player.totalpoints  | number}} </td>
-                      </tr>
-                    <!-- END: Inner ngRepeat. -->
-                </table>
-            </div>
+  </div> 
 
-    </div> 
+<div ng-controller="StatisticCtrl">
+
+  <div class="col-xs-12 col-sm-12 col-md-6">
+     <div class="panel panel-default glow"> 
+       <div class="panel-thumbnail">
+          <caption>
+              <h4 class="l group">Podium {{lstRole}}
+                <div class="btn-group btn-group-xs pull-right"> 
+                  <button ng-click="lstRole=''" class="btn btn-default">Tous</button>
+                  <button ng-click="lstRole='vip'" class="btn btn-warning">Joueur VIP</button>
+                  <button ng-click="lstRole='user'" class="btn btn-info">Simple joueur</button>
+                </div>
+              </h4>                        
+            </caption>
+        <img src="http://www.xavierquerathement.fr/wp-content/uploads/2013/05/podium.jpg" class="img-responsive"> 
+      </div> 
+      <div class="panel-body"> 
+
+
+        <div class="col-xs-8 col-sm-10 col-md-12 col-lg-12">
+         
+        <!-- BEGIN: Inner ngRepeat. -->
+
+            <div ng-repeat="(k,player) in filterRolePodium(allPlayers,lstRole) track by $index | limitTo:3">
+              <div ng-if="k == 1" class="col-md-4"></div>
+              <div ng-if="k == 1" class="col-md-4">
+                <a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a> ({{player.totalpoints  | number}})
+                </div>
+              <div ng-if="k == 1" class="col-md-4"></div>
+
+              <div ng-if="k == 2" class="col-md-8">
+                <a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a> ({{player.totalpoints  | number}})
+              </div>
+              <div ng-if="k == 2" class="col-md-4"></div>
+              <div ng-if="k == 3" class="col-md-8"></div>
+              <div ng-if="k == 3" class="col-md-4">
+                <a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a> ({{player.totalpoints  | number}})
+              </div>
+            </div>
+           <!-- END: Inner ngRepeat. -->
+    
+        </div>
+      </div> 
+    </div>
   </div>
-  </div>
+</div>
   <div class="col-xs-12 col-sm-12 col-md-6">
   <div class="panel panel-default glow"> 
     <div class="panel-thumbnail"><img src="images/FulecoMascot.jpg" class="img-responsive"> 
