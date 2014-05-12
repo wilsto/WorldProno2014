@@ -114,6 +114,28 @@ angular.module('worldProno2014App')
 	    });
 	    return result;
 	}	
+	/*
+		Ajout filtre podium pour les 3 premiers
+	 */
+	
+	$scope.filterRolePodium = function(allPlayers,myfilter) {
+	    var result = {};
+		var nbFilter=0;
+	    angular.forEach(allPlayers, function(value, key) {
+	    	var rolePlayer;
+	    	if(value.userData.role!==undefined) {
+	    		rolePlayer=(value.userData.role.title === 'admin') ? 'vip': value.userData.role.title ; // gère le cas où ADMIN fait parti des VIP
+	    	}
+	        if (rolePlayer===myfilter||myfilter==='') {
+	        	nbFilter++;
+	        	if (Math.max(nbFilter,3)==3)
+	        	{
+	        		result[nbFilter] = value;
+	        	}	
+	        }
+	    });
+	    return result;
+	}	
 
 	/**
 	 * [Initialise les calculs]
