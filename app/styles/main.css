@@ -186,7 +186,15 @@ background: url(../images/header.png) no-repeat center top;
 position: relative;
 }
 
-.section {
+.podium
+{
+background: url(../images/podium.jpg) no-repeat center bottom;
+background-size: 90% 75%;
+position:relative;
+} 
+
+
+.section { auto
   height: 500px;  
   text-align: center;
   font-size: 40px;

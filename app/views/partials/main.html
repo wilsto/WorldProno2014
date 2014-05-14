@@ -42,13 +42,13 @@
 
     </div> 
   </div>
-  </div> 
+</div> 
 
 <div ng-controller="StatisticCtrl">
 
   <div class="col-xs-12 col-sm-12 col-md-6">
      <div class="panel panel-default glow"> 
-       <div class="panel-thumbnail">
+       <div class="panel-thumbnail ">
           <caption>
               <h4 class="l group">Podium {{lstRole}}
                 <div class="btn-group btn-group-xs pull-right"> 
@@ -59,26 +59,29 @@
               </h4>                        
             </caption>
       </div> 
-      <div class="panel-body"> 
+      <div class="panel-body podium"> 
+      
         <div class="col-xs-8 col-sm-10 col-md-12 col-lg-12">   
         <!-- BEGIN: Inner ngRepeat. -->
           <div class="row" ng-repeat="(k,player) in filterRolePodium(allPlayers,lstRole) track by $index">
-            <div ng-if="k == 1" class="col-md-4 col-lg-4"></div>
-            <div ng-if="k == 1" class="col-md-4">
-              <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span> ({{player.totalpoints  | number}} pts) <br> <a href="{{ item.Pays1href }}"><img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a> 
+            
+            <div ng-if="k == 1" class="col-md-12" style="text-align:center;">
+              <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span> ({{player.totalpoints  | number}} pts) <br> <a href="{{ item.Pays1href }}">{{player.userData.username}}</a>
             </div>
-            <div ng-if="k == 1" class="col-md-4"></div>
-            <div ng-if="k == 2" class="col-md-4">
-              <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span> ({{player.totalpoints  | number}} pts) <br> <a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a> 
+         
+            <div ng-if="k == 2" class="col-md-4" style="text-align:center;">
+              <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span> ({{player.totalpoints  | number}} pts) <br> <a href="{{ item.Pays1href }}"> {{player.userData.username}}</a>
             </div>
-            <div ng-if="k == 2" class="col-md-8"></div>
-            <div ng-if="k == 3" class="col-md-8"></div>
-            <div ng-if="k == 3" class="col-md-4">
-              <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span> ({{player.totalpoints  | number}} pts) <br> <a href="{{ item.Pays1href }}"><img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a> 
+            <div ng-if="k == 2" class="col-md-12"></div>           
+            <div ng-if="k == 3" class="col-md-8"></div>           
+            <div ng-if="k == 3" class="col-md-4" style="text-align:right;">
+             <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span> ({{player.totalpoints  | number}} pts) <br> <a href="{{ item.Pays1href }}"> {{player.userData.username}}</a><br><br><br><br><br><br>
             </div>
           </div>
-          <img src="http://www.xavierquerathement.fr/wp-content/uploads/2013/05/podium.jpg" class="img-responsive"> 
         </div>
+         <div class="col-xs-8 col-sm-10 col-md-12 col-lg-12">
+           <div class="row"></div>
+         </div>
            <!-- END: Inner ngRepeat. -->
       </div> 
     </div>
@@ -88,8 +91,7 @@
   <div class="panel panel-default glow"> 
     <div class="panel-thumbnail"><img src="images/FulecoMascot.jpg" class="img-responsive"> 
     </div> 
-    <div class="panel-body"> 
-      <p class="lead"> 
+    <div class="panel-body">       <p class="lead"> 
         Les actualités des pronos
       </p> 
       <p> 
