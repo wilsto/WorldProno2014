@@ -9,7 +9,7 @@ angular.module('worldProno2014App')
              $('.gn-menu-wrapper').removeClass('gn-open-all' );
         });
 
-        $('.gn-icon').click(function (e) {
+        $('.gn-icon-menu').click(function (e) {
              $('.gn-menu-wrapper').toggleClass('gn-open-all' );
         });
 
