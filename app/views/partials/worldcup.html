@@ -90,8 +90,14 @@ Chargement en cours
 
         <td class="l "> <span class="flag sprite-{{data[0].country.length <3 && '_unknown' || data[0].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span>   <span ng-class="{nameGrey:data[0].country.length <3}" ng-show="isNamed  || data[0].country.length <3">{{data[0].country}}</span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"> </td>
-        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"></td>
+        <td class="c score">
+            <div ng-raty="ratyOptions" ng-model="data[0].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+        </td>
+        <td class="c score">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <div ng-raty="ratyOptions" ng-model="data[1].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
+        </td>
         <td class="r awayTeam"></td>
         <td class="r "> <span ng-class="{nameGrey:data[1].country.length <3}" ng-show="isNamed || data[1].country.length <3">{{data[1].country}} </span> <span class="flag sprite-{{data[1].country.length <3 && '_unknown' || data[1].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span> </td>
 
@@ -112,8 +118,14 @@ Chargement en cours
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
         <td class="l ">   <span class="flag sprite-{{data[0].country.length <3 && '_unknown' || data[0].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"> </td>
-        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"></td>
+        <td class="c score">
+            <div ng-raty="ratyOptions" ng-model="data[0].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+        </td>
+        <td class="c score">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <div ng-raty="ratyOptions" ng-model="data[1].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
+        </td>
         <td class="r awayTeam"></td>
         <td class="r "> <span ng-show="isNamed">{{data[1].country}} </span> <span class="flag sprite-{{data[1].country.length <3 && '_unknown' || data[1].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span></td>
 
@@ -133,8 +145,14 @@ Chargement en cours
         <td class="l"><div class="date " title="  {{ data[2].date }}"><div class="jour">mar.</div><div class="nb">04</div><div class="mois">mars</div><div class="mois"> {{ data[2].time }}</div></div></td>
         <td class="l ">  <span class="flag sprite-{{data[0].country.length <3 && '_unknown' || data[0].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score" ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"> </td>
-        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"></td>
+        <td class="c score">
+            <div ng-raty="ratyOptions" ng-model="data[0].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+        </td>
+        <td class="c score">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <div ng-raty="ratyOptions" ng-model="data[1].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
+        </td>
         <td class="r awayTeam"></td>
         <td class="r "> <span ng-show="isNamed">{{data[1].country}} </span> <span class="flag sprite-{{data[1].country.length <3 && '_unknown' || data[1].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span></td>
 
@@ -154,8 +172,14 @@ Chargement en cours
         <td class="l ">  </td>
         <td class="l ">   <span class="flag sprite-{{data[0].country.length <3 && '_unknown' || data[0].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span><span ng-show="isNamed"> {{data[0].country}} </span></td>
         <td class="l homeTeam"></td>
-        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"> </td>
-        <td class="c score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')"></td>
+        <td class="c score">
+            <div ng-raty="ratyOptions" ng-model="data[0].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+        </td>
+        <td class="c score">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <div ng-raty="ratyOptions" ng-model="data[1].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
+        </td>
         <td class="r awayTeam"></td>
         <td class="r "><span ng-show="isNamed"> {{data[1].country}} </span> <span class="flag sprite-{{data[1].country.length <3 && '_unknown' || data[1].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span></td>
 

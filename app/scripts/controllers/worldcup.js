@@ -33,13 +33,13 @@ angular.module('worldProno2014App')
                 G: [{country: 'G1', score:'', victorByPenalties:true}, {country: 'G2', score:'', victorByPenalties:false}],
                 H: [{country: 'H1', score:'', victorByPenalties:true}, {country: 'H2', score:'', victorByPenalties:false}]
             };
-                $scope.real = ($location.path() === '/worldcup/Mondial') ?  'Mondial' : $scope.user.username;    // recupère le nom de l'utilisateur
-                $scope.mypronos = PronoFactory.get({id:$scope.real}, function(data) {
-                    if (data.length > 0) { // recupère les pronos du joueur
-                        $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
-                        $scope.secondStageMatches = $scope.mypronos[0].secondStageMatches;
-                    }
-                });
+            $scope.real = ($location.path() === '/worldcup/Mondial') ?  'Mondial' : $scope.user.username;    // recupère le nom de l'utilisateur
+            $scope.mypronos = PronoFactory.get({id:$scope.real}, function(data) {
+                if (data.length > 0) { // recupère les pronos du joueur
+                    $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
+                    $scope.secondStageMatches = $scope.mypronos[0].secondStageMatches;
+                }
+            });
         });
     };
 
@@ -231,11 +231,11 @@ angular.module('worldProno2014App')
         if($scope.groupsMatches) {
             _.each($scope.secondStageMatches.roundOf16, function(match, title){
                 if(match[0].score.length === 0 || match[1].score.length === 0 ){
-                    matchHolder.push({country: '', score:'', victorByPenalties:true});
+                    matchHolder.push({country: '', score:'', victorByPenalties:false});
                 }else {
-                    if(match[0].score > match[1].score){
+                    if(match[0].score > match[1].score || (match[0].score === match[1].score && match[0].penalties > match[1].penalties )){
                         matchHolder.push(_.clone(match[0]));
-                    }else if(match[0].score < match[1].score){
+                    }else if(match[0].score < match[1].score || (match[0].score === match[1].score && match[0].penalties < match[1].penalties )){
                         matchHolder.push(_.clone(match[1]));
                     }else{
                         _.each(match, function(country){ country.victorByPenalties ? matchHolder.push(_.clone(country)) : null ;});
@@ -259,14 +259,14 @@ angular.module('worldProno2014App')
         if($scope.secondStageMatches) {
             _.each($scope.secondStageMatches.quarterFinals, function(match, title){
                 if(match[0].score.length === 0 || match[1].score.length === 0 ){
-                    matchHolder.push({country: '', score:'', victorByPenalties:true});
+                    matchHolder.push({country: '', score:'', victorByPenalties:false});
                 }else {
-                    if(match[0].score > match[1].score){
+                    if(match[0].score > match[1].score || (match[0].score === match[1].score && match[0].penalties > match[1].penalties )){
                         matchHolder.push(_.clone(match[0]));
-                    }else if(match[0].score < match[1].score){
+                    }else if(match[0].score < match[1].score || (match[0].score === match[1].score && match[0].penalties < match[1].penalties )){
                         matchHolder.push(_.clone(match[1]));
                     }else{
-                        _.each(match, function(country){ country.victorByPenalties ? matchHolder.push(_.clone(country)) : null ;});
+                        //_.each(match, function(country){ country.victorByPenalties ? matchHolder.push(_.clone(country)) : null ;});
                     }
                 }
                 concaTitle += title;
@@ -286,11 +286,11 @@ angular.module('worldProno2014App')
         if($scope.secondStageMatches) {
             _.each($scope.secondStageMatches.semiFinals, function(match, title){
                 if(match[0].score.length === 0 || match[1].score.length === 0 ){
-                    matchHolder.push({country: '', score:'', victorByPenalties:true});
+                    matchHolder.push({country: '', score:'', victorByPenalties:false});
                 }else {
-                    if(match[0].score > match[1].score){
+                    if(match[0].score > match[1].score || (match[0].score === match[1].score && match[0].penalties > match[1].penalties )){
                         matchHolder.push(_.clone(match[0]));
-                    }else if(match[0].score < match[1].score){
+                    }else if(match[0].score < match[1].score || (match[0].score === match[1].score && match[0].penalties < match[1].penalties )){
                         matchHolder.push(_.clone(match[1]));
                     }else{
                         _.each(match, function(country){ country.victorByPenalties ? matchHolder.push(_.clone(country)) : null ;});
