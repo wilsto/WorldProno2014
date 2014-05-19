@@ -21,7 +21,6 @@
 		margin: 0;
 		padding: 0;
 		background: white;
-		color: #5f6f81;
 		list-style: none;
 		text-transform: none;
 		font-weight: 300;
@@ -29,6 +28,7 @@
 		line-height: 60px;
 		text-align: left;
 		z-index: 9999;
+		color: #5f6f81;
 }
 
 .gn-menu-main {
@@ -70,9 +70,9 @@
 }
 
 .gn-menu-main > li:last-child {
-		float: right;
 		border-right: none;
 		border-left: 1px solid #c6d0da;
+		float: right;
 }
 
 .gn-menu-main > li > a {
@@ -335,8 +335,23 @@ line-height: 1;
 
 .dropdown-menu-gn-menu li {
 	margin-top: 10px;
-		margin-bottom: 10px;
-
+	margin-bottom: 10px;
 	height:25px;
+}
 
+
+.dropdown-menu-gn-menu  {
+	left:auto!important;
+	right:0;
+}
+
+.dropdown-gn{
+	line-height: 40px!important;
+}
+
+@media (min-width: 768px) {
+	.navbar-nav > li > a {
+	 padding-top: 10px;
+	 padding-bottom: 10px;
+	}
 }

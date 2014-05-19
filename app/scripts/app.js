@@ -148,9 +148,6 @@ angular.module('worldProno2014App', [
         if (!Auth.authorize(toState.data.access)) {
             $rootScope.error = 'Seems like you tried accessing a route you don\'t have access to...';
             event.preventDefault();
-            console.log('toState.data.access', toState.data.access);
-            console.log('fromState.url', fromState.url);
-            
             if(fromState.url === '^') {
                 if(Auth.isLoggedIn()) {
                     $state.go('public.home');

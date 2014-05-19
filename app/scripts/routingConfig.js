@@ -81,7 +81,7 @@
                     };
                 }
                 else {
-                    console.log('Access Control Error: Could not parse \'' + accessLevelDeclarations[level] + '\' as access definition for level \'' + level + '\'');
+                    //console.log('Access Control Error: Could not parse \'' + accessLevelDeclarations[level] + '\' as access definition for level \'' + level + '\'');
                 }
 
             }
@@ -93,7 +93,7 @@
                         resultBitMask = resultBitMask | userRoles[accessLevelDeclarations[level][role]].bitMask;
                     }
                     else {
-                        console.log('Access Control Error: Could not find role \'' + accessLevelDeclarations[level][role] + '\' in registered roles while building access for \'' + level + '\'');
+                      //  console.log('Access Control Error: Could not find role \'' + accessLevelDeclarations[level][role] + '\' in registered roles while building access for \'' + level + '\'');
                     }
                 }
                 accessLevels[level] = {
