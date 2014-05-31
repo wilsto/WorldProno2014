@@ -70,13 +70,21 @@ angular.module('worldProno2014App')
 		};
 	})
 
-.controller('StatisticCtrl', ['$scope', '$http', 'PronoFactory', 'Auth', function ($scope, $http, PronoFactory, Auth) {
+.controller('StatisticCtrl', ['$scope', '$http', 'PronoFactory', 'Auth', '$resource', function ($scope, $http, PronoFactory, Auth, $resource) {
+
+	var alltags = $resource('/REST/userGroup');
+
+	$scope.loadTags = function(query) {
+		return alltags.query().$promise;
+	};
 
 	var points = { result : 3, score:1, qualif:2, winner:5};
-		$scope.user = Auth.user;
-		$scope.userRoles = Auth.userRoles;
-		$scope.accessLevels = Auth.accessLevels;
-		$scope.lstRole = '';
+
+	$scope.user = Auth.user;
+	$scope.userRoles = Auth.userRoles;
+	$scope.accessLevels = Auth.accessLevels;
+	$scope.lstRole = '';
+
 	$scope.realProno = PronoFactory.get({id:'Mondial'},
 		function(data) {
 			if (data.length > 0) { // recupère les pronos du joueur
@@ -90,6 +98,9 @@ angular.module('worldProno2014App')
 							return num.totalpoints * -1;
 						});
 
+						//supprime le mondial
+						$scope.allPlayers = _.rest($scope.allPlayers);
+
 						// $scope.allPlayersArr = _.map($scope.allPlayers, function(value,index) {
 						// 	return [value];
 						// });
@@ -102,15 +113,29 @@ angular.module('worldProno2014App')
 
 	$scope.filterRole = function(allPlayers,myfilter) {
 			var result = {};
-
+			//console.log($scope.tags[0].text);
 			angular.forEach(allPlayers, function(value, key) {
 				var rolePlayer;
+
+				// gère le cas où ADMIN fait parti des VIP
 				if(value.userData.role!==undefined) {
-					rolePlayer=(value.userData.role.title === 'admin') ? 'vip': value.userData.role.title ; // gère le cas où ADMIN fait parti des VIP
+					rolePlayer=(value.userData.role.title === 'admin') ? 'vip': value.userData.role.title;
 				}
-					if (rolePlayer===myfilter||myfilter==='') {
-						result[key] = value;
+
+				// filtre suivant le role et le groupe
+				if (rolePlayer===myfilter||myfilter==='') {
+
+					//filter group
+					if($scope.tags[0]!==undefined) {
+						if(_.findWhere(value.userData.groups, {text: $scope.tags[0].text})!==undefined) {
+							result[key] = value;
+						}
+					} else {
+							result[key] = value;
 					}
+
+				}
+
 			});
 			return result;
 	};
@@ -153,6 +178,9 @@ angular.module('worldProno2014App')
 			groupData.points.semiFinals =	{total:0,details:[]};
 			groupData.points.Finals =	{total:0,details:[]};
 			groupData.points.winner =	{total:0,details:[]};
+			var userGroup =  $resource('/REST/userGroups/' + groupData.userData.username);
+			groupData.userData.groups = userGroup.query();
+
 		});
 	}
 

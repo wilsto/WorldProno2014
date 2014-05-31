@@ -1,11 +1,12 @@
 'use strict';
 
-angular.module('worldProno2014App', [
+var app = angular.module('worldProno2014App', [
   'ngCookies',
   'ngResource',
   //'ngSanitize',
   //'ngRoute',
   'ui.bootstrap',
+  'ngTagsInput',
   'ui.router'
 ])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {

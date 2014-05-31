@@ -11,18 +11,25 @@
 			<div class="socialMediaLinks">
 				<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title }} </span>
 			</div>
-			<ul class="numbers clearfix">
-				<li>Completion<strong class="small">100%</strong></li>
+			<!--<ul class="numbers clearfix" style="padding-left: 0px;">
+				<li>Pronos<strong class="small">100%</strong></li>
 				<li>Points<strong>44</strong></li>
-				<li class="nobrdr">Classement<strong>17</strong></li>
-			</ul>
+				<li>Classement<strong>17</strong></li>
+			</ul>-->
 		</div>
 	</div>
 	<h1>A propos de moi</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<h1>Inviter des amis</h1>
+	<p>
+		J'appartiens à un ou plusieurs groupes :
+	</p>
+<tags-input ng-model="tags" placeholder="Ajouter un groupe" >
+      <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
+</tags-input><button class="btn btn-primary pull-right ladda-button" data-style="expand-right" ng-click="saveGroup()"><span class="ladda-label">Sauvegarder</span><span class="ladda-spinner"></span></button>
+Vous pouvez appartenir à plusieurs groupes en meme temps, cela vous permet si vous voulez vous faire un challenge entre amis et avoir votre propre classement indépendant en filtrant les résultats.
+<h1>Inviter des amis</h1>
 <div class="friendslist clearfix">
-	<p>Vous pouvez jusqu'à inviter 5 amis à passer VIP:</p>
+	<p>Vous pouvez jusqu'à inviter 5 amis à passer VIP.<br/>
+	Vous etes alors resposnables de récupérer l'argent investi de vos amis</p>
 				<div class="friend">
 					<a href="#"><img class="img-circle" data-cfsrc="img/friend_avatar_default.jpg" width="30" height="30" alt="Jerry K." src="images/friend_avatar_default.jpg"></a><span class="friendly"><a href="#"> Ami #1</a></span>
 				</div>
@@ -46,11 +53,9 @@
 	<div class="gcontent">
 		<div class="head"><h1>Statut</h1></div>
 		<div class="boxy">
-			<p>Keep working to unlock badges!</p>
+			<p>Retrouver vos badges tout au long du tournoi!</p>
 			<div class="badgeCount">
 			<a href="#"><img width="50" height="50"  src="images/vip-icon.png"></a>
-				<a href="#"><img data-cfsrc="img/foursquare-badge.png" src="images/foursquare-badge.png"></a>
-				<a href="#"><img data-cfsrc="img/foursquare-badge.png" src="images/foursquare-badge.png"></a>
 			</div>
 		</div>
 	</div>
@@ -65,14 +70,8 @@
 					<a href="#"><span class="friendly">Passer VIP</a></span>
 				</div>
 				<div class="friend">
-					<a href="#"><span class="friendly">Ecrire au développeur</a></span>
-				</div>
-				<div class="friend">
-					<a href="#"><span class="friendly">Déclarer un bug</a></span>
+					<a href="https://github.com/wilsto/WorldProno2014/issues?state=open" target="_blank"><span class="friendly">Déclarer un bug</a></span>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-

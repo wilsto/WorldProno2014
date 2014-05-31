@@ -19,10 +19,16 @@ Chargement en cours
                              </div>
                         </h4>                        
                     </caption>
+                    <caption>
+                    <tags-input ng-model="tags" max-tags="1" add-from-autocomplete-only="true" placeholder="Ajouter un groupe pour filtrer">
+                          <auto-complete class="l" source="loadTags($query)" min-length="1"></auto-complete>
+                    </tags-input>                    
+                    </caption>
                     <!-- BEGIN: Inner ngRepeat. -->
                     <tr class="group">
                         <td class="l group">#</td>
                         <td class="l group">Nom</td>
+                        <td class="l group"></td>
                         <td class="l group"></td>
                         <td class="c group">Pts</td>
                         <td class="c group">1er tour</td>
@@ -38,7 +44,10 @@ Chargement en cours
                     <tr ng-repeat="(k,player) in filterRole(allPlayers,lstRole) track by $index">
                         <td class="l">{{$index +1}}</td>
                         <td class="l "><strong>{{player.userData.username}}</strong></td>
-                        <td class="l "> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span></td>
+                        <td class="l "> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label label-prono ">{{ player.userData.role.title }} </span></td>
+                        <td class="l "> 
+                            <span ng-repeat="group in player.userData.groups track by $index" class="label label-prono label-default">{{ group.text }} </span>
+                        </td>
                         <td class="c Pts "> {{player.totalpoints  | number}} </td>
                         <td class="c "><button pop-over items="player.points.tour1.details" title="Détails Tour 1" class="btn btn-default">{{player.points.tour1.total | number}}</button>
                         <td class="c "><button pop-over items="player.points.tour2.details" title="Détails Tour 2" class="btn btn-default">{{player.points.tour2.total | number}}</button></td>
