@@ -15,12 +15,20 @@ angular.module('worldProno2014App')
 
 
 		$scope.togglePaid = function(user) {
-			bootbox.confirm('Etes-vous sur de changer le paiement ?', function(result) {
-						if(result) {
-								$http.put('/REST/userPaid/' + user.username, {paid:!user.paid}).success(function() {
+			bootbox.confirm('Etes-vous sur de changer le paiement de ' + user.username + '?', function(result) {
+				if(result) {
+					$http.put('/REST/userPaid/' + user.username, {paid:!user.paid}).success(function() {
+					});
+				}
+			});
+		};
 
-								});
-					}
+		$scope.deleteUser = function(user) {
+			bootbox.confirm('Etes-vous sur de supprimer cet utilisateur ' + user.username + '?', function(result) {
+				if(result) {
+						$http.delete('/REST/user/' + user.username).success(function() {
+						});
+				}
 			});
 		};
 
