@@ -528,6 +528,7 @@ fieldset
 }
 
 #userStats .pic {
+  float:left;
     display: block;
     margin: 0px;
 }
@@ -540,7 +541,6 @@ fieldset
 }
 
 #userStats .data {
-    float: right;
     display: block;
     position: relative;
     height: 166px;
@@ -550,7 +550,7 @@ fieldset
     overflow: hidden;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    width: 350px;
+    width: 100%;
 }
 
 #userStats .data h1 {
@@ -679,4 +679,23 @@ text-align: left;
     display:inline-block;
     padding:2px 5px;
 
+}
+
+.dashboard{
+
+}
+.number {
+font-size: 24px;
+font-weight: bold;
+color: #0c9100;
+}
+
+.dashpad{
+  width: 32%;
+  display: inline-block;
+ vertical-align: middle;
+}
+
+.actionbutton{
+  padding : 5px;
 }
