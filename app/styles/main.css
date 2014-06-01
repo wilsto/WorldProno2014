@@ -672,3 +672,11 @@ text-align: left;
 .label-prono{
   font-weight: normal;
 }
+
+
+#close {
+    float:right;
+    display:inline-block;
+    padding:2px 5px;
+
+}

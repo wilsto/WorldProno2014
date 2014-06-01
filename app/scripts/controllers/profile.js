@@ -27,7 +27,7 @@ angular.module('worldProno2014App')
 		};
 
 		 $scope.changePhoto = function(){
-			bootbox.confirm("Avatar URL:<input type='text' class='form-control' id='avatarUrl' placeholder='http://' name='avatarUrl'></input>", function(result) {
+			bootbox.confirm('Avatar URL:<input type="text" class="form-control" id="avatarUrl" placeholder="http://" name="avatarUrl"></input>', function(result) {
 		        if(result) {
 		            console.log($('#avatarUrl').val());
 		            $scope.avatarUrl = $('#avatarUrl').val();
