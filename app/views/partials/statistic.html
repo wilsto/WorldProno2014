@@ -27,8 +27,8 @@ Chargement en cours
                     <!-- BEGIN: Inner ngRepeat. -->
                     <tr class="group">
                         <td class="l group">#</td>
+                        <td class="c group" style="width:51px"></td>
                         <td class="l group">Nom</td>
-                        <td class="l group"></td>
                         <td class="l group"></td>
                         <td class="c group">Pts</td>
                         <td class="c group">1er tour</td>
@@ -43,8 +43,8 @@ Chargement en cours
                     </tr>
                     <tr ng-repeat="(k,player) in filterRole(allPlayers,lstRole) track by $index">
                         <td class="l">{{$index +1}}</td>
-                        <td class="l "><strong>{{player.userData.username}}</strong></td>
-                        <td class="l "> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label label-prono ">{{ player.userData.role.title }} </span></td>
+                        <td class="c " style="width:51px"><div id="userStats" class="clearfix  "><div class="pic"><img class="img-circle" width="50" height="50" src="{{player.userData.avatarUrl !== undefined  && player.userData.avatarUrl || '/images/inconnu.gif'}}"></div></div></td>
+                        <td class="l "><strong>{{player.userData.username}}</strong><br/><span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label label-prono ">{{ player.userData.role.title }} </span></td>
                         <td class="l "> 
                             <span ng-repeat="group in player.userData.groups track by $index" class="label label-prono label-default">{{ group.text }} </span>
                         </td>

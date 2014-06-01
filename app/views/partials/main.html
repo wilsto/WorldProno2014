@@ -1,90 +1,52 @@
 
 <div class="main">
-<div class="row">
-  <div class="col-xs-12 col-sm-12 col-md-12">
-   <center><img src="images/bresil2014.png" class="img-responsive"  alt="Brazil2014"></center><br>
- </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+     <center><img src="images/bresil2014.png" class="img-responsive"  alt="Brazil2014"></center><br>
+   </div>
 
-<div class="col-xs-12 col-sm-12 col-md-6">
-  <div class="panel panel-default glow"> 
-    <div class="panel-thumbnail"><img src="images/Beta.jpg" class="img-responsive"> 
-    </div> 
-    <div class="panel-body"> 
-      <p class="lead"> 
-       Mise en ligne version Beta 0.4
-      </p> 
-      <p> 
-          En participant à cette beta, vous vous engagez à :
-          <ul>
-            <li>faire des feedbacks aux développeurs (j'aime / j'aime pas)</li>
-            <li>déclarer des bugs (lien prochain post)</li>
-            <li>demander des évolutions (lien prochain post)</li>
-            <li>vous amuser avec vos premiers pronos (<u>pouvant etre réinitialisés à tout moment lors des tests</u>)</li>
-          </ul>
 
-      </p> 
+   <div ng-controller="StatisticCtrl">
 
-     
-    </div> 
-  </div>
-  </div>
-  <div class="col-xs-12 col-sm-12 col-md-6">
-  <div class="panel panel-default glow"> 
-    <div class="panel-thumbnail"><img src="images/icone-bug--coccinelle_29-59.jpg" class="img-responsive"> 
-    </div> 
-    <div class="panel-body"> 
-      <p class="lead"> 
-        Déclarer les bugs ou les évolutions
-      </p> 
-      <p class="text-center"> 
-        <a class="btn btn-success" href="https://github.com/wilsto/WorldProno2014/issues?state=open" target="_blank">Cliquer ici pour ouvrir la page GitHub</a>
-      </p> 
-
-    </div> 
-  </div>
-  </div> 
-
-<div ng-controller="StatisticCtrl">
-
-  <div class="col-xs-12 col-sm-12 col-md-6">
+    <div class="col-xs-12 col-sm-12 col-md-6">
      <div class="panel panel-default glow"> 
        <div class="panel-thumbnail">
-          <caption>
-              <h4 class="l group">Podium {{lstRole}}
-                <div class="btn-group btn-group-xs pull-right"> 
-                  <button ng-click="lstRole=''" class="btn btn-default">Tous</button>
-                  <button ng-click="lstRole='vip'" class="btn btn-warning">Joueur VIP</button>
-                  <button ng-click="lstRole='user'" class="btn btn-info">Simple joueur</button>
-                </div>
-              </h4>                        
-            </caption>
+        <caption>
+          <h4 class="l group">Podium {{lstRole}}
+            <div class="btn-group btn-group-xs pull-right"> 
+              <button ng-click="lstRole=''" class="btn btn-default">Tous</button>
+              <button ng-click="lstRole='vip'" class="btn btn-warning">Joueur VIP</button>
+              <button ng-click="lstRole='user'" class="btn btn-info">Simple joueur</button>
+            </div>
+          </h4>                        
+        </caption>
       </div> 
       <div class="panel-body"> 
         <div class="col-xs-8 col-sm-10 col-md-12 col-lg-12">   
-        <!-- BEGIN: Inner ngRepeat. -->
+          <!-- BEGIN: Inner ngRepeat. -->
           <div class="row" ng-repeat="(k,player) in filterRolePodium(allPlayers,lstRole) track by $index">
             <div ng-if="k == 1" class="col-md-4 col-lg-4"></div>
-            <div ng-if="k == 1" class="col-md-4">
-              <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span> ({{player.totalpoints  | number}} pts) <br> <a href="{{ item.Pays1href }}"><img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a> 
+            <div ng-if="k == 1" class="c col-md-4">
+              <strong>{{player.userData.username}}</strong> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label label-prono ">{{ player.userData.role.title }} </span><br> <div id="userStats" class="clearfix c "><div class="pic"><img class="img-circle" width="50" height="50" src="{{player.userData.avatarUrl !== undefined  && player.userData.avatarUrl || '/images/inconnu.gif'}}"></div></div>  {{player.totalpoints  | number}} pts
             </div>
             <div ng-if="k == 1" class="col-md-4"></div>
-            <div ng-if="k == 2" class="col-md-4">
-              <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span> ({{player.totalpoints  | number}} pts) <br> <a href="{{ item.Pays1href }}"> <img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a> 
+            <div ng-if="k == 2" class="c col-md-4">
+              <strong>{{player.userData.username}}</strong> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label label-prono ">{{ player.userData.role.title }} </span><br> <div id="userStats" class="clearfix c "><div class="pic"><img class="img-circle" width="50" height="50" src="{{player.userData.avatarUrl !== undefined  && player.userData.avatarUrl || '/images/inconnu.gif'}}"></div></div>  {{player.totalpoints  | number}} pts
             </div>
             <div ng-if="k == 2" class="col-md-8"></div>
             <div ng-if="k == 3" class="col-md-8"></div>
-            <div ng-if="k == 3" class="col-md-4">
-              <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label">{{ player.userData.role.title }} </span> ({{player.totalpoints  | number}} pts) <br> <a href="{{ item.Pays1href }}"><img ng-src="/images/country_flags/{{key}}.png" width="30" > {{player.userData.username}}</a> 
+            <div ng-if="k == 3" class="c col-md-4">
+              <strong>{{player.userData.username}}</strong> <span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label label-prono ">{{ player.userData.role.title }} </span><br> <div id="userStats" class="clearfix c "><div class="pic"><img class="img-circle" width="50" height="50" src="{{player.userData.avatarUrl !== undefined  && player.userData.avatarUrl || '/images/inconnu.gif'}}"></div></div>  {{player.totalpoints  | number}} pts
             </div>
           </div>
           <img src="http://www.xavierquerathement.fr/wp-content/uploads/2013/05/podium.jpg" class="img-responsive"> 
         </div>
-           <!-- END: Inner ngRepeat. -->
+        <!-- END: Inner ngRepeat. -->
       </div> 
     </div>
   </div>
 </div>
-  <div class="col-xs-12 col-sm-12 col-md-6">
+<div class="col-xs-12 col-sm-12 col-md-6">
   <div class="panel panel-default glow"> 
     <div class="panel-thumbnail"><img src="images/FulecoMascot.jpg" class="img-responsive"> 
     </div> 
@@ -98,9 +60,52 @@
 
     </div> 
   </div>
-  </div>
+</div>
 
+
+<div class="col-xs-12 col-sm-12 col-md-6">
+  <div class="panel panel-default glow"> 
+    <div class="panel-thumbnail"><img src="images/Beta.jpg" class="img-responsive"> 
+    </div> 
+    <div class="panel-body"> 
+      <p class="lead"> 
+       Mise en ligne version Beta 0.4
+     </p> 
+     <p> 
+      En participant à cette beta, vous vous engagez à :
+      <ul>
+        <li>faire des feedbacks aux développeurs (j'aime / j'aime pas)</li>
+        <li>déclarer des bugs (lien prochain post)</li>
+        <li>demander des évolutions (lien prochain post)</li>
+        <li>vous amuser avec vos premiers pronos (<u>pouvant etre réinitialisés à tout moment lors des tests</u>)</li>
+      </ul>
+
+    </p> 
+
+    
+  </div> 
+</div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-6">
+  <div class="panel panel-default glow"> 
+    <div class="panel-thumbnail"><img src="images/icone-bug--coccinelle_29-59.jpg" class="img-responsive"> 
+    </div> 
+    <div class="panel-body"> 
+      <p class="lead"> 
+        Déclarer les bugs ou les évolutions
+      </p> 
+      <p class="text-center"> 
+        <a class="btn btn-success" href="https://github.com/wilsto/WorldProno2014/issues?state=open" target="_blank">Cliquer ici pour ouvrir la page GitHub</a>
+      </p> 
+
+    </div> 
   </div>
+</div> 
+
+
+
+
+</div>
 
 </div>
 </div>

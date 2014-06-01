@@ -519,32 +519,30 @@ fieldset
 }
 
 #userStats {
-    display: block;
-    width: auto;
     background-color: #f9f9f9;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    padding: 12px;
+    padding: 1px;
+    display: block;
 }
 
 #userStats .pic {
-    float: left;
     display: block;
-    margin-right: 10px;
+    margin: 0px;
 }
 
-#userStats .pic a img {
-    padding: 7px;
+#userStats .pic img {
     background: #fff;
     border: 1px solid #ccc;
+    padding: 5px;
+
 }
 
 #userStats .data {
     float: right;
     display: block;
     position: relative;
-    width: 350px;
     height: 166px;
     padding: 4px;
     padding-left: 15px;
@@ -552,6 +550,7 @@ fieldset
     overflow: hidden;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+    width: 350px;
 }
 
 #userStats .data h1 {

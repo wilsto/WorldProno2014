@@ -99,7 +99,7 @@ angular.module('worldProno2014App')
 						});
 
 						//supprime le mondial
-						$scope.allPlayers = _.rest($scope.allPlayers);
+						//$scope.allPlayers = _.rest($scope.allPlayers);
 
 						// $scope.allPlayersArr = _.map($scope.allPlayers, function(value,index) {
 						// 	return [value];
@@ -178,8 +178,10 @@ angular.module('worldProno2014App')
 			groupData.points.semiFinals =	{total:0,details:[]};
 			groupData.points.Finals =	{total:0,details:[]};
 			groupData.points.winner =	{total:0,details:[]};
-			var userGroup =  $resource('/REST/userGroups/' + groupData.userData.username);
-			groupData.userData.groups = userGroup.query();
+			$http.get('/REST/userInfo/' + groupData.userData.username).success(function(user) {
+				groupData.userData.groups = user.groups;
+				groupData.userData.avatarUrl =  user.avatarUrl;
+			});
 
 		});
 	}
