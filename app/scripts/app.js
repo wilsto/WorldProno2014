@@ -3,7 +3,7 @@
 var app = angular.module('worldProno2014App', [
   'ngCookies',
   'ngResource',
-  //'ngSanitize',
+  'ngSanitize',
   //'ngRoute',
   'ui.bootstrap',
   'ngTagsInput',

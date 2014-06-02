@@ -59,21 +59,23 @@
       </p> 
       <div class="dashboard">
         <div class="dashpad">
-          <div class="ei">Nb de joueurs</div>
           <div class="bh">
-            <span class="number">{{usersCount}}</span>
+            <span class="number number-green" >{{usersCount}}</span>
+            <div class="numbertext"> joueurs</div>
           </div>
         </div>
         <div class="dashpad">
-          <div class="ei">Nb de VIP</div>
+         
           <div class="bh">
-            <span class="number">{{userVipCount}}</span>
+            <span class="number number-orange">{{userVipCount}}</span>
+             <div class="numbertext"> VIPs</div>
           </div>
         </div>
         <div class="dashpad">
-          <div class="ei">Nb de groupe</div>
+          
           <div class="bh">
-            <span class="number">{{groupsCount}}</span>
+            <span class="number number-grey">{{groupsCount}}</span>
+            <div class="numbertext"> groupes</div>
           </div>
         </div>
       </div>
@@ -110,7 +112,7 @@
         {{post.postTitle}}
       </p> 
       <p > 
-        {{post.postText}}
+       <span ng-bind-html="post.postText"></span>
       </p> 
 
     </div> 
