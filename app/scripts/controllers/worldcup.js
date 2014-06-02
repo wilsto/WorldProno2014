@@ -303,7 +303,7 @@ angular.module('worldProno2014App')
                     }
                 }
                 concaTitle += title;
-                concaTitle3 += title;
+                concaTitle3 = concaTitle.split("").reverse().join("");
                 if(matchHolder.length === 2){
 
                     $scope.secondStageMatches.final[concaTitle][0]['country'] = matchHolder[0]['country'];

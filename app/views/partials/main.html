@@ -101,8 +101,8 @@
 
 <div ng-repeat="post in posts | orderBy: 'date' : 'reverse'" class="col-xs-12 col-sm-12 col-md-6">
   <div class="panel panel-default glow"> 
-    <button ng-show="user.role.title == userRoles.admin.title" class ="btn btn-xs  btn-danger" id='close' ng-click='deletePost(post)'>Supprimer</button>
-    <button ng-show="user.role.title == userRoles.admin.title"  class ="btn btn-xs  btn-default" id='close' ng-click='editPost(post)'>Modifier</button>
+    <button ng-show="user.role.title === userRoles.admin.title" class ="btn btn-xs  btn-danger" id='close' ng-click='deletePost(post)'>Supprimer</button>
+    <button ng-show="user.role.title === userRoles.admin.title"  class ="btn btn-xs  btn-default" id='close' ng-click='editPost(post)'>Modifier</button>
     <div class="panel-thumbnail"><img src=" {{post.postImage}}" class="img-responsive"> 
     </div> 
     <div class="panel-body"> 
