@@ -53,6 +53,11 @@ var app = angular.module('worldProno2014App', [
             url: '/signup/',
             templateUrl: 'partials/signup',
             controller: 'RegisterCtrl'
+        })
+        .state('public.statistic', {
+            url: '/statistic/',
+            templateUrl: 'partials/statistic',
+            controller: 'StatisticCtrl'
         });
 
     // Regular user routes
@@ -73,11 +78,6 @@ var app = angular.module('worldProno2014App', [
             url: '/profile/',
             templateUrl: 'partials/profile',
             controller: 'ProfileCtrl'
-        })
-        .state('user.statistic', {
-            url: '/statistic/',
-            templateUrl: 'partials/statistic',
-            controller: 'StatisticCtrl'
         });
 
     // Admin routes
