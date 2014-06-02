@@ -71,7 +71,7 @@ Vous pouvez appartenir à plusieurs groupes en meme temps, cela vous permet si v
 					<button class="btn btn-default" ng-click="changePhoto()"><span class="glyphicon glyphicon-picture"></span> Changer de photo</button>
 				</div>
 				<div class="actionbutton">
-					<button class="btn btn-warning" ng-click="changeVIP()"><span class="glyphicon glyphicon-euro"></span> Passer {{user.role.title == userRoles.user.title && 'VIP' || 'Free Player'}}</button>
+					<button class="btn btn-warning" ng-click="changeVIP()" disabled="disabled"><span class="glyphicon glyphicon-euro"></span> Passer {{user.role.title == userRoles.user.title && 'VIP' || 'Free Player'}}</button>
 				</div>
 				<div class="actionbutton">
 					
