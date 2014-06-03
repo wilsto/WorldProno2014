@@ -11,7 +11,7 @@
         </div>			
         <h1 style="float:left;padding-left:10px">{{user.username}}</h1>
 			<div class="socialMediaLinks">
-				<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title }} </span>
+				<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title.toUpperCase() }} </span>
 			</div>
 			<!--<ul class="numbers clearfix" style="padding-left: 0px;">
 				<li>Pronos<strong class="small">100%</strong></li>
@@ -71,7 +71,7 @@ Vous pouvez appartenir à plusieurs groupes en meme temps, cela vous permet si v
 					<button class="btn btn-default" ng-click="changePhoto()"><span class="glyphicon glyphicon-picture"></span> Changer de photo</button>
 				</div>
 				<div class="actionbutton">
-					<button class="btn btn-warning" ng-click="changeVIP()" disabled="disabled"><span class="glyphicon glyphicon-euro"></span> Passer {{user.role.title == userRoles.user.title && 'VIP' || 'Free Player'}}</button>
+					<button class="btn " ng-class="{&quot;btn-warning&quot;: user.role.title == userRoles.user.title, &quot;btn-info&quot;: user.role.title == userRoles.vip.title}" ng-click="changeVIP(user.role.title)"><span class="glyphicon glyphicon-euro"></span> Passer {{user.role.title == userRoles.user.title && 'VIP' || 'Free Player'}}</button>
 				</div>
 				<div class="actionbutton">
 					
