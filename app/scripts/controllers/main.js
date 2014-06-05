@@ -32,7 +32,7 @@ angular.module('worldProno2014App')
     $scope.deletePost = function(post) {
         bootbox.confirm('Etes vous sur de vouloir supprimer ce post ?', function(result) {
             if(result) {
-                $http.delete('/REST/posts/'+ post._id).success(function() {
+                $http.Delete('/REST/posts/'+ post._id).success(function() {
                 });
           }
       });

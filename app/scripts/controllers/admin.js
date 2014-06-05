@@ -25,8 +25,8 @@ angular.module('worldProno2014App')
 	$scope.deleteUser = function(user) {
 		bootbox.confirm('Etes-vous sur de supprimer cet utilisateur ' + user.username + '?', function(result) {
 			if(result) {
-					$http.delete('/REST/user/' + user.username).success(function() {
-					});
+				$http.Delete('/REST/user/' + user.username).success(function() {
+				});
 			}
 		});
 	};
