@@ -10,7 +10,8 @@ Pour voir l'appli en production:
 
 ###Version
 Beta 0.1 : 05 Mai 2014
-
+Version 1.0 : 01 juin 2014
+Version 1.0.3 : 02 juin 2014
 ---
 
 

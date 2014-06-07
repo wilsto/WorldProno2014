@@ -1,28 +1,37 @@
 
 <div class="col-xs-12 col-xs-12 col-md-8 col-lg-8 glow">
 	<div id="userStats" class="clearfix  ">
-		<div class="pic">
-			<a href="#"><img class="img-circle" width="150" height="150" src="/images/user_avatar.jpg"></a>
-          	<span class="ChangePhoto"><p>Changer votre photo de profil</p></span>
-        </div>
-		<div class="data">
-			<h1>{{user.username}}</h1>
 
+		<div class="data">		
+
+
+
+		<div class="pic">
+			<img class="img-circle" width="150" height="150" src="{{avatarUrl !== undefined  && avatarUrl || '/images/inconnu.gif'}}">
+        </div>			
+        <h1 style="float:left;padding-left:10px">{{user.username}}</h1>
 			<div class="socialMediaLinks">
-				<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title }} </span>
+				<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title.toUpperCase() }} </span>
 			</div>
-			<ul class="numbers clearfix">
-				<li>Completion<strong class="small">100%</strong></li>
+			<!--<ul class="numbers clearfix" style="padding-left: 0px;">
+				<li>Pronos<strong class="small">100%</strong></li>
 				<li>Points<strong>44</strong></li>
-				<li class="nobrdr">Classement<strong>17</strong></li>
-			</ul>
+				<li>Classement<strong>17</strong></li>
+			</ul>-->
 		</div>
 	</div>
 	<h1>A propos de moi</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-	<h1>Inviter des amis</h1>
+	<p>
+		J'appartiens à un ou plusieurs groupes :
+	</p>
+<tags-input ng-model="tags" placeholder="Ajouter un groupe" >
+      <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
+</tags-input><button class="btn btn-primary pull-right ladda-button" data-style="expand-right" ng-click="saveGroup()"><span class="ladda-label">Sauvegarder</span><span class="ladda-spinner"></span></button>
+Vous pouvez appartenir à plusieurs groupes en meme temps, cela vous permet si vous voulez vous faire un challenge entre amis et avoir votre propre classement indépendant en filtrant les résultats.
+<!--<h1>Inviter des amis</h1>
 <div class="friendslist clearfix">
-	<p>Vous pouvez jusqu'à inviter 5 amis à passer VIP:</p>
+	<p>Vous pouvez inviter jusqu'à  5 amis à passer VIP.<br/>
+	Vous etes alors responsables de récupérer l'argent investi de vos amis</p>
 				<div class="friend">
 					<a href="#"><img class="img-circle" data-cfsrc="img/friend_avatar_default.jpg" width="30" height="30" alt="Jerry K." src="images/friend_avatar_default.jpg"></a><span class="friendly"><a href="#"> Ami #1</a></span>
 				</div>
@@ -39,18 +48,18 @@
 					<a href="#"><img class="img-circle" data-cfsrc="img/friend_avatar_default.jpg" width="30" height="30" alt="Sponge B." src="images/friend_avatar_default.jpg"></a><span class="friendly"><a href="#"> Ami #5</a></span>
 				</div>
 			</div>
-
+-->
 </div>
 <div class="col-md-offset-1 col-xs-12 col-xs-12 col-md-3 col-lg-3 glow">
 
 	<div class="gcontent">
 		<div class="head"><h1>Statut</h1></div>
 		<div class="boxy">
-			<p>Keep working to unlock badges!</p>
+			<p>Retrouver vos badges tout au long du tournoi!</p>
 			<div class="badgeCount">
-			<a href="#"><img width="50" height="50"  src="images/vip-icon.png"></a>
-				<a href="#"><img data-cfsrc="img/foursquare-badge.png" src="images/foursquare-badge.png"></a>
-				<a href="#"><img data-cfsrc="img/foursquare-badge.png" src="images/foursquare-badge.png"></a>
+				<img ng-show="user.role.title == userRoles.user.title" width="50" height="50">
+				<img ng-hide="user.role.title == userRoles.user.title" width="50" height="50" src="images/vip-icon.png">
+				<img ng-hide="user.role.title == userRoles.user.title" width="50" height="50" src="images/euro{{userPaid == true && 'OK' || 'KO'}}.jpg">
 			</div>
 		</div>
 	</div>
@@ -58,21 +67,18 @@
 		<div class="head"><h1>Actions</h1></div>
 		<div class="boxy">
 			<div class="friendslist clearfix">
-				<div class="friend">
-					<a href="#"><span class="friendly">Changer mot de passe</a></span>
+				<div class="actionbutton">
+					<button class="btn btn-default" ng-click="changePhoto()"><span class="glyphicon glyphicon-picture"></span> Changer de photo</button>
 				</div>
-				<div class="friend">
-					<a href="#"><span class="friendly">Passer VIP</a></span>
+				<div class="actionbutton">
+					<button class="btn " ng-class="{&quot;btn-warning&quot;: user.role.title == userRoles.user.title, &quot;btn-info&quot;: user.role.title == userRoles.vip.title}" ng-click="changeVIP(user.role.title)"><span class="glyphicon glyphicon-euro"></span> Passer {{user.role.title == userRoles.user.title && 'VIP' || 'Free Player'}}</button>
 				</div>
-				<div class="friend">
-					<a href="#"><span class="friendly">Ecrire au développeur</a></span>
+				<div class="actionbutton">
+					
 				</div>
-				<div class="friend">
-					<a href="#"><span class="friendly">Déclarer un bug</a></span>
+				<div class="actionbutton">
+					<button class="btn btn-default" disabled="disabled"><span class="glyphicon glyphicon-cog"></span> Changer mot de passe</button>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-

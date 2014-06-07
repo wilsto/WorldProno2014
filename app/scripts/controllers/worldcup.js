@@ -282,27 +282,40 @@ angular.module('worldProno2014App')
 
     $scope.$watch('secondStageMatches.semiFinals', function(){ //Calculate who passes to quarter finals
         var matchHolder = [];
+        var matchHolder3 = [];
         var concaTitle = '';
+        var concaTitle3 = '';
         if($scope.secondStageMatches) {
             _.each($scope.secondStageMatches.semiFinals, function(match, title){
                 if(match[0].score.length === 0 || match[1].score.length === 0 ){
                     matchHolder.push({country: '', score:'', victorByPenalties:false});
+                    matchHolder3.push({country: '', score:'', victorByPenalties:false});
                 }else {
                     if(match[0].score > match[1].score || (match[0].score === match[1].score && match[0].penalties > match[1].penalties )){
                         matchHolder.push(_.clone(match[0]));
+                        matchHolder3.push(_.clone(match[1]));
                     }else if(match[0].score < match[1].score || (match[0].score === match[1].score && match[0].penalties < match[1].penalties )){
                         matchHolder.push(_.clone(match[1]));
+                        matchHolder3.push(_.clone(match[0]));
                     }else{
                         _.each(match, function(country){ country.victorByPenalties ? matchHolder.push(_.clone(country)) : null ;});
+                        _.each(match, function(country){ country.victorByPenalties ? null : matchHolder3.push(_.clone(country)) ;});
                     }
                 }
                 concaTitle += title;
+                concaTitle3 = concaTitle.split("").reverse().join("");
                 if(matchHolder.length === 2){
 
                     $scope.secondStageMatches.final[concaTitle][0]['country'] = matchHolder[0]['country'];
                     $scope.secondStageMatches.final[concaTitle][1]['country'] = matchHolder[1]['country'];
+
+                    $scope.secondStageMatches.final3[concaTitle3][0]['country'] = matchHolder3[0]['country'];
+                    $scope.secondStageMatches.final3[concaTitle3][1]['country'] = matchHolder3[1]['country'];
+
                     matchHolder = [];
+                    matchHolder3 = [];
                     concaTitle = '';
+                    concaTitle3 = '';
                 }
             });
 }

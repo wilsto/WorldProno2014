@@ -23,10 +23,10 @@
 //           $scope.errors = {};
 
 //           // Update validity of form fields that match the mongoose errors
-//           angular.forEach(err.errors, function(error, field) {
-//             form[field].$setValidity('mongoose', false);
-//             $scope.errors[field] = error.message;
-//           });
+/*          angular.forEach(err.errors, function(error, field) {
+            form[field].$setValidity('mongoose', false);
+            $scope.errors[field] = error.message;
+          });*/
 //         });
 //       }
 //     };
@@ -49,7 +49,10 @@ angular.module('worldProno2014App')
                 $location.path('/');
             },
             function(err) {
-                $rootScope.error = err;
+                $scope.error = err.errors;
+                for(var key in $scope.error) {
+                    $scope.signError = $scope.error[key].message;
+                }
             });
     };
 }]);

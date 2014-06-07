@@ -1,11 +1,12 @@
 'use strict';
 
-angular.module('worldProno2014App', [
+var app = angular.module('worldProno2014App', [
   'ngCookies',
   'ngResource',
-  //'ngSanitize',
+  'ngSanitize',
   //'ngRoute',
   'ui.bootstrap',
+  'ngTagsInput',
   'ui.router'
 ])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
@@ -52,6 +53,11 @@ angular.module('worldProno2014App', [
             url: '/signup/',
             templateUrl: 'partials/signup',
             controller: 'RegisterCtrl'
+        })
+        .state('public.statistic', {
+            url: '/statistic/',
+            templateUrl: 'partials/statistic',
+            controller: 'StatisticCtrl'
         });
 
     // Regular user routes
@@ -72,11 +78,6 @@ angular.module('worldProno2014App', [
             url: '/profile/',
             templateUrl: 'partials/profile',
             controller: 'ProfileCtrl'
-        })
-        .state('user.statistic', {
-            url: '/statistic/',
-            templateUrl: 'partials/statistic',
-            controller: 'StatisticCtrl'
         });
 
     // Admin routes

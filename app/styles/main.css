@@ -185,15 +185,7 @@ background: url(../images/header.png) no-repeat center top;
 position: relative;
 }
 
-.podium
-{
-background: url(../images/podium.jpg) no-repeat center bottom;
-background-size: 90% 75%;
-position:relative;
-} 
-
-
-.section { 
+.section {
   height: 500px;  
   text-align: center;
   font-size: 40px;
@@ -527,32 +519,30 @@ fieldset
 }
 
 #userStats {
-    display: block;
-    width: auto;
     background-color: #f9f9f9;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
-    padding: 12px;
+    padding: 1px;
+    display: block;
 }
 
 #userStats .pic {
-    float: left;
+  float:left;
     display: block;
-    margin-right: 10px;
+    margin: 0px;
 }
 
-#userStats .pic a img {
-    padding: 7px;
+#userStats .pic img {
     background: #fff;
     border: 1px solid #ccc;
+    padding: 5px;
+
 }
 
 #userStats .data {
-    float: right;
     display: block;
     position: relative;
-    width: 350px;
     height: 166px;
     padding: 4px;
     padding-left: 15px;
@@ -560,6 +550,7 @@ fieldset
     overflow: hidden;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+    width: 100%;
 }
 
 #userStats .data h1 {
@@ -611,10 +602,11 @@ fieldset
     width: 100px;
     float: left;
     display: block;
-    padding-left: 8px;
     height: 50px;
     border-right: 1px dotted #bbb;
     text-transform: uppercase;
+    margin-left:6px;
+    margin-right:9px;
 }
 
 #userStats .data ul.numbers li strong {
@@ -671,4 +663,56 @@ div.photo span {
 .lead{
   color:#000;
   font-weight: bold;
+}
+
+tags-input .autocomplete .suggestion-list {
+text-align: left;
+}
+
+.label-prono{
+  font-weight: normal;
+}
+
+
+#close {
+    float:right;
+    display:inline-block;
+    padding:2px 5px;
+
+}
+
+.dashboard{
+
+}
+.number {
+font-size: 44px;
+font-weight: bold;
+float:left;
+}
+
+.number-green{
+  color: #0c9100;
+}
+
+.number-orange{
+  color: #FF8040;
+}
+
+.number-grey{
+  color: #C0C0C0;
+}
+
+.numbertext{
+  float:left;
+  padding-top: 30px;
+}
+
+.dashpad{
+  width: 32%;
+  display: inline-block;
+ vertical-align: middle;
+}
+
+.actionbutton{
+  padding : 5px;
 }

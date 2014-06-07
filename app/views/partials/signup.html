@@ -59,6 +59,11 @@
       <li ng-show="registerForm.password.$error.maxlength">Password must be at most 60 characters long</li>
     </ul>
   </div>
+   <div ng-show="error" class="alert alert-danger"><strong>Please correct the following errors:</strong>
+    <ul>
+      <li>{{signError}}</li>
+    </ul>
+  </div>
   </div>
 </form>
   </div>

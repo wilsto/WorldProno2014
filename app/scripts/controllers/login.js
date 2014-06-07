@@ -12,7 +12,7 @@ angular.module('worldProno2014App')
                 rememberme: $scope.rememberme
             },
             function() {
-                $location.path('/');
+                $location.path('/profile');
             },
             function(error) {
                 $scope.message = error.message;
