@@ -179,8 +179,6 @@ angular.module('worldProno2014App')
         for (var country in arr){
             sortedKeys.push([country, arr[country]]);
         }
-        console.log(sortedKeys);
-
        sortedKeys.sort(function(a, b) {
             // A- le plus grand nombre de points obtenus dans tous les matches du groupe ;
             if(a[1].total !== b[1].total) {
@@ -194,23 +192,23 @@ angular.module('worldProno2014App')
             else if(b[1].pour  !== a[1].pour) {
                 return b[1].pour - a[1].pour ;
             }
-         // D- le plus grand nombre de points obtenus dans les matches de groupe entre les équipes à égalité ;
-            else if(a[1].total===b[1].total&&(b[1].pour - b[1].contre ) === (a[1].pour - a[1].contre) && b[1].pour  === a[1].pour){
-                _.each($scope.groupsMatches, function(groupData){
-                 
-                   _.each(groupData.matches, function(match){ 
-                        if (match[0].country===a[0] && match[1].country===b[0]) { 
-                            if (match[0].score !== match[1].score) {
-                                return parseInt(match[1].score)-parseInt(match[0].score);
-                            }
-                        }
-                    });
-                });
-            }
+            // D- le plus grand nombre de points obtenus dans les matches de groupe entre les équipes à égalité ;
+           else if(a[1].total===b[1].total&&(b[1].pour - b[1].contre ) === (a[1].pour - a[1].contre) && b[1].pour  === a[1].pour){
+               var diffScore = 0;
+               _.each($scope.groupsMatches, function(groupData){
+                  _.each(groupData.matches, function(match){ 
+                       if (match[0].country===a[0] && match[1].country===b[0]  && match[0].score.length > 0 ) {
+                           if (match[0].score !== match[1].score) {
+                               diffScore = parseInt(match[1].score)-parseInt(match[0].score);                                
+                           }
+                       }
+                   });
+               });
+               return diffScore;
+           }
         });
 
         return sortedKeys;
-
     }
 
     /**
