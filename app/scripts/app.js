@@ -74,6 +74,11 @@ var app = angular.module('worldProno2014App', [
             templateUrl: 'partials/worldcup',
             controller: 'worldcupCtrl'
         })
+        .state('user.userprono', {
+            url: '/worldcup/:userId',
+            templateUrl: 'partials/worldcup',
+            controller: 'worldcupCtrl'
+        })
         .state('user.profile', {
             url: '/profile/',
             templateUrl: 'partials/profile',

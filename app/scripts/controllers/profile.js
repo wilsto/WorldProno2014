@@ -14,7 +14,7 @@ angular.module('worldProno2014App')
 
 		$scope.loadUser = function() {
 			$http.get('/REST/userInfo/' + $scope.user.username).success(function(user) {
-				$scope.user = user;
+				$scope.player = user;
 				$scope.userPaid = user.paid;
 				$scope.tags = user.groups;
 				$scope.avatarUrl =  user.avatarUrl;

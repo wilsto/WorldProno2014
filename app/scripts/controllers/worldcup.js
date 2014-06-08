@@ -3,7 +3,7 @@
 
 
 angular.module('worldProno2014App')
-.controller('worldcupCtrl', ['$scope', '$http', '$location', 'PronoFactory', 'Auth', function ($scope, $http, $location, PronoFactory, Auth) {
+.controller('worldcupCtrl', ['$scope', '$http', '$location', 'PronoFactory', 'Auth', '$stateParams', function ($scope, $http, $location, PronoFactory, Auth, $stateParams ) {
 
     Ladda.bind( '.ladda-button', { timeout: 2000 } );
 
@@ -17,6 +17,17 @@ angular.module('worldProno2014App')
     $scope.rate = 0;
     $scope.max = 5;
     $scope.isReadonly = false;
+
+    $scope.loadUser = function(username) {
+        $http.get('/REST/userInfo/' + username).success(function(user) {
+            $scope.player = user;
+            $scope.userPaid = user.paid;
+            $scope.tags = user.groups;
+            $scope.avatarUrl =  user.avatarUrl;
+
+        });
+    };
+
 
     $scope.initPronos = function() {
         $http.get('/api/fifaMatchs').success(function(fifaMatchs) {
@@ -33,7 +44,9 @@ angular.module('worldProno2014App')
                 G: [{country: 'G1', score:'', victorByPenalties:true}, {country: 'G2', score:'', victorByPenalties:false}],
                 H: [{country: 'H1', score:'', victorByPenalties:true}, {country: 'H2', score:'', victorByPenalties:false}]
             };
-            $scope.real = ($location.path() === '/worldcup/Mondial') ?  'Mondial' : $scope.user.username;    // recupère le nom de l'utilisateur
+            $scope.real = ($stateParams.userId) ?  $stateParams.userId : $scope.user.username;    // recupère le nom de l'utilisateur
+            if ($location.path() === '/worldcup/Mondial') { $scope.real = 'Mondial' };    // recupère le nom de l'utilisateur
+            $scope.loadUser($scope.real);
             $scope.mypronos = PronoFactory.get({id:$scope.real}, function(data) {
                 if (data.length > 0) { // recupère les pronos du joueur
                     $scope.groupsMatches = $scope.mypronos[0].groupsMatches;

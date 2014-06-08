@@ -8,8 +8,32 @@ Chargement en cours
 
 <section class="sectionscroll" ng-show="secondStageMatches && groupsMatches">
 
-    <div collapse="isCollapsed">
+<div class="col-xs-12 col-xs-12 col-md-12 col-lg-12 glow" style="margin-bottom:10px">
+    <div id="userStats" class="clearfix  ">
+        <div class="data">      
+            <div class="pic">
+                <img class="img-circle" width="150" height="150" src="{{avatarUrl !== undefined  && avatarUrl || '/images/inconnu.gif'}}">
+            </div>          
+            <h1 style="float:left;padding-left:10px">{{real}}</h1>
+            <div class="socialMediaLinks">
+                <span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ player.role.title.toUpperCase() }} </span>
+            </div>
+            <!--<ul class="numbers clearfix" class="pull-right;" style="padding-left: 0px;">
+                <li>Pronos<strong class="small">100%</strong></li>
+                <li>Points<strong>44</strong></li>
+                <li>Classement<strong>17</strong></li>
+            </ul>-->
+        </div>
+    </div>
+    <h1>Mes groupes</h1>
+<div class="TagsInput bootstrap" >
+  <ul class="TagsInput tags tag-list" style="border: none;" >
+     <li class="bootstrap tags tag-item tag-readonly" ng-repeat="tag in tags"><span style="padding: 2px;">{{tag.text}}</span></li>
+  </ul>
+</div>
+</div>
 
+<div collapse="isCollapsed">
 <div ng-repeat="(group, groupData) in groupsMatches">
     <div class="row">
 
@@ -26,8 +50,8 @@ Chargement en cours
                         <td class="l tdgroup"><div ng-show="isNamed" class="date " title="{{ match[2].date }}">{{ match[2].date }} {{ match[2].time }}</div></td>
                         <td class="l tdgroup"><span class="flag sprite-{{match[0].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span>  <span ng-show="!mobilecheck()">{{match[0].country}} </span></td>
                         <td class="l tdgroup homeTeam"></td>
-                        <td class="c tdgroup score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="match[0].score" ng-disabled="(real === 'Mondial' && user.username !== 'Mondial')"> </td>
-                        <td class="c tdgroup score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="match[1].score"  ng-disabled="(real === 'Mondial' && user.username !== 'Mondial')"></td>
+                        <td class="c tdgroup score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="match[0].score" ng-disabled="(real !== user.username)"> </td>
+                        <td class="c tdgroup score"><input type="tel" class="score1" size="1" maxlength="2"  ng-model="match[1].score"  ng-disabled="(real !== user.username)"></td>
                         <td class="r tdgroup awayTeam"></td>
                         <td class="r tdgroup"><span ng-show="!mobilecheck()">{{match[1].country}}</span>  <span class="flag sprite-{{match[1].country.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span> </span></td>
                     </tr>
@@ -92,10 +116,10 @@ Chargement en cours
         <td class="l homeTeam"></td>
         <td class="c score">
             <div ng-raty="ratyOptions" ng-model="data[0].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
         </td>
         <td class="c score">
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
             <div ng-raty="ratyOptions" ng-model="data[1].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
         </td>
         <td class="r awayTeam"></td>
@@ -120,10 +144,10 @@ Chargement en cours
         <td class="l homeTeam"></td>
         <td class="c score">
             <div ng-raty="ratyOptions" ng-model="data[0].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
         </td>
         <td class="c score">
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
             <div ng-raty="ratyOptions" ng-model="data[1].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
         </td>
         <td class="r awayTeam"></td>
@@ -147,10 +171,10 @@ Chargement en cours
         <td class="l homeTeam"></td>
         <td class="c score">
             <div ng-raty="ratyOptions" ng-model="data[0].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
         </td>
         <td class="c score">
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
             <div ng-raty="ratyOptions" ng-model="data[1].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
         </td>
         <td class="r awayTeam"></td>
@@ -175,10 +199,10 @@ Chargement en cours
         <td class="l homeTeam"></td>
         <td class="c score">
             <div ng-raty="ratyOptions" ng-model="data[0].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
         </td>
         <td class="c score">
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
             <div ng-raty="ratyOptions" ng-model="data[1].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
         </td>
         <td class="r awayTeam"></td>
@@ -203,10 +227,10 @@ Chargement en cours
         <td class="l homeTeam"></td>
         <td class="c score">
             <div ng-raty="ratyOptions" ng-model="data[0].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[0].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
         </td>
         <td class="c score">
-            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real === 'Mondial' && user.username !== 'Mondial')">
+            <input type="tel" class="score1" size="1" maxlength="2"  ng-model="data[1].score"  ng-disabled="data[0].country.length <3 || data[1].country.length <3 || (real !== user.username)">
             <div ng-raty="ratyOptions" ng-model="data[1].penalties" ng-show="data[0].score===data[1].score && data[0].score.length > 0"></div>
         </td>
         <td class="r awayTeam"></td>
@@ -217,7 +241,7 @@ Chargement en cours
 </table>
 </section>
 
-<div class="navbar navbar-default navbar-fixed-bottom" ng-show="real !== 'Mondial' || user.username === 'Mondial'" ng-class="{Mondial :user.username==='Mondial'}" role="navigation" style ="overflow: hidden;">
+<div class="navbar navbar-default navbar-fixed-bottom" ng-show="real === user.username" ng-class="{Mondial :user.username==='Mondial'}" role="navigation" style ="overflow: hidden;">
       <div class="container">
         <div class="navbar-header pull-left" style ="margin-top:7px;">
             <button class="btn btn-warning ladda-button" data-style="expand-right" ng-click="reset()"><span class="ladda-label"> Reset Pronos</span><span class="ladda-spinner"></span></button>
