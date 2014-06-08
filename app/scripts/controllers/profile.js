@@ -36,18 +36,18 @@ angular.module('worldProno2014App')
 		        if(result) {
 		            $scope.avatarUrl = $('#avatarUrl').val();
 		            $http.put('/REST/userPhoto/' + $scope.user.username, {avatarUrl : $scope.avatarUrl}).success(function() {
-		            	$scope.loadUser();
+						$scope.loadUser();
 					});
 		        }
 			});
 		};
 
 		$scope.changeVIP = function(data){
-			var changeData =  (data === $scope.userRoles.user.title) ? $scope.userRoles.vip.title :  $scope.userRoles.user.title; 
+			var changeData =  (data === $scope.userRoles.user.title) ? $scope.userRoles.vip.title :  $scope.userRoles.user.title;
 			bootbox.confirm('Etes-vous sur de vouloir changer en ' + changeData.toUpperCase(), function(result) {
 		        if(result) {
 		            $http.put('/REST/userRole/' + $scope.user.username, {bitMask:(changeData===$scope.userRoles.user.title) ? 2 : 4, title:changeData}).success(function() {
-		            	$scope.loadUser();
+						$scope.loadUser();
 					});
 		        }
 			});
