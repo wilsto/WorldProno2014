@@ -173,27 +173,44 @@ angular.module('worldProno2014App')
     function sortStandingFifa2014Rules(arr){
         // Setup Arrays
         var sortedKeys = [];
+        var newArr = [];
 
         // Separate keys and sort them
         for (var country in arr){
             sortedKeys.push([country, arr[country]]);
         }
+        console.log(sortedKeys);
 
-        sortedKeys.sort(function(a, b) {
+       sortedKeys.sort(function(a, b) {
             // A- le plus grand nombre de points obtenus dans tous les matches du groupe ;
             if(a[1].total !== b[1].total) {
                 return b[1].total - a[1].total;
-
-            // B- la différence de buts dans tous les matches du groupe ;
-            } else if((b[1].pour - b[1].contre ) !== (a[1].pour - a[1].contre)) {
+            }
+            // B- la différence de buts dans tous les matches du groupe ; 
+            else if((b[1].pour - b[1].contre ) !== (a[1].pour - a[1].contre)) {
                 return (b[1].pour - b[1].contre )- (a[1].pour - a[1].contre) ;
-
+            }    
             // C- le plus grand nombre de buts marqués dans tous les matches du groupe ;
-            } else if(b[1].pour  !== a[1].pour) {
+            else if(b[1].pour  !== a[1].pour) {
                 return b[1].pour - a[1].pour ;
             }
+         // D- le plus grand nombre de points obtenus dans les matches de groupe entre les équipes à égalité ;
+            else if(a[1].total===b[1].total&&(b[1].pour - b[1].contre ) === (a[1].pour - a[1].contre) && b[1].pour  === a[1].pour){
+                _.each($scope.groupsMatches, function(groupData){
+                 
+                   _.each(groupData.matches, function(match){ 
+                        if (match[0].country===a[0] && match[1].country===b[0]) { 
+                            if (match[0].score !== match[1].score) {
+                                return parseInt(match[1].score)-parseInt(match[0].score);
+                            }
+                        }
+                    });
+                });
+            }
         });
+
         return sortedKeys;
+
     }
 
     /**
