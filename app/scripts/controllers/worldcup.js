@@ -3,7 +3,7 @@
 
 
 angular.module('worldProno2014App')
-.controller('worldcupCtrl', ['$scope', '$http', '$location', 'PronoFactory', 'Auth', function ($scope, $http, $location, PronoFactory, Auth) {
+.controller('worldcupCtrl', ['$scope', '$http', '$location', 'PronoFactory', 'Auth', '$stateParams', function ($scope, $http, $location, PronoFactory, Auth, $stateParams ) {
 
     Ladda.bind( '.ladda-button', { timeout: 2000 } );
 
@@ -14,9 +14,22 @@ angular.module('worldProno2014App')
     $scope.isCollapsed = false;
     $scope.isNamed = true;
 
+    $scope.playerCompletePct = 0;
+
     $scope.rate = 0;
     $scope.max = 5;
     $scope.isReadonly = false;
+
+    $scope.loadUser = function(username) {
+        $http.get('/REST/userInfo/' + username).success(function(user) {
+            $scope.player = user;
+            $scope.userPaid = user.paid;
+            $scope.tags = user.groups;
+            $scope.avatarUrl =  user.avatarUrl;
+
+        });
+    };
+
 
     $scope.initPronos = function() {
         $http.get('/api/fifaMatchs').success(function(fifaMatchs) {
@@ -33,7 +46,9 @@ angular.module('worldProno2014App')
                 G: [{country: 'G1', score:'', victorByPenalties:true}, {country: 'G2', score:'', victorByPenalties:false}],
                 H: [{country: 'H1', score:'', victorByPenalties:true}, {country: 'H2', score:'', victorByPenalties:false}]
             };
-            $scope.real = ($location.path() === '/worldcup/Mondial') ?  'Mondial' : $scope.user.username;    // recupère le nom de l'utilisateur
+            $scope.real = ($stateParams.userId) ?  $stateParams.userId : $scope.user.username;    // recupère le nom de l'utilisateur
+            if ($location.path() === '/worldcup/Mondial') { $scope.real = 'Mondial' ;}    // recupère le nom de l'utilisateur
+            $scope.loadUser($scope.real);
             $scope.mypronos = PronoFactory.get({id:$scope.real}, function(data) {
                 if (data.length > 0) { // recupère les pronos du joueur
                     $scope.groupsMatches = $scope.mypronos[0].groupsMatches;
@@ -153,6 +168,7 @@ angular.module('worldProno2014App')
 
             });
             countriesThatPass();
+            playerComplete();
 
         }
     }
@@ -209,6 +225,48 @@ angular.module('worldProno2014App')
         });
 
         return sortedKeys;
+    }
+
+    /**
+     * [Calcule le pourcentage d'avancement]
+     */
+     function playerComplete(){
+        $scope.playerCompletePct = 0;
+        if($scope.groupsMatches) {
+            _.each($scope.groupsMatches, function(groupData){
+                _.each(groupData.matches, function(match){
+                    if(match[0].score.length > 0 && match[1].score.length > 0 ){
+                        $scope.playerCompletePct = $scope.playerCompletePct + (1/64*100);
+                    }
+                })
+            })
+            _.each($scope.secondStageMatches.roundOf16,  function(match){
+                    if(match[0].score.length > 0 && match[1].score.length > 0 ){
+                        $scope.playerCompletePct = $scope.playerCompletePct + (1/64*100);
+                    }
+            })
+            _.each($scope.secondStageMatches.quarterFinals, function(match){
+                    if(match[0].score.length > 0 && match[1].score.length > 0 ){
+                        $scope.playerCompletePct = $scope.playerCompletePct + (1/64*100);
+                    }
+            })
+            _.each($scope.secondStageMatches.semiFinals, function(match){
+                    if(match[0].score.length > 0 && match[1].score.length > 0 ){
+                        $scope.playerCompletePct = $scope.playerCompletePct + (1/64*100);
+                    }
+            })
+            _.each($scope.secondStageMatches.final3, function(match){
+                    if(match[0].score.length > 0 && match[1].score.length > 0 ){
+                        $scope.playerCompletePct = $scope.playerCompletePct + (1/64*100);
+                    }
+            })
+            _.each($scope.secondStageMatches.final, function(match){
+                    if(match[0].score.length > 0 && match[1].score.length > 0 ){
+                        $scope.playerCompletePct = $scope.playerCompletePct + (1/64*100);
+                    }
+            })
+            $scope.playerCompletePct = parseInt($scope.playerCompletePct);
+        } 
     }
 
     /**
@@ -335,6 +393,28 @@ angular.module('worldProno2014App')
             });
 }
 }, true);
+
+  $scope.$watch('secondStageMatches.final', function(){ //Calculate who is champion
+
+        if($scope.secondStageMatches) {
+            _.each($scope.secondStageMatches.final, function(match, title){
+                if(match[0].score.length === 0 || match[1].score.length === 0 ){
+                    $scope.worldChampion = '';
+                }else {
+                    if(match[0].score > match[1].score || (match[0].score === match[1].score && match[0].penalties > match[1].penalties )){
+                        $scope.worldChampion = match[0].country;
+                    }else if(match[0].score < match[1].score || (match[0].score === match[1].score && match[0].penalties < match[1].penalties )){
+                        $scope.worldChampion = match[1].country;
+                    }else{
+                        _.each(match, function(country){ country.victorByPenalties ? $scope.worldChampion = match[0].country : null ;});
+                        _.each(match, function(country){ country.victorByPenalties ? null : $scope.worldChampion = match[1].country ;});
+                    }
+                }
+            });
+}
+}, true);
+
+
 
 $scope.victorByPenalties = function(round, title, winnerIndex){
     _.each($scope.secondStageMatches[round][title], function(country, index){
