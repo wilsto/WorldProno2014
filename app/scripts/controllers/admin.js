@@ -8,16 +8,23 @@ angular.module('worldProno2014App')
 	$scope.loading = true;
 	$scope.userRoles = Auth.userRoles;
 
-	$http.get('/users').success(function (data) {
-			$scope.users = data;
-			$scope.loading = false;
-	});
+
+	$scope.loadUser = function() {
+
+		$http.get('/users').success(function (data) {
+				$scope.users = data;
+				$scope.loading = false;
+		});
+	};
+
+$scope.loadUser();
 
 	$scope.togglePaid = function(user) {
 		bootbox.confirm('Etes-vous sur de changer le paiement de ' + user.username + '?', function(result) {
 			if(result) {
 				$http.put('/REST/userPaid/' + user.username, {paid:!user.paid}).success(function() {
-				});
+					$scope.loadUser();
+				});	
 			}
 		});
 	};
@@ -26,9 +33,17 @@ angular.module('worldProno2014App')
 		bootbox.confirm('Etes-vous sur de supprimer cet utilisateur ' + user.username + '?', function(result) {
 			if(result) {
 				$http.Delete('/REST/user/' + user.username).success(function() {
+					$scope.loadUser();
 				});
 			}
 		});
 	};
+
+/*	var userPaid =  $resource('/REST/userPaid/' + $scope.username);
+	$scope.userPaid = userPaid.query().paid;
+*/
+
+
+
 
 }]);
