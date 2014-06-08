@@ -18,11 +18,11 @@ Chargement en cours
             <div class="socialMediaLinks">
                 <span data-ng-class="{&quot;label-info&quot;: player.role.title == userRoles.user.title, &quot;label-warning&quot;: player.role.title == userRoles.vip.title, &quot;label-success&quot;: player.role.title == userRoles.admin.title}" class="label">{{ player.role.title.toUpperCase() }} </span>
             </div>
-            <!--<ul class="numbers clearfix" class="pull-right;" style="padding-left: 0px;">
-                <li>Pronos<strong class="small">100%</strong></li>
-                <li>Points<strong>44</strong></li>
-                <li>Classement<strong>17</strong></li>
-            </ul>-->
+            <ul style="float:right;padding-top:70px;padding-left:10px" class="numbers clearfix" class="pull-right;" style="padding-left: 0px;">
+                <li>Pronos<strong class="small">{{playerCompletePct}}%</strong></li>
+                <li>Champion du monde 2014<strong class="small"><span ng-show="worldChampion" class="flag sprite-{{worldChampion.replace('é','U00e9').replace('è','U00e8').replace('e d\'Iv','ediv')}}"></span>  <span ng-show="!mobilecheck()">{{worldChampion}} </span></strong></li>
+
+            </ul>
         </div>
     </div>
     <h1>Mes groupes</h1>
