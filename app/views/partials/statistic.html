@@ -12,7 +12,7 @@ Chargement en cours
 
                     <caption>
                         <h4 class="l group">Classement {{lstRole}}
-                          <div class="btn-group btn-group-xs pull-right"> 
+                          <div style="margin-top:-7px;" class="btn-group pull-right"> 
                             <button ng-click="lstRole=''" class="btn btn-default">Tous</button>
                             <button ng-click="lstRole='vip'" class="btn btn-warning">Joueur VIP</button>
                             <button ng-click="lstRole='user'" class="btn btn-info">Simple joueur</button>
@@ -20,8 +20,8 @@ Chargement en cours
                         </h4>                        
                     </caption>
                     <caption>
-                    <tags-input ng-model="tags" max-tags="1" add-from-autocomplete-only="true" placeholder="Ajouter un groupe pour filtrer">
-                          <auto-complete class="l" source="loadTags($query)" min-length="1"></auto-complete>
+                     <span style="float:left;width:20%;margin-top:5px;height:33px;" class="input-group-addon">Filtre Groupe</span><tags-input ng-model="tags" style="float:left;width:80%" max-tags="1" add-from-autocomplete-only="true" placeholder="Taper le nom du groupe">
+                          <auto-complete style="text-align:left" source="loadTags($query)" min-length="1"></auto-complete>
                     </tags-input>                    
                     </caption>
                     <!-- BEGIN: Inner ngRepeat. -->
