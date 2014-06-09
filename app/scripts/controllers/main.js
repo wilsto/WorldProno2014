@@ -38,26 +38,53 @@ angular.module('worldProno2014App')
       });
     };
 
-    $http.get('/REST/pronos/winner').success(function (data) {
-            $scope.posts = data;
-    });
 
-    $scope.results = {
+
+
+
+/**
+     * [Calcule le pourcentage d'avancement]
+     */
+     function pctWinner(){
+        var winners = [];
+
+        $http.get('/REST/pronos/winner').success(function (data) {
+             $scope.secondStageMatches = data;
+            _.each($scope.secondStageMatches, function(final){
+                _.each(final, function(match){
+                  if (match.final) { 
+                        if(match.final.ABCDEFGH[0].score.length > 0 && match.final.ABCDEFGH[1].score.length > 0 ){
+                             if(match.final.ABCDEFGH[0].score > match.final.ABCDEFGH[1].score || (match.final.ABCDEFGH[0].score === match.final.ABCDEFGH[1].score && match.final.ABCDEFGH[0].penalties > match.final.ABCDEFGH[1].penalties)){
+                                    winners.push({'country': match.final.ABCDEFGH[0].country, val:1});
+                             } else {
+                                    winners.push({'country': match.final.ABCDEFGH[1].country, val:1});
+                             }
+
+                        }
+                    };
+                });
+
+            })
+            var groups = _(winners).groupBy('country');
+
+            var cupterms = _(groups).map(function(g, key) {
+              return { term: key, count: _(g).reduce(function(m,x) { return m + x.val; }, 0) };
+            });
+
+            cupterms.sort(function(a,b) {
+                return b.count - a.count;
+            });
+
+            $scope.results = {
             facets: {
                 Pronos : {
-                    terms : [{
-                        term : "Prod-A",
-                        count : 306
-                    },{
-                        term : "Prod-B",
-                        count : 148
-                    },{
-                        term : "Prod-C",
-                        count : 62
-                    }]
-                }                
+                    terms : cupterms
+                     }                
             }
-        };
+            };
+        });
+    }
+    pctWinner();
 
 
 }]);
