@@ -60,7 +60,7 @@ angular.module('worldProno2014App')
 		};
 
 		$scope.changeMyName = function(){
-			bootbox.confirm('New Name:<input type="text" class="form-control" id="myname" placeholder="first name Last Name" name="myname"></input>', function(result) {
+			bootbox.confirm('Mon nom réel:<input type="text" class="form-control" id="myname" placeholder="Prénom nom" name="myname"></input>', function(result) {
 		        if(result) {
 		            $scope.myname = $('#myname').val();
 
