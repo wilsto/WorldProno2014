@@ -24,7 +24,7 @@ $scope.loadUser();
 			if(result) {
 				$http.put('/REST/userPaid/' + user.username, {paid:!user.paid}).success(function() {
 					$scope.loadUser();
-				});	
+				});
 			}
 		});
 	};
