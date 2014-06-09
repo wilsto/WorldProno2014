@@ -1,9 +1,7 @@
 'use strict';
 
 angular.module('worldProno2014App')
-	.controller('ProfileCtrl', ['$scope', 'Auth', '$http', '$resource',function ($scope, Auth, $http, $resource) {
-
-		var alltags = $resource('/REST/userGroup');
+	.controller('ProfileCtrl', ['$scope', 'Auth', '$http', '$resource', '$q', '$filter', function ($scope, Auth, $http, $resource, $q, $filter) {
 
 		Ladda.bind( '.ladda-button', { timeout: 2000 } );
 
@@ -27,8 +25,14 @@ angular.module('worldProno2014App')
 		var userPaid =  $resource('/REST/userPaid/' + $scope.user.username);
 		$scope.userPaid = userPaid.query().paid;
 
+		$http.get('/REST/userGroup/').success(function(alltags) {
+	        $scope.alltags =alltags;
+	    });
+
 		$scope.loadTags = function(query) {
-			return alltags.query().$promise;
+		    var deferred = $q.defer();
+		    deferred.resolve($filter('filter')($scope.alltags, query));
+		    return deferred.promise;
 		};
 
 		 $scope.changePhoto = function(){
