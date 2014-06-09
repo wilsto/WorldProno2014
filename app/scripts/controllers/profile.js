@@ -52,8 +52,8 @@ angular.module('worldProno2014App')
 		$scope.changeLien = function(){
 			bootbox.confirm('Je connais:<div class="radio"><input type="radio" id="w" name="myContact" value="Willy"><label for="w"> Willy</label></input><br><input type="radio" id="c" name="myContact" value="Cédric"><label for="myContact"> Cédric</label><br><input type="radio" id="aw" name="myContact" value="aw"><label for="aw"> un ami de Willy</label><br><input type="radio" id="mylink" name="myContact" value="ac"><label for="myContact"> un ami de Cédric</label><br><input type="text" class="form-control" id="ami" placeholder="Saisir ami" name="ami"></input></div>', function(result) {
 		        if(result) {
-		        	var contactrad= $('input:radio[name=myContact]:checked').val()
-		            $scope.myContact = (contactrad=='aw')?$('#ami').val()+" (ami de Willy)":(contactrad=='ac')?$('#ami').val()+" (ami de Cédric)":contactrad;
+		        	var contactRad= $('input:radio[name=myContact]:checked').val()
+		            $scope.myContact = (contactRad=='aw')?$('#ami').val()+" (ami de Willy)":(contactRad=='ac')?$('#ami').val()+" (ami de Cédric)":contactRad;
 		           	$http.put('/REST/userContact/' + $scope.user.username, {mycontact : $scope.myContact}).success(function() {
 						$scope.loadUser();
 					});
