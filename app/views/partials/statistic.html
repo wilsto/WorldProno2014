@@ -21,7 +21,7 @@ Chargement en cours
                     </caption>
                     <caption>
                      <span style="float:left;width:20%;margin-top:5px;height:33px;" class="input-group-addon">Filtre Groupe</span><tags-input ng-model="tags" style="float:left;width:80%" max-tags="1" add-from-autocomplete-only="true" placeholder="Taper le nom du groupe">
-                          <auto-complete style="text-align:left" source="loadTags($query)" min-length="1"></auto-complete>
+                          <auto-complete style="text-align:left" source="loadTags($query)" min-length="1" highlight-matched-text="false" ></auto-complete>
                     </tags-input>                    
                     </caption>
                     <!-- BEGIN: Inner ngRepeat. -->

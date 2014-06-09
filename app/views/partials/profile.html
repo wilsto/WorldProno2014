@@ -33,7 +33,7 @@
 		J'appartiens à un ou plusieurs groupes :
 	</p>
 <tags-input ng-model="tags" placeholder="Ajouter un groupe" >
-      <auto-complete source="loadTags($query)" min-length="1"></auto-complete>
+      <auto-complete source="loadTags($query)" min-length="1" highlight-matched-text="false"></auto-complete>
 </tags-input><button class="btn btn-primary pull-right ladda-button" data-style="expand-right" ng-click="saveGroup()"><span class="ladda-label">Sauvegarder</span><span class="ladda-spinner"></span></button>
 Vous pouvez appartenir à plusieurs groupes en meme temps, cela vous permet si vous voulez vous faire un challenge entre amis et avoir votre propre classement indépendant en filtrant les résultats.
 <!--<h1>Inviter des amis</h1>

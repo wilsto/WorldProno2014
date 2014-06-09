@@ -38,4 +38,26 @@ angular.module('worldProno2014App')
       });
     };
 
+    $http.get('/REST/pronos/winner').success(function (data) {
+            $scope.posts = data;
+    });
+
+    $scope.results = {
+            facets: {
+                Pronos : {
+                    terms : [{
+                        term : "Prod-A",
+                        count : 306
+                    },{
+                        term : "Prod-B",
+                        count : 148
+                    },{
+                        term : "Prod-C",
+                        count : 62
+                    }]
+                }                
+            }
+        };
+
+
 }]);

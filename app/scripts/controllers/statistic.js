@@ -70,12 +70,16 @@ angular.module('worldProno2014App')
 		};
 	})
 
-.controller('StatisticCtrl', ['$scope', '$http', 'PronoFactory', 'Auth', '$resource', function ($scope, $http, PronoFactory, Auth, $resource) {
+.controller('StatisticCtrl', ['$scope', '$http', 'PronoFactory', 'Auth', '$resource', '$q', '$filter', function ($scope, $http, PronoFactory, Auth, $resource, $q, $filter) {
 
-	var alltags = $resource('/REST/userGroup');
+	$http.get('/REST/userGroup/').success(function(alltags) {
+        $scope.alltags =alltags;
+    });
 
 	$scope.loadTags = function(query) {
-		return alltags.query().$promise;
+	    var deferred = $q.defer();
+	    deferred.resolve($filter('filter')($scope.alltags, query));
+	    return deferred.promise;
 	};
 
 	var points = { result : 3, score:1, qualif:2, winner:5};
