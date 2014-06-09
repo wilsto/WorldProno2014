@@ -14,7 +14,9 @@ angular.module('worldProno2014App')
 
 		$scope.loadUser = function() {
 			$http.get('/REST/userInfo/' + $scope.user.username).success(function(user) {
+				
 				$scope.player = user;
+				$scope.myname = user.myname;
 				$scope.userPaid = user.paid;
 				$scope.tags = user.groups;
 				$scope.avatarUrl =  user.avatarUrl;
@@ -41,6 +43,29 @@ angular.module('worldProno2014App')
 		        }
 			});
 		};
+
+		$scope.changeLien = function(){
+			bootbox.confirm('New Username:<input type="text" class="form-control" id="newuser" placeholder="type new username" name="newuser"></input>', function(result) {
+		        if(result) {
+		            $scope.newuser = $('#newuser').val();
+		            $http.put('/REST/userUN/' + $scope.user.username, {username : $scope.newuser}).success(function() {
+						$scope.loadUser();
+					});
+		        }
+			});
+		};
+
+		$scope.changeMyName = function(){
+			bootbox.confirm('New Name:<input type="text" class="form-control" id="myname" placeholder="first name Last Name" name="myname"></input>', function(result) {
+		        if(result) {
+		            $scope.myname = $('#myname').val();
+
+		            $http.put('/REST/userNC/' + $scope.user.username, {myname : $scope.myname}).success(function() {
+						$scope.loadUser();
+					});
+		        }
+			});
+		};		
 
 		$scope.changeVIP = function(data){
 			var changeData =  (data === $scope.userRoles.user.title) ? $scope.userRoles.vip.title :  $scope.userRoles.user.title;

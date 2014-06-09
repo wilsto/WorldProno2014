@@ -6,7 +6,17 @@
 		<div class="pic">
 			<img class="img-circle" width="150" height="150" src="{{avatarUrl !== undefined  && avatarUrl || '/images/inconnu.gif'}}">
         </div>			
-        <h1 style="float:left;padding-left:10px">{{user.username}}</h1>
+        <h1 style="float:left;padding-left:10px">
+        
+        {{user.username}}
+		</br>
+		<span ng-show="!myname">
+			Inconnu
+		</span>
+		{{myname}}
+
+
+        </h1>
 			<div class="socialMediaLinks">
 				<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title.toUpperCase() }} </span>
 			</div>
@@ -18,6 +28,7 @@
 		</div>
 	</div>
 	<h1>A propos de moi</h1>
+<!-- <a href="" ng-click="changeLien()">Lien avec un admin </a> -->
 	<p>
 		J'appartiens à un ou plusieurs groupes :
 	</p>
@@ -70,10 +81,9 @@ Vous pouvez appartenir à plusieurs groupes en meme temps, cela vous permet si v
 				<div class="actionbutton">
 					<button class="btn " ng-class="{&quot;btn-warning&quot;: user.role.title == userRoles.user.title, &quot;btn-info&quot;: user.role.title == userRoles.vip.title}" ng-click="changeVIP(user.role.title)"><span class="glyphicon glyphicon-euro"></span> Passer {{user.role.title == userRoles.user.title && 'VIP' || 'Free Player'}}</button>
 				</div>
-				<div class="actionbutton">
-					
+				 <div class="actionbutton">
+					<button class="btn btn-primary" ng-click="changeMyName()"><span class="glyphicon glyphicon-pencil"></span> Add/Update my Name</button>
 				</div>
-
 				<div class="actionbutton">
 					 <a href="/worldcup"><button class="btn btn-success" ><span class="glyphicon glyphicon-eye-open"></span>  Voir mes pronostics</button></a>
 				</div>
