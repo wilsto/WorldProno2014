@@ -12,14 +12,14 @@
       <th>email</th>
       <th><a href="" ng-click="predicate = 'role.title'; reverse=!reverse">Role</a></th>
       <th>Group</th>
-      <th><a href="" ng-click="predicate = 'updated | date'; reverse=!reverse">Inscription</a></th>
+      <th><a href="" ng-click="predicate = 'updated'; reverse=!date"><span class="glyphicon glyphicon-arrow-down"></span></a>Inscription<a href="" ng-click="predicate = 'updated'; reverse=date"><span class="glyphicon glyphicon-arrow-up"></span></a></th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr data-ng-repeat="user in users | orderBy:predicate:reverse | filter:searchText">
       <td>{{ user.username }}</td>
-      <td><button class="btn btn-lg btn-warning ladda-button" ng-class="{&quot;btn-success&quot;: user.paid}" data-style="expand-right" ng-click="togglePaid(user)"><span class="ladda-label">{{user.paid}}</span><span class="ladda-spinner">{{user.paid}}</span></button></td>
+      <td><button class="btn btn-lg btn-warning ladda-button" ng-class="{&quot;btn-success&quot;: user.paid}" data-style="expand-right" ng-click="togglePaid(user)"><span class="ladda-label"></span><span class="ladda-spinner"></span></button></td>
       <td><i data-ng-show="user.provider == 'twitter'" class="fa fa-twitter"></i><i data-ng-show="user.provider == 'facebook'" class="fa fa-facebook-square"></i><i data-ng-show="user.provider == 'google'" class="fa fa-google-plus-square"></i><i data-ng-show="user.provider == 'linkedin'" class="fa fa-linkedin"></i> {{ user.email }}</td>
       <td><span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label">{{ user.role.title }}</span></td>
       <td><span ng-repeat="group in user.groups track by $index" class="label label-default">{{ group.text }}</span></td>
