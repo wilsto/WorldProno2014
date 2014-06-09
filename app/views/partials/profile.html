@@ -9,13 +9,15 @@
         <h1 style="float:left;padding-left:10px">
         
         {{user.username}}
-		</br>
-		<span ng-show="!myname">
+		</br> <div style="font-size:18px;">Nom réel: 
+		<span ng-show="!myname" style="color:red">
 			Inconnu
 		</span>
 		{{myname}}
-
-
+</div>
+				 <div >
+					<button class="btn btn-xs" ng-class="{&quot;btn-danger&quot;:!myname}" ng-click="changeMyName()"><span class="glyphicon glyphicon-pencil"></span> Modifier mon nom réel</button>
+				</div>
         </h1>
 			<div class="socialMediaLinks">
 				<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title.toUpperCase() }} </span>
@@ -81,9 +83,7 @@ Vous pouvez appartenir à plusieurs groupes en meme temps, cela vous permet si v
 				<div class="actionbutton">
 					<button class="btn " ng-class="{&quot;btn-warning&quot;: user.role.title == userRoles.user.title, &quot;btn-info&quot;: user.role.title == userRoles.vip.title}" ng-click="changeVIP(user.role.title)"><span class="glyphicon glyphicon-euro"></span> Passer {{user.role.title == userRoles.user.title && 'VIP' || 'Free Player'}}</button>
 				</div>
-				 <div class="actionbutton">
-					<button class="btn btn-primary" ng-click="changeMyName()"><span class="glyphicon glyphicon-pencil"></span> Add/Update my Name</button>
-				</div>
+
 				<div class="actionbutton">
 					 <a href="/worldcup"><button class="btn btn-success" ><span class="glyphicon glyphicon-eye-open"></span>  Voir mes pronostics</button></a>
 				</div>
