@@ -7,17 +7,17 @@
 			<img class="img-circle" width="150" height="150" src="{{avatarUrl !== undefined  && avatarUrl || '/images/inconnu.gif'}}">
         </div>			
         <h1 style="float:left;padding-left:10px">
-        
-        {{user.username}}
-		</br> <div style="font-size:18px;">Nom réel: 
-		<span ng-show="!myname" style="color:red">
-			Inconnu
-		</span>
-		{{myname}}
-</div>
-				 <div >
-					<button class="btn btn-xs" ng-class="{&quot;btn-danger&quot;:!myname}" ng-click="changeMyName()"><span class="glyphicon glyphicon-pencil"></span> Modifier mon nom réel</button>
-				</div>
+	        {{user.username}}
+			</br> <div style="font-size:18px;">Nom réel: 
+			<span ng-show="!myname" style="color:red">
+				Inconnu
+			</span>
+			{{myname}}
+			</div>
+			<div >
+				<button class="btn btn-xs" ng-class="{&quot;btn-danger&quot;:!myname}" ng-click="changeMyName()"><span class="glyphicon glyphicon-pencil"></span>Modifier mon nom réel
+				</button>
+			</div>		 
         </h1>
 			<div class="socialMediaLinks">
 				<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title}" class="label">{{ user.role.title.toUpperCase() }} </span>
@@ -30,7 +30,15 @@
 		</div>
 	</div>
 	<h1>A propos de moi</h1>
-<!-- <a href="" ng-click="changeLien()">Lien avec un admin </a> -->
+	<div style="font-size:18px;">Je connais ce site par: 
+		<span ng-show="!mycontact" style="color:red">
+			Inconnu
+		</span>
+		{{mycontact}}
+	</div>
+	<div >
+		<button class="btn btn-xs" ng-class="{&quot;btn-danger&quot;:!mycontact}" ng-click="changeLien()"><span class="glyphicon glyphicon-pencil"></span> Modifier mon contact</button>
+	</div>
 	<p>
 		J'appartiens à un ou plusieurs groupes :
 	</p>
