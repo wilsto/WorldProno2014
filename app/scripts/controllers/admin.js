@@ -39,11 +39,4 @@ $scope.loadUser();
 		});
 	};
 
-/*	var userPaid =  $resource('/REST/userPaid/' + $scope.username);
-	$scope.userPaid = userPaid.query().paid;
-*/
-
-
-
-
 }]);
