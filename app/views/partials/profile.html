@@ -30,15 +30,18 @@
 		</div>
 	</div>
 	<h1>A propos de moi</h1>
-	<div style="font-size:18px;">Je connais ce site par: 
+		Je connais ce site par: 
+
+	<span style="font-size:18px;">
 		<span ng-show="!mycontact" style="color:red">
 			Inconnu
 		</span>
 		{{mycontact}}
-	</div>
+	</span>
 	<div >
 		<button class="btn btn-xs" ng-class="{&quot;btn-danger&quot;:!mycontact}" ng-click="changeLien()"><span class="glyphicon glyphicon-pencil"></span> Modifier mon contact</button>
 	</div>
+	<br/>
 	<p>
 		J'appartiens à un ou plusieurs groupes :
 	</p>
