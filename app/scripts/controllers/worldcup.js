@@ -411,7 +411,7 @@ angular.module('worldProno2014App')
                     }
                 }
             });
-}
+        }
 }, true);
 
 
