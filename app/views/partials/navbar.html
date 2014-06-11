@@ -22,7 +22,7 @@
               <a class="dropdown dropdown-gn" data-toggle="dropdown"><span class="glyphicon glyphicon-user "></span></a>
               <ul class="dropdown-menu dropdown-menu-gn-menu">
                 <li ng-hide="user.username"  ng-class="{active: isActive(item.link)}"><a href="/login">Se connecter</a></li>
-                <li ng-show="user.username"><a href="/profile">&nbsp;Profil {{user.username}} &nbsp;<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label">{{ user.role.title }} </span> &nbsp;</a></li>
+                <li ng-show="user.username"><a href="/profile">&nbsp;Profil <span ng-show="!user.pseudo">{{user.username}}</span>{{user.pseudo}} &nbsp;<span data-ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label">{{ user.role.title }} </span> &nbsp;</a></li>
                 <li ng-show="user.username"><a ng-click="logout()">Se déconnecter</a></li>
                 <li ng-show="user.role.title == userRoles.admin.title" class="divider"></li>
                 <li ng-show="user.role.title == userRoles.admin.title"  class="dropdown-header">God Mode</li>
