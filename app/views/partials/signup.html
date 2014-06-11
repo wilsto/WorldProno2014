@@ -6,7 +6,7 @@
   <div class="col-sm-12">
     <form ng-submit="register()" name="registerForm" role="form" class="form-horizontal">
   <div class="form-group">
-    <label for="username" class="control-label col-sm-2">Nom du joueur</label>
+    <label for="username" class="control-label col-sm-2">Pseudo du joueur</label>
     <div class="col-sm-10">
       <input type="text" data-ng-model="username" placeholder="Nom du joueur" name="username" required="required" data-ng-minlength="1" data-ng-maxlength="20" autofocus="autofocus" class="form-control"/>
     </div>
@@ -48,9 +48,9 @@
   </div>
   <div ng-show="registerForm.$invalid &amp;&amp; registerForm.$dirty" class="alert alert-danger"><strong>Please correct the following errors:</strong>
     <ul>
-      <li ng-show="registerForm.username.$error.required">Username is required</li>
-      <li ng-show="registerForm.username.$error.minlength">Username has to be at least 1 character long</li>
-      <li ng-show="registerForm.username.$error.maxlength">Username has to be at most 20 character long</li>
+      <li ng-show="registerForm.username.$error.required">Username (pseudo) is required</li>
+      <li ng-show="registerForm.username.$error.minlength">Username (pseudo) has to be at least 1 character long</li>
+      <li ng-show="registerForm.username.$error.maxlength">Username (pseudo) has to be at most 20 character long</li>
       <li ng-show="registerForm.email.$error.required">Mail is required</li>
       <li ng-show="registerForm.email.$error.minlength">Mail has to be at least 1 character long</li>
       <li ng-show="registerForm.email.$error.maxlength">Mail has to be at most 20 character long</li>

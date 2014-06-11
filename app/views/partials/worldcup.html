@@ -14,7 +14,7 @@ Chargement en cours
             <div class="pic">
                 <img class="img-circle" width="150" height="150" src="{{avatarUrl !== undefined  && avatarUrl || '/images/inconnu.gif'}}">
             </div>          
-            <h1 style="float:left;padding-left:10px">{{real}}</h1>
+            <h1 style="float:left;padding-left:10px"><span ng-show="!pseudo">{{real}}</span>{{pseudo}}</h1>
             <div style="float:left;padding-top:70px;padding-left:10px" ng-show="real === user.username">
                 <a href="/profile"><button class="btn btn-default" > Modifier mon profil</button></a>
             </div>

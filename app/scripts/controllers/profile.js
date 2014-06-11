@@ -15,6 +15,7 @@ angular.module('worldProno2014App')
 				
 				$scope.player = user;
 				$scope.myname = user.myname;
+				$scope.pseudo = user.pseudo;
 				$scope.mycontact = user.mycontact;
 				$scope.userPaid = user.paid;
 				$scope.tags = user.groups;
@@ -53,7 +54,7 @@ angular.module('worldProno2014App')
 			bootbox.confirm('Je connais:<div class="radio"><input type="radio" id="w" name="myContact" value="Willy"><label for="w"> Willy</label></input><br><input type="radio" id="c" name="myContact" value="Cédric"><label for="myContact"> Cédric</label><br><input type="radio" id="aw" name="myContact" value="aw"><label for="aw"> un ami de Willy</label><br><input type="radio" id="mylink" name="myContact" value="ac"><label for="myContact"> un ami de Cédric</label><br><input type="text" class="form-control" id="ami" placeholder="Saisir ami" name="ami"></input></div>', function(result) {
 		        if(result) {
 		        	var contactRad= $('input:radio[name=myContact]:checked').val()
-		            $scope.myContact = (contactRad=='aw')?$('#ami').val()+" (ami de Willy)":(contactRad=='ac')?$('#ami').val()+" (ami de Cédric)":contactRad;
+		            $scope.myContact = (contactRad==='aw')?$('#ami').val()+" (ami de Willy)":(contactRad==='ac')?$('#ami').val()+" (ami de Cédric)":contactRad;
 		           	$http.put('/REST/userContact/' + $scope.user.username, {mycontact : $scope.myContact}).success(function() {
 						$scope.loadUser();
 					});
@@ -71,7 +72,17 @@ angular.module('worldProno2014App')
 					});
 		        }
 			});
-		};		
+		};	
+		$scope.changeMyPseudo = function(){
+			bootbox.confirm('Mon nouveau pseudo:<input type="text" class="form-control" id="mypseudo" placeholder="pseudo" name="mypseudo"></input>', function(result) {
+		        if(result) {
+		            $scope.mypseudo = $('#mypseudo').val();
+		            $http.put('/REST/userPseudo/' + $scope.user.username, {pseudo : $scope.mypseudo}).success(function() {
+						$scope.loadUser();
+					});
+		        }
+			});
+		};				
 
 		$scope.changeVIP = function(data){
 			var changeData =  (data === $scope.userRoles.user.title) ? $scope.userRoles.vip.title :  $scope.userRoles.user.title;

@@ -1,13 +1,16 @@
-
-<div id="admin" class="glow">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 glow">
+<div id="admin" class="clearfix">
 <h1>Admin Panel</h1>
 <p>Listes des joueurs et role</p>
 <div class="input-group"> <span class="input-group-addon">Filter:</span><input type="text" class="form-control" placeholder="Type your Search / true (payé) / !true (non payé)" ng-model="searchText"></div>
+
+
 <table data-ng-hide="loading" class="table table-striped">
   <thead>
 
     <tr>
-      <th><a href="" ng-click="predicate = 'username'; reverse=!reverse">Joueur</a></th>
+      <th><a href="" ng-click="predicate = 'username'; reverse=!reverse">Id</a></th>
+      <th><a href="" ng-click="predicate = 'pseudo'; reverse=!reverse">Pseudo</a></th>
       <th><a href="" ng-click="predicate = 'myname'; reverse=!reverse">Nom Complet</a></th>
       <th><a href="" ng-click="predicate = 'paid'; reverse=!reverse">Payé</a></th>
       <th>email</th>
@@ -20,17 +23,19 @@
   <tbody>
     <tr data-ng-repeat="user in users | orderBy:predicate:reverse | filter:searchText">
       <td>{{ user.username }}</td>
+      <td><span ng-show="!user.pseudo"><i>{{user.username}}</i></span>{{user.pseudo}}</td>
       <td>{{ user.myname }}</td>
       <td><button class="btn btn-lg btn-warning ladda-button" ng-class="{&quot;btn-success&quot;: user.paid}" data-style="expand-right" ng-click="togglePaid(user)"><span class="ladda-label"></span><span class="ladda-spinner"></span></button></td>
       <td><i data-ng-show="user.provider == 'twitter'" class="fa fa-twitter"></i><i data-ng-show="user.provider == 'facebook'" class="fa fa-facebook-square"></i><i data-ng-show="user.provider == 'google'" class="fa fa-google-plus-square"></i><i data-ng-show="user.provider == 'linkedin'" class="fa fa-linkedin"></i> {{ user.email }}</td>
       
       <td><button ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label" ng-click="toggleRole(user)">{{ user.role.title }}</button></td>
 
-        <td><span ng-repeat="group in user.groups track by $index" class="label label-default">{{ group.text }}</span></td>
+      <td><span ng-repeat="group in user.groups track by $index" class="label label-default">{{ group.text }}</span></td>
       <td>{{user.updated | date}}</td>
 
       <td><button class="btn btn-xs btn-danger ladda-button" data-style="expand-right" ng-click="deleteUser(user)"><span class="ladda-label">Supprimer</span><span class="ladda-spinner"></span></button></td>
     </tr>
   </tbody>
 </table>
+</div>
 </div>
