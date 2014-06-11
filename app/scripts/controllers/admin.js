@@ -29,6 +29,18 @@ $scope.loadUser();
 		});
 	};
 
+	$scope.toggleRole = function(user) {
+		bootbox.confirm('Je change le role de <b>'+user.username+'</b> en:<select id="newrole" class="form-control"><option>admin</option><option>user</option><option>vip</option></select>', function(result) {
+			if(result) {
+				var myRole= $('#newrole').val();
+				console.log(myRole);
+				$http.put('/REST/userRole/' + user.username, {bitMask:(myRole===$scope.userRoles.user.title) ? 2 : 4, title:myRole}).success(function() {
+					$scope.loadUser();
+				});
+			}
+		});
+	};	
+
 	$scope.deleteUser = function(user) {
 		bootbox.confirm('Etes-vous sur de supprimer cet utilisateur ' + user.username + '?', function(result) {
 			if(result) {
