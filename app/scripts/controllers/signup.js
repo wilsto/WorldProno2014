@@ -40,7 +40,8 @@ angular.module('worldProno2014App')
 
     $scope.register = function() {
         Auth.register({
-                username: $scope.username,
+                username: $scope.username+"_"+Math.round(Math.random()*100000),
+                pseudo:$scope.username,
                 email: $scope.email,
                 password: $scope.password,
                 role: $scope.role
@@ -55,4 +56,5 @@ angular.module('worldProno2014App')
                 }
             });
     };
+
 }]);

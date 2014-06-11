@@ -185,6 +185,7 @@ angular.module('worldProno2014App')
 			$http.get('/REST/userInfo/' + groupData.userData.username).success(function(user) {
 				groupData.userData.groups = user.groups;
 				groupData.userData.avatarUrl =  user.avatarUrl;
+				groupData.userData.pseudo =  user.pseudo;
 				groupData.userData.role.title =  user.role.title;
 			});
 
