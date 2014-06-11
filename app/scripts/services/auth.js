@@ -30,6 +30,7 @@ angular.module('worldProno2014App')
         register: function(user, success, error) {
             $http.post('/register', user).success(function(res) {
                 changeUser(res);
+                 success();
             }).error(error);
         },
       /**

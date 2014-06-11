@@ -46,7 +46,7 @@ angular.module('worldProno2014App')
                 role: $scope.role
             },
             function() {
-                $location.path('/');
+                $location.path('/profile');
             },
             function(err) {
                 $scope.error = err.errors;
