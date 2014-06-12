@@ -14,10 +14,18 @@ Chargement en cours
             <div class="pic">
                 <img class="img-circle" width="150" height="150" src="{{avatarUrl !== undefined  && avatarUrl || '/images/inconnu.gif'}}">
             </div>          
-            <h1 style="float:left;padding-left:10px"><span ng-show="!pseudo">{{real}}</span>{{pseudo}}</h1>
-            <div style="float:left;padding-top:70px;padding-left:10px" ng-show="real === user.username">
-                <a href="/profile"><button class="btn btn-default" > Modifier mon profil</button></a>
-            </div>
+
+             <h1 style="float:left;padding-left:10px">
+                <div >{{pseudo}}</div>
+       
+
+                <div style="font-size:16px;">Nom réel: {{myname}}
+                </div>
+
+                <div style="float:left;padding-top:0px;padding-left:10px" ng-show="real === user.username">
+                    <a href="/profile"><button class="btn btn-default" > Modifier mon profil</button></a>
+                </div>      
+            </h1>
             <div class="socialMediaLinks">
                 <span data-ng-class="{&quot;label-info&quot;: player.role.title == userRoles.user.title, &quot;label-warning&quot;: player.role.title == userRoles.vip.title, &quot;label-success&quot;: player.role.title == userRoles.admin.title}" class="label">{{ player.role.title.toUpperCase() }} </span>
             </div>

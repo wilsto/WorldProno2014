@@ -22,6 +22,7 @@ angular.module('worldProno2014App')
 
     $http.get('/REST/pronoTime/').success(function(data) {
         $scope.now = data.date;
+        console.log( $scope.now );
     });
 
     $scope.loadUser = function(username) {
@@ -29,6 +30,7 @@ angular.module('worldProno2014App')
             $scope.player = user;
             $scope.userPaid = user.paid;
             $scope.pseudo=user.pseudo;
+            $scope.myname=user.myname;
             $scope.tags = user.groups;
             $scope.avatarUrl =  user.avatarUrl;
 
@@ -75,10 +77,16 @@ angular.module('worldProno2014App')
     $scope.reset = function() {
       bootbox.confirm('Etes-vous sur de vouloir ré-initialiser votre pronostic ?', function(result) {
           if(result) {
-            $scope.groupsMatches = $scope.fifaMatchs.groupsMatches;
-            $scope.secondStageMatches = $scope.fifaMatchs.secondStageMatches;
-            $scope.savePronos();
-          }
+                if ($scope.now > 1402596000) {
+                     bootbox.confirm('Attention des matchs ont déjà commencés ou sont déjà finis, ils seront exclus et non comptabilisés dans votre classement.<br/> Etes vous sur de vouloir continuer ? ', function(result) {
+                          if(result) {
+                            $scope.groupsMatches = $scope.fifaMatchs.groupsMatches;
+                            $scope.secondStageMatches = $scope.fifaMatchs.secondStageMatches;
+                            $scope.savePronos();
+                        }
+                    });
+                }
+            }
       });
     };
 
@@ -431,12 +439,18 @@ $scope.victorByPenalties = function(round, title, winnerIndex){
      * [Sauvegarde les données]
      */
      $scope.savePronos = function(){
-        $scope.pronosToSave = {};
-        $scope.pronosToSave['userData'] = $scope.user;
-        $scope.pronosToSave['groupsMatches'] = $scope.groupsMatches;
-        $scope.pronosToSave['secondStageMatches'] = $scope.secondStageMatches;
-        $http.put('/REST/pronos/' + $scope.user.username, $scope.pronosToSave).success(function() {
-        });
+        if ($scope.now > 1402596000) {
+             bootbox.confirm('Attention des matchs ont déjà commencés ou sont déjà finis, ils seront exclus et non comptabilisés de votre classement si vous enregistez à nouveau.<br/><br/><span style="color:red"><b> Nous vous déconseillons de le faire, etes vous sur de vouloir continuer ? Si vous répondez "OK", votre choix est irrémédiable.</b></span>', function(result) {
+                  if(result) {
+                    $scope.pronosToSave = {};
+                    $scope.pronosToSave['userData'] = $scope.user;
+                    $scope.pronosToSave['groupsMatches'] = $scope.groupsMatches;
+                    $scope.pronosToSave['secondStageMatches'] = $scope.secondStageMatches;
+                    $http.put('/REST/pronos/' + $scope.user.username, $scope.pronosToSave).success(function() {
+                    });
+                }
+            });
+        }
     };
 
 }]);
