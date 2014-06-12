@@ -7,7 +7,7 @@
 			<img class="img-circle" width="150" height="150" src="{{avatarUrl !== undefined  && avatarUrl || '/images/inconnu.gif'}}">
         </div>			
         <h1 style="float:left;padding-left:10px">
-         	<div ><span ng-show="!pseudo">{{user.username}}</span>{{pseudo}}</div>
+         	<div >{{pseudo}}</div>
 			<div>
 				<button class="btn btn-xs" ng-class="{&quot;btn-danger&quot;:!pseudo}" ng-click="changeMyPseudo()"><span class="glyphicon glyphicon-pencil"></span>Modifier mon pseudo</button>
 			</div>        
