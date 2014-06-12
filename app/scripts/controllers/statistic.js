@@ -97,13 +97,8 @@ angular.module('worldProno2014App')
 						clearPoints();
 						calculatePoints();
 
-						//Descending Order:
-						$scope.allPlayers = _.sortBy($scope.allPlayers, function(num){
-							return num.totalpoints * -1;
-						});
-
 						//supprime le mondial
-						//$scope.allPlayers = _.rest($scope.allPlayers);
+						$scope.allPlayers = _.rest($scope.allPlayers);
 
 						// $scope.allPlayersArr = _.map($scope.allPlayers, function(value,index) {
 						// 	return [value];
@@ -261,7 +256,11 @@ angular.module('worldProno2014App')
 			$scope.allPlayers[playerNb].totalpoints= $scope.allPlayers[playerNb].points.tour1.total + $scope.allPlayers[playerNb].points.tour2.total + $scope.allPlayers[playerNb].points.tour3.total;
 
 		});
-	}
-
-
+			//Descending Order:
+			$scope.allPlayers = _.sortBy($scope.allPlayers, function(num){
+				return num.totalpoints * -1;
+			});
+		
+		}
+	
 }]);
