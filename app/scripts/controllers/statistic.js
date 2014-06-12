@@ -198,6 +198,7 @@ angular.module('worldProno2014App')
 	 */
 	 function calculatePoints(){
 		_.each($scope.allPlayers, function(dataPlayer, playerNb){	// pour chaque joueur
+			var lastUpdate = (dataPlayer.userData.lastUpdateNum !== undefined) ? dataPlayer.userData.lastUpdateNum : 1402603199;
 			_.each(dataPlayer.groupsMatches, function(groupsMatches, group){	// pour chaque groupe
 				var matchNb = 0;
 				_.each(groupsMatches.matches, function(match){	// pour chaque match
@@ -219,6 +220,8 @@ angular.module('worldProno2014App')
 
 						$scope.allPlayers[playerNb].points[tour].result = 0;
 						$scope.allPlayers[playerNb].points[tour].score = 0;
+						var MatchTimeStamp = Math.round((new Date("2014-" + realMatch[2].date.split('/')[1] + "-" + realMatch[2].date.split('/')[0] + " " + realMatch[2].time + ":00").getTime() - 120 * 60 ) /1000 +7);
+						if (lastUpdate < MatchTimeStamp) {
 						if(realMatch[0].score > realMatch[1].score){
 							if(match[0].score > match[1].score){
 								$scope.allPlayers[playerNb].points[tour].result = points.result;
@@ -245,6 +248,10 @@ angular.module('worldProno2014App')
 						// details
 						$scope.allPlayers[playerNb].points[tour].total = $scope.allPlayers[playerNb].points[tour].total + $scope.allPlayers[playerNb].points[tour].result + $scope.allPlayers[playerNb].points[tour].score;
 						$scope.allPlayers[playerNb].points[tour].details.push({group:group, countries:realMatch[0].country + ' vs ' + realMatch[1].country,scorereel:realMatch[0].score + ' - ' + realMatch[1].score,score:match[0].score + ' - ' + match[1].score,points:$scope.allPlayers[playerNb].points[tour].result + $scope.allPlayers[playerNb].points[tour].score});
+						} else {
+							$scope.allPlayers[playerNb].points[tour].total = $scope.allPlayers[playerNb].points[tour].total + $scope.allPlayers[playerNb].points[tour].result + $scope.allPlayers[playerNb].points[tour].score;
+							$scope.allPlayers[playerNb].points[tour].details.push({group:group, countries:realMatch[0].country + ' vs ' + realMatch[1].country + ' **KO',scorereel:realMatch[0].score + ' - ' + realMatch[1].score,score:match[0].score + ' - ' + match[1].score,points:$scope.allPlayers[playerNb].points[tour].result + $scope.allPlayers[playerNb].points[tour].score});
+						}
 					}
 					matchNb++;
 				});

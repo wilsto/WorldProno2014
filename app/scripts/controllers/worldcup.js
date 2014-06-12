@@ -20,6 +20,10 @@ angular.module('worldProno2014App')
     $scope.max = 5;
     $scope.isReadonly = false;
 
+    $http.get('/REST/pronoTime/').success(function(data) {
+        $scope.now = data.date;
+    });
+
     $scope.loadUser = function(username) {
         $http.get('/REST/userInfo/' + username).success(function(user) {
             $scope.player = user;
@@ -30,7 +34,6 @@ angular.module('worldProno2014App')
 
         });
     };
-
 
     $scope.initPronos = function() {
         $http.get('/api/fifaMatchs').success(function(fifaMatchs) {
