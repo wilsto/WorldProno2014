@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('worldProno2014App')
-.controller('AdminCtrl', ['$scope', '$http', 'Auth', '$resource','$q', function($scope, $http, Auth, $q,$resource) {
+.controller('AdminCtrl', ['$scope', '$http', 'Auth', '$resource','$q','$filter', function($scope, $http, Auth, $q,$filter,$resource) {
 
 	Ladda.bind( '.ladda-button', { timeout: 2000 } );
 
@@ -15,12 +15,18 @@ angular.module('worldProno2014App')
 				$scope.users = data;
 				$scope.loading = false;
 		});
-
-		
 	};
+	$scope.loadUser();
 
-		$scope.loadUser();
+		$http.get('/REST/userGroup/').success(function(alltags) {
+	        $scope.alltags =alltags;
+	    });
 
+	$scope.loadTags = function(query) {
+	    var deferred = $q.defer();
+	    deferred.resolve($filter('filter')($scope.alltags, query));
+	    return deferred.promise;
+	};
 
 	$scope.togglePaid = function(user) {
 		bootbox.confirm('Etes-vous sur de changer le paiement de ' + user.username + '?', function(result) {
@@ -58,18 +64,12 @@ angular.module('worldProno2014App')
 		});
 	};
 
-	$scope.updGroup = function(user) {
-		bootbox.confirm('Modifier les groupes:<input type="text">'+user.paid+'</input>', function(result) {
-			if(result) {
-					//using $http.delete('/REST/user/' + user.username) throws a parse error in IE8
-				$http({
-       				method: 'DELETE', 
-       				url: '/REST/user/' + user.username
-    			}).success(function() {
-					$scope.loadUser();
-				});
-			}
-		});
-	};
+	/**
+	 * [Sauvegarde les données]
+	 */
+		 $scope.saveGroup = function(user){
+			$http.put('/REST/userGroup/' + user.username, user.groups).success(function() {
+			});
+		};
 
 }]);
