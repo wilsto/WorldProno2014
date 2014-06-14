@@ -15,9 +15,9 @@
 		</div>
 	</div>
 	<div>
-		<h1>Liste des users</h1>
+		<h1>Liste des pronostiqueurs</h1>
 		<table data-ng-hide="loading" class="table table-striped">
-			<tr data-ng-repeat="user in users | filter:searchText" >
+			<tr data-ng-repeat="user in users | orderBy:user.myname:true | filter:searchText" >
 		      <td><span ng-show="!user.pseudo"><i>{{user.username}}</i></span>{{user.pseudo}}<br><h6>{{ user.username }}</h6></td>
 		      <td><h6>{{ user.myname }}</h6></td>
 <td class="c " style="width:51px"><a href="/worldcup/{{user.username}}"><div id="userStats" class="clearfix  "><div class="pic"><img class="img-circle" width="50" height="50" ng-src="{{player.userData.avatarUrl !== undefined  && player.userData.avatarUrl || '/images/inconnu.gif'}}"></div></div></a></td>		      
