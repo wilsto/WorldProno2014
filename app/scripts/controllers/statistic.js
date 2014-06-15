@@ -11,8 +11,7 @@ angular.module('worldProno2014App')
 })
 
 .directive('popOver', function ($compile,limitToFilter) {
-var itemsTemplate = '<table class="table table-responsive table-condensed table-small"><tr><td class="group">Grp</td><td class="group">Equipes</td><td class="group">Pts</td><td class="group">Réel</td><td class="group">Prono</td></tr><tr ng-repeat="item in items | limitTo:(currentPage*itemsPerPage)-taille | limitTo:itemsPerPage" ng-class="{success:item.points,warning:item.points ===0}"><td>{{item.group}}</td><td>{{item.countries}}</td><td class="Pts">{{item.points}}</td><td>{{item.scorereel}}</td><td>{{item.score}}</td></tr></table><ul class="pager"><li ng-class="prevPageDisabled()"><a href ng-click="prevPage()">Previous </a></li><li ng-class="nextPageDisabled()"><a href ng-click="nextPage()">Next</a></li></ul>';	
-/*		var itemsTemplate = '<table class="table table-responsive table-condensed table-small"><tr><td class="group">Grp</td><td class="group">Equipes</td><td class="group">Pts</td><td class="group">Réel</td><td class="group">Prono</td></tr><tr ng-repeat="item in items | limitTo: (currentPage*itemsPerPage)-taille | limitTo:itemsPerPage" ng-class="{success:item.points,warning:item.points ===0}"><td>{{item.group}}</td><td>{{item.countries}}</td><td class="Pts">{{item.points}}</td><td>{{item.scorereel}}</td><td>{{item.score}}</td></tr></table><ul class="pager"><li ng-class="prevPageDisabled()"><a href ng-click="prevPage()">Previous </a></li><li ng-class="nextPageDisabled()"><a href ng-click="nextPage()">Next</a></li></ul>';*/
+		var itemsTemplate = '<table class="table table-responsive table-condensed table-small"><tr><td class="group">Grp</td><td class="group">Equipes</td><td class="group">Pts</td><td class="group">Réel</td><td class="group">Prono</td></tr><tr ng-repeat="item in items | limitTo:(currentPage*itemsPerPage)-taille | limitTo:itemsPerPage" ng-class="{success:item.points,warning:item.points ===0}"><td>{{item.group}}</td><td>{{item.countries}}</td><td class="Pts">{{item.points}}</td><td>{{item.scorereel}}</td><td>{{item.score}}</td></tr></table><ul class="pager"><li ng-class="prevPageDisabled()"><a href ng-click="prevPage()">Previous </a></li><li ng-class="nextPageDisabled()"><a href ng-click="nextPage()">Next</a></li></ul>';
 		var getTemplate = function (contentType) {
 			var template = '';
 			switch (contentType) {
@@ -93,21 +92,23 @@ var itemsTemplate = '<table class="table table-responsive table-condensed table-
 	$scope.realProno = PronoFactory.get({id:'Mondial'},
 		function(data) {
 			if (data.length > 0) { // recupère les pronos du joueur
-				$scope.allPlayers = PronoFactory.query(
-					function() {
+
+				$http.get('/REST/pronos/').success(function(allpronos) {
+						$scope.allPlayers = allpronos;
+						$scope.predicate = 'totalpoints';
+						$scope.reverse=true;
+
 						clearPoints();
-						calculatePoints();
+						//calculatePoints();
 
-						//supprime le mondial
-						$scope.allPlayers = _.rest($scope.allPlayers);
-
-						// $scope.allPlayersArr = _.map($scope.allPlayers, function(value,index) {
-						// 	return [value];
+			        	//Descending Order:
+						// $scope.allPlayers = _.sortBy($scope.allPlayers, function(num){
+						// 	return num.totalpoints * -1;
 						// });
 
 						// attacher les popover
 						$('[data-toggle="popover"]').popover();
-					});
+			    });
 			}
 	});
 
@@ -137,7 +138,10 @@ var itemsTemplate = '<table class="table table-responsive table-condensed table-
 				}
 
 			});
-			return result;
+			var array = $.map(result, function(value, index) {
+			    return [value];
+			});
+			return array;
 	};
 	/*
 		Ajout filtre podium pour les 3 premiers
@@ -166,26 +170,17 @@ var itemsTemplate = '<table class="table table-responsive table-condensed table-
 	 * [Initialise les calculs]
 	 */
 	 function clearPoints(){
-		_.each($scope.allPlayers, function(groupData){
-			groupData.points ={};
-			groupData.totalpoints = 0;
-			groupData.points.tour1 = {total:0,result:0,score:0,details:[]};
-			groupData.points.tour2 = {total:0,result:0,score:0,details:[]};
-			groupData.points.tour3 = {total:0,result:0,score:0,details:[]};
-			groupData.points.qualif =	{total:0,details:[]};
-			groupData.points.roundOf16 = {total:0,details:[]};
-			groupData.points.quarterFinals =	{total:0,details:[]};
-			groupData.points.semiFinals =	{total:0,details:[]};
-			groupData.points.Finals =	{total:0,details:[]};
-			groupData.points.winner =	{total:0,details:[]};
-			$http.get('/REST/userInfo/' + groupData.userData.username).success(function(user) {
-				groupData.userData.groups = user.groups;
-				groupData.userData.avatarUrl =  user.avatarUrl;
-				groupData.userData.pseudo =  user.pseudo;
-				groupData.userData.role.title =  user.role.title;
+			$http.get('/users').success(function(users) {
+				_.each($scope.allPlayers, function(player){
+					var userInfo = _.findWhere(users, {username : player.userData.username});
+					if (userInfo !== undefined) {
+						player.userData.groups = userInfo.groups;
+						player.userData.avatarUrl =  userInfo.avatarUrl;
+						player.userData.pseudo =  userInfo.pseudo;
+						player.userData.role.title =  userInfo.role.title;
+					}
+				});
 			});
-
-		});
 	}
 
 
@@ -257,11 +252,7 @@ var itemsTemplate = '<table class="table table-responsive table-condensed table-
 			$scope.allPlayers[playerNb].totalpoints= $scope.allPlayers[playerNb].points.tour1.total + $scope.allPlayers[playerNb].points.tour2.total + $scope.allPlayers[playerNb].points.tour3.total;
 
 		});
-			//Descending Order:
-			$scope.allPlayers = _.sortBy($scope.allPlayers, function(num){
-				return num.totalpoints * -1;
-			});
-		
-		}
-	
+	}
+
+
 }]);
