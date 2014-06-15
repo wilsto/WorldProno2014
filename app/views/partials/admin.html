@@ -9,7 +9,6 @@
   <thead>
 
     <tr>
-      <th><a href="" ng-click="predicate = 'username'; reverse=!reverse">Id</a></th>
       <th><a href="" ng-click="predicate = 'pseudo'; reverse=!reverse">Pseudo</a></th>
       <th><a href="" ng-click="predicate = 'myname'; reverse=!reverse">Nom Complet</a></th>
       <th><a href="" ng-click="predicate = 'paid'; reverse=!reverse">Payé</a></th>
@@ -22,18 +21,22 @@
   </thead>
   <tbody>
     <tr data-ng-repeat="user in users | orderBy:predicate:reverse | filter:searchText">
-      <td>{{ user.username }}</td>
-      <td><span ng-show="!user.pseudo"><i>{{user.username}}</i></span>{{user.pseudo}}</td>
+      <td><span ng-show="!user.pseudo"><i>{{user.username}}</i></span>{{user.pseudo}}<br><h6>{{ user.username }}</h6></td>
       <td>{{ user.myname }}</td>
       <td><button class="btn btn-lg btn-warning ladda-button" ng-class="{&quot;btn-success&quot;: user.paid}" data-style="expand-right" ng-click="togglePaid(user)"><span class="ladda-label"></span><span class="ladda-spinner"></span></button></td>
       <td><i data-ng-show="user.provider == 'twitter'" class="fa fa-twitter"></i><i data-ng-show="user.provider == 'facebook'" class="fa fa-facebook-square"></i><i data-ng-show="user.provider == 'google'" class="fa fa-google-plus-square"></i><i data-ng-show="user.provider == 'linkedin'" class="fa fa-linkedin"></i> {{ user.email }}</td>
       
       <td><button ng-class="{&quot;label-info&quot;: user.role.title == userRoles.user.title, &quot;label-success&quot;: user.role.title == userRoles.admin.title, &quot;label-warning&quot;: user.role.title == userRoles.vip.title}" class="label" ng-click="toggleRole(user)">{{ user.role.title }}</button></td>
 
-      <td><span ng-repeat="group in user.groups track by $index" class="label label-default">{{ group.text }}</span></td>
+      <td>
+        <tags-input ng-model="user.groups" placeholder="add" >
+              <auto-complete source="loadTags($query)" min-length="1" highlight-matched-text="false"></auto-complete>
+        </tags-input></td>
       <td>{{user.updated | date}}</td>
-
-      <td><button class="btn btn-xs btn-danger ladda-button" data-style="expand-right" ng-click="deleteUser(user)"><span class="ladda-label">Supprimer</span><span class="ladda-spinner"></span></button></td>
+      <td>
+        <button class="btn btn-xs btn-danger ladda-button" data-style="expand-right" ng-click="deleteUser(user)" data-toggle="tooltip" data-placement="top" title="Delete User"><span class="glyphicon glyphicon glyphicon-trash"></span></button>
+         <button class="btn btn-xs btn-success ladda-button" data-style="expand-right" ng-click="saveGroup(user)" data-toggle="tooltip" data-placement="top" title="Save Group"><span class="glyphicon glyphicon glyphicon-floppy-disk"></span></button>
+      </td>
     </tr>
   </tbody>
 </table>

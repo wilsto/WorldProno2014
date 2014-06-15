@@ -1,0 +1,50 @@
+
+<div class="col-xs-12 col-xs-12 col-md-8 col-lg-8 glow">
+	<div id="userStats" class="clearfix  ">
+
+		<div class="data">		
+			<div class="pic">
+				<img class="img-circle" width="150" height="150" src=" /images/team.png">
+	        </div>			
+	        <h1 style="float:left;padding-left:10px">
+				<div ng-repeat="mygroup in tags track by $index" class="label" data-style="expand-left" >
+				{{mygroup.text}}
+			    </div>
+			     <h1 ng-model="searchText"> {{searchText}}</h1>
+	        </h1>
+		</div>
+	</div>
+	<div>
+		<h1>Liste des pronostiqueurs</h1>
+		<table data-ng-hide="loading" class="table table-striped">
+			<tr data-ng-repeat="user in users | orderBy:user.myname:true | filter:searchText" >
+		      <td><span ng-show="!user.pseudo"><i>{{user.username}}</i></span>{{user.pseudo}}<br><h6>{{ user.username }}</h6></td>
+		      <td><h6>{{ user.myname }}</h6></td>
+<td class="c " style="width:51px"><a href="/worldcup/{{user.username}}"><div id="userStats" class="clearfix  "><div class="pic"><img class="img-circle" width="50" height="50" ng-src="{{player.userData.avatarUrl !== undefined  && player.userData.avatarUrl || '/images/inconnu.gif'}}"></div></div></a></td>		      
+		      <td>
+<div ng-repeat="usergrp in user.groups track by $index" class="hidden" data-style="expand-left" >
+				{{usergrp.text}}
+			    </div>
+		 </td>
+
+
+
+	      </tr>
+	      </table>
+	</div>
+
+</div>
+<div class="col-md-offset-1 col-xs-12 col-xs-12 col-md-3 col-lg-3 glow">
+
+	<div class="gcontent">
+		<div class="head"><h1>Liste des groupes</h1></div>
+		<div class="boxy">
+			<ul class="list-group">
+				<li ng-repeat="group in alltags track by $index" class="label" data-style="expand-left" >
+					<span class="glyphicon glyphicon-user"></span><a href="" class="list-group-item" ng-click="FilterGrp(group)">   {{ group.text }}</a>
+				
+				</li>
+			</ul>
+		</div>
+	</div>
+</div >
