@@ -11,7 +11,7 @@ angular.module('worldProno2014App')
 })
 
 .directive('popOver', function ($compile,limitToFilter) {
-		var itemsTemplate = '<table class="table table-responsive table-condensed table-small"><tr><td class="group">Grp</td><td class="group">Equipes</td><td class="group">Pts</td><td class="group">Réel</td><td class="group">Prono</td></tr><tr ng-repeat="item in items | limitTo:currentPage-taille | limitTo:itemsPerPage" ng-class="{success:item.points,warning:item.points ===0}"><td>{{item.group}}</td><td>{{item.countries}}</td><td class="Pts">{{item.points}}</td><td>{{item.scorereel}}</td><td>{{item.score}}</td></tr></table><ul class="pager"><li ng-class="prevPageDisabled()"><a href ng-click="prevPage()">Previous </a></li><li ng-class="nextPageDisabled()"><a href ng-click="nextPage()">Next</a></li></ul>';
+		var itemsTemplate = '<table class="table table-responsive table-condensed table-small"><tr><td class="group">Grp</td><td class="group">Equipes</td><td class="group">Pts</td><td class="group">Réel</td><td class="group">Prono</td></tr><tr ng-repeat="item in items | limitTo:(currentPage*itemsPerPage)-taille | limitTo:itemsPerPage" ng-class="{success:item.points,warning:item.points ===0}"><td>{{item.group}}</td><td>{{item.countries}}</td><td class="Pts">{{item.points}}</td><td>{{item.scorereel}}</td><td>{{item.score}}</td></tr></table><ul class="pager"><li ng-class="prevPageDisabled()"><a href ng-click="prevPage()">Previous </a></li><li ng-class="nextPageDisabled()"><a href ng-click="nextPage()">Next</a></li></ul>';
 		var getTemplate = function (contentType) {
 			var template = '';
 			switch (contentType) {
@@ -92,26 +92,23 @@ angular.module('worldProno2014App')
 	$scope.realProno = PronoFactory.get({id:'Mondial'},
 		function(data) {
 			if (data.length > 0) { // recupère les pronos du joueur
-				$scope.allPlayers = PronoFactory.query(
-					function() {
+
+				$http.get('/REST/pronos/').success(function(allpronos) {
+						$scope.allPlayers = allpronos;
+						$scope.predicate = 'totalpoints';
+						$scope.reverse=true;
+
 						clearPoints();
 						calculatePoints();
 
-						//Descending Order:
-						$scope.allPlayers = _.sortBy($scope.allPlayers, function(num){
-							return num.totalpoints * -1;
-						});
-
-						//supprime le mondial
-						//$scope.allPlayers = _.rest($scope.allPlayers);
-
-						// $scope.allPlayersArr = _.map($scope.allPlayers, function(value,index) {
-						// 	return [value];
+			        	//Descending Order:
+						// $scope.allPlayers = _.sortBy($scope.allPlayers, function(num){
+						// 	return num.totalpoints * -1;
 						// });
 
 						// attacher les popover
 						$('[data-toggle="popover"]').popover();
-					});
+			    });
 			}
 	});
 
@@ -141,7 +138,12 @@ angular.module('worldProno2014App')
 				}
 
 			});
-			return result;
+			var array = $.map(result, function(value, index) {
+			    return [value];
+			});
+			console.log('array', array);
+			console.log('result',result);
+			return array;
 	};
 	/*
 		Ajout filtre podium pour les 3 premiers
