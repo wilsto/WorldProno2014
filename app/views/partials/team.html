@@ -4,47 +4,70 @@
 
 		<div class="data">		
 			<div class="pic">
-				<img class="img-circle" width="150" height="150" src=" /images/team.png">
+				<img class="img-circle" width="150" height="150" src="images/Team.png">
 	        </div>			
 	        <h1 style="float:left;padding-left:10px">
+
 				<div ng-repeat="mygroup in tags track by $index" class="label" data-style="expand-left" >
 				{{mygroup.text}}
 			    </div>
 			     <h1 ng-model="searchText"> {{searchText}}</h1>
+			      <button class="btn btn-xs btn-info ladda-button" data-style="expand-right" ng-click="postMess(myuser,searchText)" data-toggle="tooltip" data-placement="top" title="Ajout message"><span class="glyphicon glyphicon-envelope"></span></button>
 	        </h1>
 		</div>
 	</div>
 	<div>
-		<h1>Liste des pronostiqueurs</h1>
+		<h1>Liste des pronostiqueurs </h1>
 		<table data-ng-hide="loading" class="table table-striped">
-			<tr data-ng-repeat="user in users | orderBy:user.myname:true | filter:searchText" >
-		      <td><span ng-show="!user.pseudo"><i>{{user.username}}</i></span>{{user.pseudo}}<br><h6>{{ user.username }}</h6></td>
-		      <td><h6>{{ user.myname }}</h6></td>
-<td class="c " style="width:51px"><a href="/worldcup/{{user.username}}"><div id="userStats" class="clearfix  "><div class="pic"><img class="img-circle" width="50" height="50" ng-src="{{player.userData.avatarUrl !== undefined  && player.userData.avatarUrl || '/images/inconnu.gif'}}"></div></div></a></td>		      
-		      <td>
-<div ng-repeat="usergrp in user.groups track by $index" class="hidden" data-style="expand-left" >
-				{{usergrp.text}}
-			    </div>
-		 </td>
-
-
-
-	      </tr>
-	      </table>
+			<tr data-ng-repeat="user in users | orderBy:user.myname:true | filter:searchText">
+				<td><h6 ng-class="{&quot;btn-success&quot;:user.pseudo===mypseudo}"><span ng-show="!user.pseudo"><i><span ng-if="user.username">{{user.username}}</span></i></span>{{user.pseudo}}</h6></td>
+				<td><h6 ng-class="{&quot;btn-success&quot;:user.pseudo===mypseudo}">{{ user.myname }}</h6></td>
+				<td class="c " style="width:51px" ><a href="/worldcup/{{user.username}}"><div id="userStats" class="clearfix  "><div class="pic"><img class="img-circle" width="50" height="50" ng-src="{{player.userData.avatarUrl !== undefined  && player.userData.avatarUrl || '/images/inconnu.gif'}}"></div></div></a></td>		      
+				<td>
+					<div ng-repeat="usergrp in user.groups track by $index" class="hidden" data-style="expand-left" >
+						{{usergrp.text}}
+				    </div>
+		 		</td>
+		 		<td>  <button class="btn btn-xs btn-info ladda-button" data-style="expand-right" ng-click="postMess(myuser,user.username)" data-toggle="tooltip" data-placement="top" title="Ajout message"><span class="glyphicon glyphicon-envelope"></span></button></td>
+			</tr>
+	    </table>
 	</div>
-
 </div>
 <div class="col-md-offset-1 col-xs-12 col-xs-12 col-md-3 col-lg-3 glow">
-
 	<div class="gcontent">
 		<div class="head"><h1>Liste des groupes</h1></div>
-		<div class="boxy">
-			<ul class="list-group">
-				<li ng-repeat="group in alltags track by $index" class="label" data-style="expand-left" >
-					<span class="glyphicon glyphicon-user"></span><a href="" class="list-group-item" ng-click="FilterGrp(group)">   {{ group.text }}</a>
-				
-				</li>
-			</ul>
+		<div ng-repeat="group in alltags track by $index | orderBy:group.text:reverse" ng-class="list-group">
+			<a href="" class="list-group-item" ng-click="FilterGrp(group)" > {{ group.text }}</a>
 		</div>
 	</div>
 </div >
+<div class="col-xs-12 col-xs-12 col-md-8 col-lg-8 glow">
+<div class="head"><h1>Liste des messages</h1></div>
+<table data-ng-hide="loading" class="table table-striped">
+    <tr class="group">
+        <th class="c group">date</th>
+        <th class="c group">From</th>
+        <th class="c group">To</th>
+        <th class="c group">Team</th>
+        <th class="l group">Title</th>
+        <th class="c group">Message</th>
+        <th class="c group">Action</th>
+    </tr>
+	<tr ng-repeat="teampost in teamposts | orderBy: 'date' : 'reverse' | filter:searchText">
+		<td> {{teampost.date | date : 'dd-MM-yyyy'}}</td>
+		<td> {{teampost.postFrom}}</td>
+		<td> {{teampost.postTo}}</td>
+		<td>{{teampost.postTeam}}</td> 
+		<td>{{teampost.postTitle}}</td> 
+	   <td> 
+	       <span ng-bind-html="teampost.postText"></span>
+	    </td>
+		<td>
+			    <button ng-show="myuser.username === teampost.postFrom" class ="btn btn-xs  btn-danger" id='close' ng-click='deletePost(teampost)'><span class="glyphicon glyphicon-trash"></button>
+			    <button ng-show="myuser.username === teampost.postFrom"  class ="btn btn-xs  btn-default" id='close' ng-click='editPost(teampost)'><span class="glyphicon glyphicon-pencil"></span></button>
+		</td>	    
+	</tr> 
+</table>
+</div>
+
+
