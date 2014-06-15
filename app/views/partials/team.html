@@ -1,4 +1,3 @@
-
 <div class="col-xs-12 col-xs-12 col-md-9 col-lg-9 glow">
 	<div id="userStats" class="clearfix  ">
 
@@ -6,13 +5,7 @@
 			<div class="pic">
 				<img class="img-circle" width="150" height="150" src="images/Team.png">
 	        </div>			
-	        <h1 style="float:left;padding-left:10px">
-
-				<div ng-repeat="mygroup in tags track by $index" class="label" data-style="expand-left" >
-				{{mygroup.text}}
-			    </div>
-			     <h1 ng-model="searchText"> {{searchText}}</h1>
-			      
+		     <h1 ng-model="searchText"> {{searchText}}</h1>      
 	        </h1>
 		</div>
 	</div>
@@ -68,7 +61,7 @@
 	<div class="gcontent">
 		<div class="head"><h1>Liste des groupes</h1></div>
 		<div ng-repeat="group in alltags track by $index | orderBy:group.text:reverse" ng-class="list-group">
-			<a href="" class="list-group-item" ng-click="FilterGrp(group)"> {{ group.text }}</a>
+			<a href="" class="list-group-item" ng-click="FilterGrp(group)" > <p ng-class="{&quot;btn btn-default btn-success&quot;:checkGroup(group.text)}"> {{ group.text }}</p></a>
 		</div>
 	</div>
 </div >

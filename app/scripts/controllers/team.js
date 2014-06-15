@@ -94,6 +94,22 @@ angular.module('worldProno2014App')
 		};	
 
 
+		$scope.checkGroup = function(group) {
+			var test = false;
+			console.log($scope.mytags);
+			angular.forEach($scope.mytags, function(value, key) {
+				if(value.text===group){
+					test= true;
+				};
+			});
+			 console.log(group+':'+test);
+		  return test;
+		 
+		};
+
+
+		
+
 	$scope.filterMess = function(allMess,myTeam,myUser) {
 			var result = {};
 			//console.log($scope.tags[0].text);
