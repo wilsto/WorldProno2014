@@ -85,11 +85,25 @@ angular.module('worldProno2014App')
       });
     };
 
-
-
 		$scope.FilterGrp = function(group) {
 			$scope.searchText=group.text;
 		};	
 
+
+	$scope.filterMess = function(allMess,myTeam,myUser) {
+			var result = {};
+			//console.log($scope.tags[0].text);
+			angular.forEach(allMess, function(value, key) {
+
+				if (value.postTeam===myTeam||(myTeam=='*'&&value.postTeam==''))
+				{
+					if(value.postFrom===myUser.username||value.postTo===myUser.username||value.postTo===myTeam)
+					{
+						result[key] = value;
+					}
+				}
+			});
+			return result;
+	};
 
 }]);
