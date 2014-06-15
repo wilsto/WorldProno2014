@@ -10,8 +10,7 @@ angular.module('worldProno2014App')
 	        $scope.alltags =alltags;
 	    });
 
-        
-        function compare(a,b) {
+         function compare(a,b) {
 		  if (a.text < b.text)
 		     return -1;
 		  if (a.text > b.text)
@@ -23,7 +22,6 @@ angular.module('worldProno2014App')
 		$scope.errors = {};
 		/*$scope.user = Auth.user;*/
 		$scope.userRoles = Auth.userRoles;
-
 		$scope.searchText="*";
 		
 		$scope.loadUser = function() {
@@ -35,7 +33,7 @@ angular.module('worldProno2014App')
 		};
 		$scope.loadUser();
 	
-
+		$scope.montre=false;
 		$scope.LoadmyUser = function() {
 			$http.get('/REST/userInfo/' + $scope.myuser.username).success(function(user) {
 				
@@ -87,6 +85,12 @@ angular.module('worldProno2014App')
 
 		$scope.FilterGrp = function(group) {
 			$scope.searchText=group.text;
+			$scope.montre=false;
+		};	
+
+
+		$scope.showjoueur = function() {
+			$scope.montre=!$scope.montre;
 		};	
 
 

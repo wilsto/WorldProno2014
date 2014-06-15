@@ -1,5 +1,5 @@
 
-<div class="col-xs-12 col-xs-12 col-md-8 col-lg-8 glow">
+<div class="col-xs-12 col-xs-12 col-md-9 col-lg-9 glow">
 	<div id="userStats" class="clearfix  ">
 
 		<div class="data">		
@@ -12,13 +12,16 @@
 				{{mygroup.text}}
 			    </div>
 			     <h1 ng-model="searchText"> {{searchText}}</h1>
-			      <button class="btn btn-xs btn-info ladda-button" data-style="expand-right" ng-click="postMess(myuser,searchText)" data-toggle="tooltip" data-placement="top" title="Ajout message"><span class="glyphicon glyphicon-envelope"></span></button>
+			      
 	        </h1>
 		</div>
 	</div>
-	<div>
-		<h1>Liste des pronostiqueurs </h1>
-		<table data-ng-hide="loading" class="table table-striped">
+	<button class="btn btn-xs btn-info" ng-click="showjoueur()" data-toggle="tooltip" data-placement="top" title="Voir Pronostiqueurs"><span class="glyphicon glyphicon glyphicon-th-list"></span> Membres</button> 
+	<button class="btn btn-xs btn-info ladda-button" data-style="expand-right" ng-click="postMess(myuser,searchText)" data-toggle="tooltip" data-placement="top" title="Ajout message"><span class="glyphicon glyphicon-envelope"></span> Envoi groupe</button>
+	<div id="joueurs" ng-show="montre">
+		<h1>Liste des membres </h1>
+		
+		<table data-ng-hide="loading"  class="table table-striped">
 			<tr data-ng-repeat="user in users | orderBy:user.myname:true | filter:searchText:strict">
 				<td><h6 ng-class="{&quot;btn-success&quot;:user.pseudo===mypseudo}"><span ng-show="!user.pseudo"><i><span ng-if="user.username">{{user.username}}</span></i></span>{{user.pseudo}}</h6></td>
 				<td><h6 ng-class="{&quot;btn-success&quot;:user.pseudo===mypseudo}">{{ user.myname }}</h6></td>
@@ -32,16 +35,7 @@
 			</tr>
 	    </table>
 	</div>
-</div>
-<div class="col-md-offset-1 col-xs-12 col-xs-12 col-md-3 col-lg-3 glow">
-	<div class="gcontent">
-		<div class="head"><h1>Liste des groupes</h1></div>
-		<div ng-repeat="group in alltags track by $index | orderBy:group.text:reverse" ng-class="list-group">
-			<a href="" class="list-group-item" ng-click="FilterGrp(group)" > {{ group.text }}</a>
-		</div>
-	</div>
-</div >
-<div class="col-xs-12 col-xs-12 col-md-8 col-lg-8 glow">
+
 <div class="head"><h1>Liste des messages</h1></div>
 <table data-ng-hide="loading" class="table table-striped">
     <tr class="group">
@@ -70,4 +64,11 @@
 </table>
 </div>
 
-
+<div class="col-md-offset-1 col-xs-12 col-xs-12 col-md-2 col-lg-2 glow">
+	<div class="gcontent">
+		<div class="head"><h1>Liste des groupes</h1></div>
+		<div ng-repeat="group in alltags track by $index | orderBy:group.text:reverse" ng-class="list-group">
+			<a href="" class="list-group-item" ng-click="FilterGrp(group)"> {{ group.text }}</a>
+		</div>
+	</div>
+</div >
