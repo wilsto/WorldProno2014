@@ -94,14 +94,17 @@ angular.module('worldProno2014App')
 			if (data.length > 0) { // recupère les pronos du joueur
 				$scope.allPlayers = PronoFactory.query(
 					function() {
-						clearPoints();
-						calculatePoints();
-
-						//Descending Order:
-						$scope.allPlayers = _.sortBy($scope.allPlayers, function(num){
-							return num.totalpoints * -1;
+						
+						return $q.all([
+							clearPoints(),
+							calculatePoints()
+						])
+						.then(function(results) {
+							//Descending Order:
+							$scope.allPlayers = _.sortBy($scope.allPlayers, function(num){
+								return num.totalpoints * 1;
+							});
 						});
-
 						//supprime le mondial
 						//$scope.allPlayers = _.rest($scope.allPlayers);
 
@@ -117,6 +120,11 @@ angular.module('worldProno2014App')
 
 	$scope.filterRole = function(allPlayers,myfilter) {
 			var result = {};
+
+			allPlayers = _.sortBy(allPlayers, function(num){
+				return num.totalpoints * -1;
+			});			
+
 			//console.log($scope.tags[0].text);
 			angular.forEach(allPlayers, function(value, key) {
 				var rolePlayer;
@@ -220,7 +228,7 @@ angular.module('worldProno2014App')
 
 						$scope.allPlayers[playerNb].points[tour].result = 0;
 						$scope.allPlayers[playerNb].points[tour].score = 0;
-						var MatchTimeStamp = Math.round((new Date("2014-" + realMatch[2].date.split('/')[1] + "-" + realMatch[2].date.split('/')[0] + " " + realMatch[2].time + ":00").getTime() - 120 * 60 ) /1000 +7);
+						var MatchTimeStamp = Math.round((new Date("2014-" + realMatch[2].date.split('/')[1] + "-" + realMatch[2].date.split('/')[0] + "T" + realMatch[2].time + ":00").getTime() - 120 * 60 ) /1000 +7);
 						if (lastUpdate < MatchTimeStamp) {
 						if(realMatch[0].score > realMatch[1].score){
 							if(match[0].score > match[1].score){
