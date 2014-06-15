@@ -23,7 +23,8 @@
     "passport-google": "^0.3.0",
     "validator": "^3.11.0",
     "ejs": "~0.8.4",
-    "newrelic": "^1.7.1"
+    "newrelic": "^1.7.1",
+    "q": "^1.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

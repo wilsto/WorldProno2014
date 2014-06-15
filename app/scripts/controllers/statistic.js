@@ -99,7 +99,7 @@ angular.module('worldProno2014App')
 						$scope.reverse=true;
 
 						clearPoints();
-						calculatePoints();
+						//calculatePoints();
 
 			        	//Descending Order:
 						// $scope.allPlayers = _.sortBy($scope.allPlayers, function(num){
@@ -141,8 +141,6 @@ angular.module('worldProno2014App')
 			var array = $.map(result, function(value, index) {
 			    return [value];
 			});
-			console.log('array', array);
-			console.log('result',result);
 			return array;
 	};
 	/*
@@ -172,26 +170,17 @@ angular.module('worldProno2014App')
 	 * [Initialise les calculs]
 	 */
 	 function clearPoints(){
-		_.each($scope.allPlayers, function(groupData){
-			groupData.points ={};
-			groupData.totalpoints = 0;
-			groupData.points.tour1 = {total:0,result:0,score:0,details:[]};
-			groupData.points.tour2 = {total:0,result:0,score:0,details:[]};
-			groupData.points.tour3 = {total:0,result:0,score:0,details:[]};
-			groupData.points.qualif =	{total:0,details:[]};
-			groupData.points.roundOf16 = {total:0,details:[]};
-			groupData.points.quarterFinals =	{total:0,details:[]};
-			groupData.points.semiFinals =	{total:0,details:[]};
-			groupData.points.Finals =	{total:0,details:[]};
-			groupData.points.winner =	{total:0,details:[]};
-			$http.get('/REST/userInfo/' + groupData.userData.username).success(function(user) {
-				groupData.userData.groups = user.groups;
-				groupData.userData.avatarUrl =  user.avatarUrl;
-				groupData.userData.pseudo =  user.pseudo;
-				groupData.userData.role.title =  user.role.title;
+			$http.get('/users').success(function(users) {
+				_.each($scope.allPlayers, function(player){
+					var userInfo = _.findWhere(users, {username : player.userData.username});
+					if (userInfo !== undefined) {
+						player.userData.groups = userInfo.groups;
+						player.userData.avatarUrl =  userInfo.avatarUrl;
+						player.userData.pseudo =  userInfo.pseudo;
+						player.userData.role.title =  userInfo.role.title;
+					}
+				});
 			});
-
-		});
 	}
 
 
