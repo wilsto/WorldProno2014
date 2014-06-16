@@ -30,7 +30,7 @@ Chargement en cours
                         <td class="c group" style="width:51px"></td>
                         <td class="l group">Nom</td>
                         <td class="l group"></td>
-                        <td class="c group">Pts</td>
+                        <td class="c group"><a href="" ng-click="predicate = 'totalpoints'; reverse=!number"><span class="glyphicon glyphicon-arrow-down"></span></a>Pts<a href="" ng-click="predicate = 'totalpoints'; reverse=number"><span class="glyphicon glyphicon-arrow-up"></span></a></td>
                         <td class="c group">1er tour</td>
                         <td class="c group">2ème tour</td>
                         <td class="c group">3ème tour</td>
@@ -41,7 +41,7 @@ Chargement en cours
                         <td class="c group">Finales</td>
                         <td class="c group">Win</td>
                     </tr>
-                    <tr ng-repeat="(k,player) in filterRole(allPlayers,lstRole) track by $index">
+                    <tr ng-repeat="(k,player) in filterRole(allPlayers,lstRole) | orderBy:predicate:reverse">
                         <td class="l">{{$index +1}}</td>
                         <td class="c " style="width:51px"><a href="/worldcup/{{player.userData.username}}"><div id="userStats" class="clearfix  "><div class="pic"><img class="img-circle" width="50" height="50" ng-src="{{player.userData.avatarUrl !== undefined  && player.userData.avatarUrl || '/images/inconnu.gif'}}"></div></div></a></td>
                         <td class="l "><strong><a href="/worldcup/{{player.userData.username}}"><span ng-show="!player.userData.pseudo">{{player.userData.username}}</span>{{player.userData.pseudo}}</a></strong><br/><span data-ng-class="{&quot;label-info&quot;: player.userData.role.title == userRoles.user.title, &quot;label-success&quot;: player.userData.role.title == userRoles.admin.title, &quot;label-warning&quot;: player.userData.role.title == userRoles.vip.title}" class="label label-prono ">{{ player.userData.role.title }} </span></td>

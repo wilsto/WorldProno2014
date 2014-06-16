@@ -15,7 +15,7 @@ angular.module('worldProno2014App')
 				
 				$scope.player = user;
 				$scope.myname = user.myname;
-				$scope.pseudo = user.pseudo;
+				$scope.pseudo = (user.pseudo) ? user.pseudo : $scope.user.username;
 				$scope.mycontact = user.mycontact;
 				$scope.userPaid = user.paid;
 				$scope.tags = user.groups;
