@@ -29,7 +29,7 @@
 	    </table>
 	</div>
 
-<div class="head"><h1>Liste des messages</h1></div>
+<div class="head"><h1>Liste des messages ({{nbpost}}) </h1></div>
 <table data-ng-hide="loading" class="table table-striped">
     <tr class="group">
         <th class="c group">date</th>
@@ -50,8 +50,8 @@
 	       <span ng-bind-html="teampost.postText"></span>
 	    </td>
 		<td>
-			    <button ng-show="myuser.username === teampost.postFrom" class ="btn btn-xs  btn-danger" id='close' ng-click='deletePost(teampost)'><span class="glyphicon glyphicon-trash"></button>
-			    <button ng-show="myuser.username === teampost.postFrom"  class ="btn btn-xs  btn-default" id='close' ng-click='editPost(teampost)'><span class="glyphicon glyphicon-pencil"></span></button>
+		    <button ng-show="myuser.username === teampost.postFrom" class ="btn btn-xs  btn-danger" id='close' ng-click='deletePost(teampost)'><span class="glyphicon glyphicon-trash"></button>
+		    <button ng-show="myuser.username === teampost.postFrom"  class ="btn btn-xs  btn-default" id='close' ng-click='editPost(teampost)'><span class="glyphicon glyphicon-pencil"></span></button>
 		</td>	    
 	</tr> 
 </table>
