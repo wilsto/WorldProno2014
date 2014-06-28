@@ -21,7 +21,8 @@
     "raty": "~2.5.2",
     "ng-tags-input": "2.0.1",
     "dangle": "*",
-    "d3": "~3.4.8"
+    "d3": "~3.4.8",
+    "ngInfiniteScroll": "~1.1.2"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.11",

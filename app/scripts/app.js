@@ -7,6 +7,7 @@ var app = angular.module('worldProno2014App', [
   //'ngRoute',
   'ui.bootstrap',
   'ngTagsInput',
+  'infinite-scroll',
   'dangle',
   'ui.router'
 ])

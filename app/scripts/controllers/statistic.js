@@ -76,6 +76,13 @@ angular.module('worldProno2014App')
         $scope.alltags =alltags;
     });
 
+	$scope.totalDisplayed = 20;
+
+	$scope.loadMore = function () {
+	  $scope.totalDisplayed += 20;  
+	};
+
+
 	$scope.loadTags = function(query) {
 	    var deferred = $q.defer();
 	    deferred.resolve($filter('filter')($scope.alltags, query));
@@ -253,6 +260,8 @@ angular.module('worldProno2014App')
 
 		});
 	}
+
+
 
 
 }]);
