@@ -24,7 +24,8 @@
     "validator": "^3.11.0",
     "ejs": "~0.8.4",
     "newrelic": "^1.7.1",
-    "q": "^1.0.1"
+    "q": "^1.0.1",
+    "node.extend": "^1.0.10"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

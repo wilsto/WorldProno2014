@@ -4,12 +4,12 @@ var app = angular.module('worldProno2014App', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  //'ngRoute',
   'ui.bootstrap',
   'ngTagsInput',
   'infinite-scroll',
   'dangle',
-  'ui.router'
+  'ui.router',
+  'mgcrea.ngStrap.popover'
 ])
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider', function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
